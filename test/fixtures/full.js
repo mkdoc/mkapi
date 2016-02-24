@@ -39,7 +39,7 @@ util.inherits(Component, EventEmitter);
  *  @function foo
  *  @prototype Component
  *
- *  @param {Object} opts An options arguments.
+ *  @param {Object} [opts] An options arguments.
  *  @param {Function} cb Callback function.
  */
 function foo(opts, cb) {
