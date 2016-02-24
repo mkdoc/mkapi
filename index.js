@@ -3,12 +3,13 @@ var fs = require('fs')
   , comments = require('comment-parser')
   , repeat = require('string-repeater')
   , renderers = {}
+  , current
   , MODULE = 'module'
   , CLASS = 'class'
   , CONSTRUCTOR = 'constructor'
   , INHERITS= 'inherits'
   , FUNCTION = 'function'
-  //, PROTOTYPE = 'prototype'
+  , PROTOTYPE = 'prototype'
   , PROPERTY = 'property'
   , CONSTANT = 'constant'
   , OPTIONS_HEADING = 'Options'
@@ -94,14 +95,14 @@ renderers[CONSTRUCTOR] = renderers[FUNCTION] = function(tag, token, opts) {
     , level = opts.depth
     , val = name
     , inherits
-    , construct = (tag.tag=== CONSTRUCTOR);
+    , construct = (tag.tag === CONSTRUCTOR)
+    , proto = findTag(PROTOTYPE, token)
+    , className;
 
   if(construct) {
+    current = construct;
     inherits = findTag(INHERITS, token); 
   }
-
-  //console.dir(tag);
-  //console.log('construct', construct);
 
   if(!name) {
     return;
@@ -111,6 +112,11 @@ renderers[CONSTRUCTOR] = renderers[FUNCTION] = function(tag, token, opts) {
   if(inherits) {
     nm += ' < ' + inherits.name;
   }
+
+  if(proto) {
+    nm = '.' + nm; 
+  }
+
   heading(stream, nm, level);
   newline(stream, 2);
 
@@ -118,6 +124,18 @@ renderers[CONSTRUCTOR] = renderers[FUNCTION] = function(tag, token, opts) {
   params = collect(PARAM, token);
   if(construct) {
     val = 'new ' + name; 
+  }else if(proto) {
+    if(current) {
+      className = current.name; 
+    }
+
+    if(proto.name) {
+      className = proto.name; 
+    }
+
+    if(className) {
+      val = className + '.prototype.' + name;
+    }
   }
   signature(params, val, token, opts, {construct: construct});
   newline(stream, 2);

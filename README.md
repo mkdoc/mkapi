@@ -72,6 +72,7 @@ The following tags are supported:
 * `@class`: Marks a class declaration, a class name should be given.
 * `@constructor`: Marks a class constructor function, a function name should be given.
 * `@function`: Marks a function declaration, the function name should be given.
+* `@prototype`: Marks a prototype function declaration, a class name my be specified otherwise the current class scope is used.
 * `@property`: Marks a property declaration, the property name should be given.
 * `@constant`: Marks a constant property, the property name should be given.
 * `@default`: Default value for a property.

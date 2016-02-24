@@ -8,7 +8,7 @@ Table of Contents
     * [Component](#component)
       * [Component < EventEmitter](#component-eventemitter)
         * [Options](#options)
-      * [foo](#foo)
+      * [.foo](#foo)
         * [Options](#options-1)
       * [create](#create)
       * [BAZ](#baz)
@@ -141,10 +141,10 @@ An abstract component.
 
 * `enabled` Whether the component is initially enabled.
 
-#### foo
+#### .foo
 
 ```javascript
-foo([opts], cb)
+Component.prototype.foo([opts], cb)
 ```
 
 Do foo thing with bar.
