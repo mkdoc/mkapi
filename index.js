@@ -48,7 +48,10 @@ function concat(files, output, cb) {
 function print(ast, opts, cb) {
   var stream = opts.stream
     , level = opts.level
-    , called = false;
+    , called = false
+    , json
+    , indent = typeof(opts.indent) === 'number' && !isNaN(opts.indent) 
+        ? Math.abs(opts.indent) : 2;
 
   function done(err) {
     /* istanbul ignore if: guard against error race condition */
@@ -60,6 +63,17 @@ function print(ast, opts, cb) {
   }
 
   stream.once('error', done);
+
+  if(opts.ast) {
+    json = JSON.stringify(ast, undefined, indent);
+
+    if(stream !== process.stdout) {
+      stream.write(json); 
+      return stream.end(done);
+    }else{
+      return stream.write(json);
+    }
+  }
 
   // find a tag
   function findTag(name, ast) {

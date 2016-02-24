@@ -6,11 +6,13 @@ var parser = require('cli-argparse')
   , pkg = require('../package.json')
   , hints = {
       options: [
-        '-l', '-t', '-o'
+        '-l', '-t', '-o', '-i'
       ],
-      aliases: {
+      alias: {
+        '-a --ast': 'ast',
         '-l --level': 'level',
         '-t --title': 'title',
+        '-i --indent': 'indent',
         '-o --output': 'output'
       }
     }
@@ -20,9 +22,11 @@ var parser = require('cli-argparse')
 function usage() {
   var indent = '  '
     , opts = {
-      '-o, --output=[file]': 'Write output to file.',
-      '-t, --title=[val]': 'Title for initial heading (default: API).',
-      '-l, --level=[num]': 'Initial heading level (default: 1).',
+      '-o, --output=[FILE]': 'Write output to FILE.',
+      '-t, --title=[VAL]': 'Title for initial heading (default: API).',
+      '-l, --level=[NUM]': 'Initial heading level (default: 1).',
+      '-i, --indent=[NUM]': 'Number of spaces for JSON (default: 2).',
+      '-a, --ast': 'Print AST as JSON.',
       '-h, --help': 'Display this help and exit.',
       '--version': 'Print the version and exit.'
     }
@@ -63,6 +67,8 @@ if(args.flags.h || args.flags.help) {
   return version();
 }
 
+console.error(args);
+
 if(!args.unparsed.length) {
   return error('no files specified');
 }
@@ -71,9 +77,9 @@ if(args.options.level && !parseInt(args.options.level)) {
   return error('--level must be an integer');
 }
 
-//console.error(args);
-
 opts.level = parseInt(args.options.level);
+opts.ast = args.flags.ast;
+opts.indent = parseInt(args.options.indent);
 
 if(args.options.title !== undefined) {
   opts.heading = args.options.title;
