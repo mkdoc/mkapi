@@ -70,7 +70,7 @@ if(args.options.level && !parseInt(args.options.level)) {
   return error('--level must be an integer');
 }
 
-console.error(args);
+//console.error(args);
 
 opts.level = parseInt(args.options.level);
 
