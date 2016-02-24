@@ -250,7 +250,7 @@ function meta(token, opts) {
     , list = '* **';
 
   if(deprecated) {
-    stream.write('> ' + DEPRECATED + ' '
+    stream.write('> ***Deprecated:*** '
       + deprecated.name + ' ' + deprecated.description);
     newline(stream, 2);
   }

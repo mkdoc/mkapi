@@ -222,7 +222,7 @@ Do foo thing with bar.
 static factory()
 ```
 
-> deprecated use create instead.
+> ***Deprecated:*** use create instead.
 
 A static function declaration.
 
