@@ -18,9 +18,9 @@ Table of Contents
 Markdown API
 ============
 
-[<img src="https://travis-ci.org/tmpfs/mdapi.svg" alt="Build Status">](https://travis-ci.org/tmpfs/mdapi)
-[<img src="http://img.shields.io/npm/v/mdapi.svg" alt="npm version">](https://npmjs.org/package/mdapi)
-[<img src="https://coveralls.io/repos/tmpfs/mdapi/badge.svg?branch=master&service=github&v=1" alt="Coverage Status">](https://coveralls.io/github/tmpfs/mdapi?branch=master).
+[<img src="https://travis-ci.org/tmpfs/mdapi.svg?v=2" alt="Build Status">](https://travis-ci.org/tmpfs/mdapi)
+[<img src="http://img.shields.io/npm/v/mdapi.svg?v=2" alt="npm version">](https://npmjs.org/package/mdapi)
+[<img src="https://coveralls.io/repos/tmpfs/mdapi/badge.svg?branch=master&service=github&v=2" alt="Coverage Status">](https://coveralls.io/github/tmpfs/mdapi?branch=master).
 
 Quick and dirty (but effective) API comments to commonmark compliant markdown.
 
