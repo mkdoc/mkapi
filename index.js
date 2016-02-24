@@ -2,7 +2,9 @@ var fs = require('fs')
   , assert = require('assert')
   , comments = require('comment-parser')
   , repeat = require('string-repeater')
+  , HEADING = 'API'
   , OPTIONS_HEADING = 'Options'
+  , LANG = 'javascript'
   , USAGE ='usage' 
   , PRIVATE ='private' 
   , OPTION = 'option'
@@ -269,10 +271,11 @@ function parse(files, opts, cb) {
   // starting level for headings
   opts.level = opts.level || 1;
 
-  opts.heading = opts.heading !== undefined ? opts.heading : 'API';
+  // value for the initial heading
+  opts.heading = opts.heading !== undefined ? opts.heading : parse.HEADING;
 
-  // language for function signature
-  opts.lang = opts.lang !== undefined ? opts.lang : 'javascript';
+  // language for fenced code blocks
+  opts.lang = opts.lang !== undefined ? opts.lang : parse.LANG;
 
   concat(files.slice(), null, function onLoad(err, result) {
     if(err) {
@@ -291,5 +294,23 @@ function parse(files, opts, cb) {
     print(ast, opts, onPrint);
   })
 }
+
+/**
+ *  Default heading value.
+ *
+ *  @field {String} HEADING
+ *
+ *  @default API
+ */
+parse.HEADING = HEADING;
+
+/**
+ *  Default language for fenced code blocks.
+ *
+ *  @field {String} LANG
+ *
+ *  @default javascript
+ */
+parse.LANG = LANG;
 
 module.exports = parse;
