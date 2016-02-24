@@ -47,11 +47,19 @@ function concat(files, output, cb) {
  */
 function print(ast, opts, cb) {
   var stream = opts.stream
-    , level = opts.level;
+    , level = opts.level
+    , called = false;
 
   function done(err) {
+    /* istanbul ignore if: guard against error race condition */
+    if(called) {
+      return;
+    }
     cb(err || null); 
+    called = true;
   }
+
+  stream.once('error', done);
 
   // find a tag
   function findTag(name, ast) {
@@ -123,8 +131,6 @@ function print(ast, opts, cb) {
 
   // walk the ast
   ast.forEach(function(token) {
-    //console.dir(token);
-
     var tag = findTag(NAME, token)
       , name
       , usage = findTag(USAGE, token)
@@ -199,7 +205,7 @@ function parse(files, opts, cb) {
   opts = opts || {};
 
   // stream to print to
-  opts.stream = opts.stream || process.stdout;
+  opts.stream = opts.stream !== undefined ? opts.stream : process.stdout;
 
   // starting level for headings
   opts.level = opts.level || 1;
