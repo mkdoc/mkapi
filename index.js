@@ -360,8 +360,10 @@ function print(ast, opts, cb) {
 
 // jscs:disable maximumLineLength
 /**
- *  Accepts an array of files, concatenates the files in the order given 
- *  into a string, parse the comments in the resulting string into an AST 
+ *  Accepts an array of files and concatenates them in the order given 
+ *  to a string. 
+ *
+ *  Parse the comments in the resulting string into an AST 
  *  and transform the AST into commonmark compliant markdown.
  *
  *  The callback function is passed an error and also the AST on success: 
