@@ -72,6 +72,7 @@ function print(ast, opts, cb) {
   if(opts.ast) {
     json = JSON.stringify(ast, undefined, indent);
 
+    /* istanbul ignore else: never print to stdout in test env */
     if(stream !== process.stdout) {
       stream.write(json); 
       return stream.end(done);
