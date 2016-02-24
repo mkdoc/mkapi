@@ -64,12 +64,17 @@ renderers[MODULE] = function(tag, token, opts) {
 
   // reset to default level
   opts.depth = opts.level;
-  heading(stream, tag.name + ' '  + tag.description, opts.depth);
-  newline(stream, 2);
 
-  if(token.description) {
-    stream.write(token.description); 
+  if(tag.name) {
+    heading(stream, tag.name + ' '  + tag.description, opts.depth);
     newline(stream, 2);
+
+    if(token.description) {
+      stream.write(token.description); 
+      newline(stream, 2);
+    }
+
+    opts.depth++;
   }
 }
 
