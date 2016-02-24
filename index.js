@@ -5,16 +5,167 @@ var fs = require('fs')
   , HEADING = 'API'
   , OPTIONS_HEADING = 'Options'
   , LANG = 'javascript'
+  , CLASS = 'class'
+  , CONSTRUCTOR = 'constructor'
+  , FUNCTION = 'function'
+  //, PROTOTYPE = 'prototype'
   , USAGE ='usage' 
   , PRIVATE ='private' 
   , OPTION = 'option'
-  , FUNCTION = 'function'
   , PARAM = 'param';
 
 /**
  *  @usage var parse = require('mdapi');
  *  parse(['index.js'], {stream: process.stdout});
  */
+
+// find a tag
+function findTag(name, ast) {
+  for(var i = 0;i < ast.tags.length;i++) {
+    if(ast.tags[i].tag === name) {
+      return ast.tags[i]; 
+    }
+  }
+}
+
+// collect tags
+function collect(name, ast) {
+  var o = [];
+  for(var i = 0;i < ast.tags.length;i++) {
+    if(ast.tags[i].tag === name) {
+      o.push(ast.tags[i]);
+    }
+  }
+  return o;
+}
+
+// find the type tag
+function findType(token) {
+  var type = 
+    findTag(CLASS, token)
+    || findTag(CONSTRUCTOR, token)
+    || findTag(FUNCTION, token);
+
+  return type;
+}
+
+var renderers = {};
+
+function render(type, token, opts) {
+  //console.dir(type);
+  renderers[type.tag](type, token, opts); 
+}
+
+renderers[CLASS] = function(tag, token, opts) {
+  //console.log(token);
+}
+
+renderers[CONSTRUCTOR] = function(tag, token, opts) {
+  //console.log(token);
+}
+
+renderers[FUNCTION] = function(tag, token, opts) {
+
+  var name = tag.name
+    , stream = opts.stream
+    , params
+    , options
+    , level = opts.depth;
+
+  if(!name) {
+    return;
+  }
+
+  // method heading
+  heading(stream, name, level);
+  newline(stream, 2);
+
+  // method signature
+  params = collect(PARAM, token);
+  signature(params, name, token, opts);
+  newline(stream, 2);
+
+  // method description
+  if(token.description) {
+    stream.write(token.description);
+    newline(stream, 2);
+  }
+
+  // parameter list
+  parameters(stream, params);
+  if(params.length) {
+    newline(stream);
+  }
+
+  // options list
+  options = collect(OPTION, token);
+  if(options.length) {
+    heading(stream, OPTIONS_HEADING, level + 1);
+    newline(stream, 2);
+    parameters(stream, options);
+    newline(stream);
+  }
+}
+
+// print a heading
+function heading(stream, str, level) {
+  stream.write(repeat('#', level) + ' ' + str); 
+}
+
+// print newline(s)
+function newline(stream, num) {
+  num = num || 1; 
+  stream.write(repeat('\n', num)); 
+}
+
+// print a fenced code block
+function fenced(stream, code, lang) {
+  stream.write('```'); 
+  if(typeof lang === 'string') {
+    stream.write(lang); 
+  }
+  newline(stream);
+  stream.write(code);
+  newline(stream);
+  stream.write('```'); 
+}
+
+// print the function signature
+function signature(params, name, token, opts) {
+  var sig = '('
+  params.forEach(function(param, index) {
+    if(param.optional) {
+      sig += '['; 
+    }
+    if(index) {
+      sig += ', '; 
+    }
+    sig += param.name;
+    if(param.optional) {
+      sig += ']'; 
+    }
+  })
+
+  sig += ')';
+
+  fenced(opts.stream, name + sig, opts.lang);
+  return params;
+}
+
+// print a list of parameters
+function parameters(stream, params) {
+  params.forEach(function(param) {
+    var name = param.name
+      , type = '';
+
+    if(param.type) {
+      type = param.type + ' '; 
+    }
+    stream.write('* `' + name + '` ' + type + param.description);
+    newline(stream);
+  })
+}
+
 
 /**
  *  Concatenate input files into a single string.
@@ -56,11 +207,13 @@ function concat(files, output, cb) {
  */
 function print(ast, opts, cb) {
   var stream = opts.stream
-    , level = opts.level
     , called = false
     , json
     , indent = typeof(opts.indent) === 'number' && !isNaN(opts.indent) 
         ? Math.abs(opts.indent) : 2;
+
+  // state of the depth level
+  opts.depth = opts.level;
 
   function done(err) {
     /* istanbul ignore if: guard against error race condition */
@@ -85,141 +238,34 @@ function print(ast, opts, cb) {
     }
   }
 
-  // find a tag
-  function findTag(name, ast) {
-    for(var i = 0;i < ast.tags.length;i++) {
-      if(ast.tags[i].tag === name) {
-        return ast.tags[i]; 
-      }
-    }
-  }
-
-  // collect tags
-  function collect(name, ast) {
-    var o = [];
-    for(var i = 0;i < ast.tags.length;i++) {
-      if(ast.tags[i].tag === name) {
-        o.push(ast.tags[i]);
-      }
-    }
-    return o;
-  }
-
-
-  // print a heading
-  function heading(str, level) {
-    stream.write(repeat('#', level) + ' ' + str); 
-  }
-
-  // print newline(s)
-  function newline(num) {
-    num = num || 1; 
-    stream.write(repeat('\n', num)); 
-  }
-
-  // print a fenced code block
-  function fenced(code, lang) {
-    stream.write('```'); 
-    if(typeof lang === 'string') {
-      stream.write(lang); 
-    }
-    newline();
-    stream.write(code);
-    newline();
-    stream.write('```'); 
-  }
-
-  // print the function signature
-  function signature(name, token) {
-    var sig = '('
-      , params = collect(PARAM, token);
-    params.forEach(function(param, index) {
-      if(param.optional) {
-        sig += '['; 
-      }
-      if(index) {
-        sig += ', '; 
-      }
-      sig += param.name;
-      if(param.optional) {
-        sig += ']'; 
-      }
-    })
-
-    sig += ')';
-
-    fenced(name + sig, opts.lang);
-    return params;
-  }
-
   // initial heading
   if(opts.heading && typeof opts.heading === 'string') {
-    heading(opts.heading, level); 
-    newline(2);
-    level++;
-  }
-
-  // print a list of parameters
-  function parameters(params) {
-    params.forEach(function(param) {
-      var name = param.name
-        , type = '';
-
-      if(param.type) {
-        type = param.type + ' '; 
-      }
-      stream.write('* `' + name + '` ' + type + param.description);
-      newline();
-    })
+    heading(stream, opts.heading, opts.depth); 
+    newline(stream, 2);
+    opts.depth++;
   }
 
   // walk the ast
   ast.forEach(function(token) {
-    var tag = findTag(FUNCTION, token)
-      , exclude = findTag(PRIVATE, token)
-      , name
+    //var tag = findTag(FUNCTION, token)
+    var exclude = findTag(PRIVATE, token)
       , usage = findTag(USAGE, token)
-      , params
-      , options;
 
     if(usage) {
-      fenced(usage.name + ' ' + usage.description, opts.lang);
-      newline(2);
+      fenced(stream, usage.name + ' ' + usage.description, opts.lang);
+      newline(stream, 2);
     }
 
-    if(exclude || (!tag || !tag.name)) {
-      return; 
+    var type = findType(token);
+
+    // marked @private
+    if(exclude) {
+      return false; 
     }
 
-    name = tag.name;
-    
-    // method heading
-    heading(name, level);
-    newline(2);
-
-    // method signature
-    params = signature(name, token);
-    newline(2);
-
-    // method description
-    if(token.description) {
-      stream.write(token.description);
-      newline(2);
-    }
-
-    // parameter list
-    parameters(params);
-    if(params.length) {
-      newline();
-    }
-
-    // options list
-    options = collect(OPTION, token);
-    if(options.length) {
-      heading(OPTIONS_HEADING, level + 1);
-      newline(2);
-      parameters(options);
-      newline();
+    // render for the type tag
+    if(type) {
+      return render(type, token, opts); 
     }
   })
 
