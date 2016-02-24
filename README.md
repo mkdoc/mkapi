@@ -89,7 +89,7 @@ parse(['index.js'], {stream: process.stdout});
 ### parse
 
 ```javascript
-parse(files, opts, cb)
+parse(files[, opts], cb)
 ```
 
 Parse an array of files into a markdown string.
