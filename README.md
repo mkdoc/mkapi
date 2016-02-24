@@ -38,9 +38,10 @@ npm i mdapi
 ```
 mdapi [options] [files...]
 
-  -o, --output=[FILE]  Write output to FILE.
+  -o, --output=[FILE]  Write output to FILE (default: stdout).
   -t, --title=[VAL]    Title for initial heading (default: API).
   -l, --level=[NUM]    Initial heading level (default: 1).
+  -L, --lang=[LANG]    Language for fenced code blocks (default: javascript).
   -i, --indent=[NUM]   Number of spaces for JSON (default: 2).
   -a, --ast            Print AST as JSON.
   -h, --help           Display this help and exit.
