@@ -1,3 +1,5 @@
 /**
- *  @usage var foo = 'bar';
+ *  var foo = 'bar';
+ *
+ *  @usage
  */

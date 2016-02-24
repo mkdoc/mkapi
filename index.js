@@ -22,8 +22,10 @@ var fs = require('fs')
   , PARAM = 'param';
 
 /**
- *  @usage var parse = require('mdapi');
+ *  var parse = require('mdapi');
  *  parse(['index.js'], {stream: process.stdout});
+ *
+ *  @usage
  */
 
 // find a tag
@@ -350,12 +352,11 @@ function print(ast, opts, cb) {
 
   // walk the ast
   ast.forEach(function(token) {
-    //var tag = findTag(FUNCTION, token)
     var exclude = findTag(PRIVATE, token)
       , usage = findTag(USAGE, token)
 
     if(usage) {
-      fenced(stream, usage.name + ' ' + usage.description, opts.lang);
+      fenced(stream, token.description, opts.lang);
       newline(stream, 2);
     }
 

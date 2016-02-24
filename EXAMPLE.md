@@ -62,7 +62,7 @@ util.inherits(Component, EventEmitter);
  *  Do foo thing with bar.
  *
  *  @function foo
- *  @prototype Component
+ *  @prototype
  *
  *  @param {Object} [opts] An options arguments.
  *  @param {Function} cb Callback function.

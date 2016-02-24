@@ -6,12 +6,12 @@ describe('mdapi:', function() {
 
   it('should print usage as AST JSON', function(done) {
     var output = 'target/usage-ast.json'
-      , expected = '[\n  {\n    "tags": [\n      {\n        "tag": "usage",\n'
-          + '        "name": "var",\n        "optional": false,\n        '
-          + '"description": "foo = \'bar\';",\n        "type": "",\n        '
-          + '"line": 1,\n        "source": "@usage var foo = \'bar\';"\n      '
-          + '}\n    ],\n    "line": 0,\n    "description": "",\n    '
-          + '"source": "@usage var foo = \'bar\';"\n  }\n]';
+      , expected = '[\n  {\n    "tags": [\n      {\n        "tag": "usage",'
+          + '\n        "name": "",\n        "optional": false,\n        '
+          + '"type": "",\n        "description": "",\n        "line": 3,'
+          + '\n        "source": "@usage"\n      }\n    ],\n    "line": 0,'
+          + '\n    "description": "var foo = \'bar\';",\n    "source": '
+          + '"var foo = \'bar\';\\n\\n@usage"\n  }\n]';
 
     function complete(err) {
       if(err) {
@@ -29,10 +29,10 @@ describe('mdapi:', function() {
 
   it('should print usage as AST JSON with indent', function(done) {
     var output = 'target/usage-ast-indent.json'
-      , expected = '[{"tags":[{"tag":"usage","name":"var","optional":false,'
-          + '"description":"foo = \'bar\';","type":"","line":1,"source":'
-          + '"@usage var foo = \'bar\';"}],"line":0,"description":"","source"'
-          + ':"@usage var foo = \'bar\';"}]';
+      , expected = '[{"tags":[{"tag":"usage","name":"","optional":false,'
+          + '"type":"","description":"","line":3,"source":"@usage"}],'
+          + '"line":0,"description":"var foo = \'bar\';","source":'
+          + '"var foo = \'bar\';\\n\\n@usage"}]';
 
     function complete(err) {
       if(err) {
