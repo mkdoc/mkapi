@@ -2,6 +2,12 @@ var util = require('util')
   , EventEmitter = require('events').EventEmitter;
 
 /**
+ *  This is mock code to verify the program output.
+ *
+ *  @module API Documents
+ */
+
+/**
  *  An abstract component.
  *
  *  @constructor Component

@@ -2,14 +2,15 @@ var fs = require('fs')
   , assert = require('assert')
   , comments = require('comment-parser')
   , repeat = require('string-repeater')
-  , HEADING = 'API'
-  , OPTIONS_HEADING = 'Options'
-  , LANG = 'javascript'
+  , MODULE = 'module'
   , CLASS = 'class'
   , CONSTRUCTOR = 'constructor'
   , FUNCTION = 'function'
-  , PROPERTY = 'property'
   //, PROTOTYPE = 'prototype'
+  , PROPERTY = 'property'
+  , HEADING = 'API'
+  , OPTIONS_HEADING = 'Options'
+  , LANG = 'javascript'
   , DEFAULT ='default' 
   , USAGE ='usage' 
   , PRIVATE ='private' 
@@ -44,7 +45,8 @@ function collect(name, ast) {
 // find the type tag
 function findType(token) {
   var type = 
-    findTag(CLASS, token)
+    findTag(MODULE, token)
+    || findTag(CLASS, token)
     || findTag(CONSTRUCTOR, token)
     || findTag(FUNCTION, token)
     || findTag(PROPERTY, token);
@@ -57,6 +59,20 @@ var renderers = {};
 function render(type, token, opts) {
   //console.dir(type);
   renderers[type.tag](type, token, opts); 
+}
+
+renderers[MODULE] = function(tag, token, opts) {
+  var stream = opts.stream;
+
+  // reset to default level
+  opts.depth = opts.level;
+  heading(stream, tag.name + ' '  + tag.description, opts.depth);
+  newline(stream, 2);
+
+  if(token.description) {
+    stream.write(token.description); 
+    newline(stream, 2);
+  }
 }
 
 renderers[CLASS] = function(tag, token, opts) {

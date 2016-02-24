@@ -69,7 +69,7 @@
         ]
       },
       {
-        "bin": "./bin/mdapi index.js --level=2"
+        "bin": "./bin/mdapi index.js --level=2 --title=API"
       },
       {
         "inc": [
