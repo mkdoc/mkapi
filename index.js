@@ -133,6 +133,9 @@ renderers[CONSTRUCTOR] =
   if(construct) {
     val = 'new ' + name; 
   }else if(isStatic) {
+    if(tag.description) {
+      name = tag.description + '.' + name; 
+    }
     val = 'static ' + name; 
   }else if(proto) {
     if(current) {
