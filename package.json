@@ -55,6 +55,10 @@
         ]
       },
       {
+        "title": "Usage",
+        "bin": "./bin/mdapi -h" 
+      },
+      {
         "bin": "./bin/mdapi index.js --level=2" 
       },
       {

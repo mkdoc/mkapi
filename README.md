@@ -3,6 +3,7 @@ Table of Contents
 
 * [Markdown API](#markdown-api)
   * [Install](#install)
+  * [Usage](#usage)
   * [API](#api)
     * [concat](#concat)
     * [print](#print)
@@ -28,6 +29,14 @@ Quick and dirty (but effective) API comments to commonmark compliant markdown.
 ```
 npm i mdapi
 ```
+
+## Usage
+
+mdapi [options] [files...]
+
+  --level=[num] Initial heading level.
+
+Report bugs to https://github.com/tmpfs/mdapi/issues.
 
 ## API
 
