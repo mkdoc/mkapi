@@ -5,6 +5,9 @@ var util = require('util')
  *  This is mock code to verify the program output.
  *
  *  @module API Documents
+ *
+ *  @see https://github.com/tmpfs/mdapi mdapi
+ *  @see https://github.com/jgm/commonmark.js commonmark
  */
 
 /**
@@ -13,8 +16,6 @@ var util = require('util')
  *  @constructor Component
  *
  *  @inherits EventEmitter
- *
- *  @see https://github.com/tmpfs/mdapi
  */
 function Component(opts){
   opts = opts || {};

@@ -11,6 +11,7 @@ var fs = require('fs')
   , OPTIONS_HEADING = 'Options'
   , LANG = 'javascript'
   , DEFAULT ='default' 
+  , SEE = 'see'
   , USAGE ='usage' 
   , PRIVATE ='private' 
   , OPTION = 'option'
@@ -76,6 +77,8 @@ renderers[MODULE] = function(tag, token, opts) {
 
     opts.depth++;
   }
+
+  see(tag, token, opts);
 }
 
 renderers[CLASS] = function(tag, token, opts) {
@@ -148,6 +151,22 @@ renderers[PROPERTY] = function(tag, token, opts) {
       stream.write(token.description);
       newline(stream, 2);
     }
+  }
+}
+
+function see(tag, token, opts) {
+  var all = collect(SEE, token)
+    , stream = opts.stream;
+  if(all.length) {
+    all.forEach(function(link) {
+      if(link.name) {
+        var val = '* [' + (link.description || link.name) + ']'
+          + '(' + link.name + ')';
+        stream.write(val);
+        newline(stream);
+      }
+    })
+    newline(stream);
   }
 }
 
