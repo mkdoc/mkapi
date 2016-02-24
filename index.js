@@ -176,7 +176,7 @@ function print(ast, opts, cb) {
   if(stream !== process.stdout) {
     stream.end(); 
   }else{
-    cb();
+    done();
   }
 }
 
@@ -209,7 +209,7 @@ function parse(files, opts, cb) {
   opts.lang = opts.lang || 'javascript';
 
   // disable trim by default
-  opts.trim = typeof(opts.trim) === 'boolean' ? opts.trim : false;
+  //opts.trim = typeof(opts.trim) === 'boolean' ? opts.trim : false;
 
   files = Array.isArray(files) ? files : [];
 
