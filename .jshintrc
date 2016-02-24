@@ -10,6 +10,5 @@
   "noarg"                   : true,
   "mocha"                   : true,
   "unused"                  : true,
-  "asi"                     : true,
-  "predef"                  : ["window","document","localStorage","Blob","FileReader"]
+  "asi"                     : true
 }
