@@ -252,7 +252,7 @@ function parse(files, opts, cb) {
       return cb(err); 
     }
 
-    var ast = comments(result);
+    var ast = comments(result, {trim: true});
 
     function onPrint(err) {
       if(err) {
