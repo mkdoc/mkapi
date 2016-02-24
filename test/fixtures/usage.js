@@ -1,0 +1,3 @@
+/**
+ *  @usage var foo = 'bar';
+ */
