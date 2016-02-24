@@ -67,7 +67,7 @@ Component.prototype.foo = foo;
  *  
  *  @static factory
  *
- *  @return A new component.
+ *  @return a new component.
  */
 function factory() {
   return create();

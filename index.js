@@ -117,6 +117,7 @@ renderers[CONSTRUCTOR] =
     , construct = (tag.tag === CONSTRUCTOR)
     , isStatic = (tag.tag === STATIC)
     , proto = findTag(PROTOTYPE, token)
+    , retval = findTag(RETURN, token)
     , className;
 
   if(construct) {
@@ -173,6 +174,11 @@ renderers[CONSTRUCTOR] =
   // method description
   if(token.description) {
     stream.write(token.description);
+    newline(stream, 2);
+  }
+
+  if(retval) {
+    stream.write('Returns ' + retval.name + ' ' + retval.description);
     newline(stream, 2);
   }
 
