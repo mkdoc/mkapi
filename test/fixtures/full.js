@@ -75,4 +75,12 @@ Component.BAZ= 'baz';
  */
 create.QUX = null;
 
+/**
+ *  Gets the ZAR variable.
+ *
+ *  @constant ZAR
+ *  @default foo
+ */
+const ZAR = 'foo';
+
 module.exports = create;

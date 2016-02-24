@@ -7,6 +7,7 @@ The following tags are supported:
 * `@constructor`: Marks a class constructor function, a function name should be given.
 * `@function`: Marks a function declaration, the function name should be given.
 * `@property`: Marks a property declaration, the property name should be given.
+* `@constant`: Marks a constant property, the property name should be given.
 * `@default`: Default value for a property.
 * `@private`: Exclude the comment from the output.
 * `@param`: Declares an argument for a function.

@@ -2,6 +2,7 @@ var fs = require('fs')
   , assert = require('assert')
   , comments = require('comment-parser')
   , repeat = require('string-repeater')
+  , renderers = {}
   , MODULE = 'module'
   , CLASS = 'class'
   , CONSTRUCTOR = 'constructor'
@@ -9,6 +10,7 @@ var fs = require('fs')
   , FUNCTION = 'function'
   //, PROTOTYPE = 'prototype'
   , PROPERTY = 'property'
+  , CONSTANT = 'constant'
   , OPTIONS_HEADING = 'Options'
   , LANG = 'javascript'
   , DEFAULT ='default' 
@@ -50,12 +52,11 @@ function findType(token) {
     || findTag(CLASS, token)
     || findTag(CONSTRUCTOR, token)
     || findTag(FUNCTION, token)
-    || findTag(PROPERTY, token);
+    || findTag(PROPERTY, token)
+    || findTag(CONSTANT, token);
 
   return type;
 }
-
-var renderers = {};
 
 function render(type, token, opts) {
   renderers[type.tag](type, token, opts); 
@@ -145,18 +146,23 @@ renderers[CONSTRUCTOR] = renderers[FUNCTION] = function(tag, token, opts) {
   see(tag, token, opts);
 }
 
-renderers[PROPERTY] = function(tag, token, opts) {
+renderers[PROPERTY] = renderers[CONSTANT] = function(tag, token, opts) {
   var name = tag.name
     , value = name
     , defaultValue = findTag(DEFAULT, token)
-    , stream = opts.stream;
+    , stream = opts.stream
+    , fixed = (tag.tag === CONSTANT);
+
   if(name && defaultValue) {
-    value += ' (=' + defaultValue.name + ')'
+    value += ' = ' + defaultValue.name + ';'
   }
   if(name) {
     heading(stream, name, opts.depth);
     newline(stream, 2);
     if(value) {
+      if(fixed) {
+        value = 'const ' + value;
+      }
       fenced(stream, value, opts.lang) 
       newline(stream, 2);
     }
