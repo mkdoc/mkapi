@@ -298,7 +298,7 @@ function parse(files, opts, cb) {
 /**
  *  Default heading value.
  *
- *  @field {String} HEADING
+ *  @property {String} HEADING
  *
  *  @default API
  */
@@ -307,7 +307,7 @@ parse.HEADING = HEADING;
 /**
  *  Default language for fenced code blocks.
  *
- *  @field {String} LANG
+ *  @property {String} LANG
  *
  *  @default javascript
  */
