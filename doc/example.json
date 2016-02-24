@@ -15,7 +15,7 @@
     },
     {
       "title": "Result",
-      "text": "Rendered output with initial level set to two:",
+      "text": "Rendered output with `--level=2`:",
       "bin": "./bin/mdapi test/fixtures/full.js --level=2"
     }
   ]

@@ -101,7 +101,7 @@ module.exports = create;
 
 ## Result
 
-Rendered output with initial level set to two:
+Rendered output with `--level=2`:
 
 ## API Documents
 
