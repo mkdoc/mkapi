@@ -1,4 +1,5 @@
 var fs = require('fs')
+  , assert = require('assert')
   , comments = require('comment-parser')
   , repeat = require('string-repeater')
   , USAGE ='usage' 
@@ -185,10 +186,14 @@ function print(ast, opts, cb) {
  *  @param {Function} cb Callback function.
  */
 function parse(files, opts, cb) {
+  assert(Array.isArray(files), 'array of files expected');
+
   if(typeof opts === 'function') {
     cb = opts; 
     opts = null;
   }
+
+  assert(cb instanceof Function, 'callback function expected');
 
   opts = opts || {};
 
@@ -201,12 +206,10 @@ function parse(files, opts, cb) {
   opts.heading = opts.heading || 'API';
 
   // language for function signature
-  opts.lang = opts.lang || 'javascript';
+  opts.lang = opts.lang !== undefined ? opts.lang : 'javascript';
 
   // disable trim by default
   //opts.trim = typeof(opts.trim) === 'boolean' ? opts.trim : false;
-
-  files = Array.isArray(files) ? files : [];
 
   concat(files.slice(), null, function onLoad(err, result) {
     if(err) {
