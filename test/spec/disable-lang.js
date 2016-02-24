@@ -6,7 +6,7 @@ describe('mdapi:', function() {
 
   it('should print usage without lang', function(done) {
     var output = 'target/usage-no-lang.md'
-      , expected = '# API\n\n```\nvar foo = \'bar\';\n```\n\n';
+      , expected = '```\nvar foo = \'bar\';\n```\n\n';
     function complete(err) {
       if(err) {
         return done(err); 

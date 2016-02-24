@@ -6,7 +6,7 @@ describe('mdapi:', function() {
 
   it('should print method description', function(done) {
     var output = 'target/description.md'
-      , expected = '# API\n\n## description\n\n```javascript\ndescription()\n'
+      , expected = '# description\n\n```javascript\ndescription()\n'
           + '```\n\nDescription of the function.\n\n';
 
     function complete(err) {

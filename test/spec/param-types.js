@@ -6,7 +6,7 @@ describe('mdapi:', function() {
 
   it('should print method parameters w/ types', function(done) {
     var output = 'target/usage.md'
-      , expected = '# API\n\n## foo\n\n```javascript\nfoo(foo)\n```\n\n'
+      , expected = '# foo\n\n```javascript\nfoo(foo)\n```\n\n'
           + '* `foo` String A foo parameter.\n\n';
 
     function complete(err) {

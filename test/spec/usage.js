@@ -6,7 +6,7 @@ describe('mdapi:', function() {
 
   it('should print usage', function(done) {
     var output = 'target/usage.md'
-      , expected = '# API\n\n```javascript\nvar foo = \'bar\';\n```\n\n';
+      , expected = '```javascript\nvar foo = \'bar\';\n```\n\n';
     function complete(err) {
       if(err) {
         return done(err); 

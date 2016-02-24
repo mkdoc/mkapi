@@ -8,7 +8,6 @@ var fs = require('fs')
   , FUNCTION = 'function'
   //, PROTOTYPE = 'prototype'
   , PROPERTY = 'property'
-  , HEADING = 'API'
   , OPTIONS_HEADING = 'Options'
   , LANG = 'javascript'
   , DEFAULT ='default' 
@@ -57,7 +56,6 @@ function findType(token) {
 var renderers = {};
 
 function render(type, token, opts) {
-  //console.dir(type);
   renderers[type.tag](type, token, opts); 
 }
 
@@ -338,7 +336,7 @@ function print(ast, opts, cb) {
  *
  *  @option {Writable} stream The stream to write to, default is `stdout`.
  *  @option {Number} level Initial level for the first heading, default is `1`.
- *  @option {String} heading Value for the initial heading, default is `API`.
+ *  @option {String} heading Value for an initial heading.
  *  @option {String} lang Language for fenced code blocks, default is `javascript`.
  */
 function parse(files, opts, cb) {
@@ -359,9 +357,6 @@ function parse(files, opts, cb) {
   // starting level for headings
   opts.level = opts.level || 1;
 
-  // value for the initial heading
-  opts.heading = opts.heading !== undefined ? opts.heading : parse.HEADING;
-
   // language for fenced code blocks
   opts.lang = opts.lang !== undefined ? opts.lang : parse.LANG;
 
@@ -369,34 +364,21 @@ function parse(files, opts, cb) {
     if(err) {
       return cb(err); 
     }
-
     var ast = comments(result, {trim: true});
-
     function onPrint(err) {
       if(err) {
         return cb(err);
       }
       cb(null, ast);
     }
-
     print(ast, opts, onPrint);
   })
 }
 
 /**
- *  Default heading value.
- *
- *  @property {String} HEADING
- *
- *  @default API
- */
-parse.HEADING = HEADING;
-
-/**
  *  Default language for fenced code blocks.
  *
  *  @property {String} LANG
- *
  *  @default javascript
  */
 parse.LANG = LANG;
