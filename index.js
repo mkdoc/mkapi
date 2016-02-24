@@ -8,7 +8,7 @@ var fs = require('fs')
   , USAGE ='usage' 
   , PRIVATE ='private' 
   , OPTION = 'option'
-  , NAME = 'name'
+  , FUNCTION = 'function'
   , PARAM = 'param';
 
 /**
@@ -21,7 +21,7 @@ var fs = require('fs')
  *
  *  @private
  *  
- *  @name concat
+ *  @function concat
  *
  *  @param {Array} files List of input files to load.
  *  @param {String} output The output string.
@@ -48,7 +48,7 @@ function concat(files, output, cb) {
  *
  *  @private
  *
- *  @name print
+ *  @function print
  *
  *  @param {Object} ast The parsed comments abstract syntax tree.
  *  @param {Object} opts Parse options.
@@ -175,7 +175,7 @@ function print(ast, opts, cb) {
 
   // walk the ast
   ast.forEach(function(token) {
-    var tag = findTag(NAME, token)
+    var tag = findTag(FUNCTION, token)
       , exclude = findTag(PRIVATE, token)
       , name
       , usage = findTag(USAGE, token)
@@ -242,7 +242,7 @@ function print(ast, opts, cb) {
  *  The callback function is passed an error and also the AST on success: 
  *  `function(err, ast)`.
  *
- *  @name parse
+ *  @function parse
  *
  *  @param {Array} files List of files to parse.
  *  @param {Object} [opts] Parse options.
@@ -298,7 +298,7 @@ function parse(files, opts, cb) {
 /**
  *  Default heading value.
  *
- *  @field {String} HEADING
+ *  @property {String} HEADING
  *
  *  @default API
  */
@@ -307,7 +307,7 @@ parse.HEADING = HEADING;
 /**
  *  Default language for fenced code blocks.
  *
- *  @field {String} LANG
+ *  @property {String} LANG
  *
  *  @default javascript
  */

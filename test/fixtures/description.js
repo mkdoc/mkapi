@@ -1,7 +1,7 @@
 /**
  *  Description of the function.
  *
- *  @name description
+ *  @function description
  */
 function description(){}
 

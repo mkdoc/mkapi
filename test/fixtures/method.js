@@ -1,5 +1,5 @@
 /**
- *  @name method
+ *  @function method
  */
 function method(){}
 

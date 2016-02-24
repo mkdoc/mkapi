@@ -1,5 +1,5 @@
 /**
- *  @name optional
+ *  @function optional
  *
  *  @param files A files parameter.
  *  @param [opts] An options parameter.
