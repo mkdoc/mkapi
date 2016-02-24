@@ -69,6 +69,8 @@ mdapi index.js | commonmark
 The following tags are supported:
 
 * `@module`: Marks a module declaration, a module name should be given.
+* `@class`: Marks a class declaration, a class name should be given.
+* `@constructor`: Marks a class constructor function, a function name should be given.
 * `@function`: Marks a function declaration, the function name should be given.
 * `@property`: Marks a property declaration, the property name should be given.
 * `@default`: Default value for a property.
