@@ -8,7 +8,6 @@ Table of Contents
   * [API](#api)
     * [parse](#parse)
       * [Options](#options)
-    * [HEADING](#heading)
     * [LANG](#lang)
   * [Developer](#developer)
     * [Test](#test)
@@ -42,7 +41,7 @@ npm i mdapi
 mdapi [options] [files...]
 
   -o, --output=[FILE]  Write output to FILE (default: stdout).
-  -t, --title=[VAL]    Title for initial heading (default: API).
+  -t, --title=[VAL]    Title for initial heading.
   -l, --level=[NUM]    Initial heading level (default: 1).
   -L, --lang=[LANG]    Language for fenced code blocks (default: javascript).
   -i, --indent=[NUM]   Number of spaces for JSON (default: 2).
@@ -75,6 +74,7 @@ mdapi index.js --title=
 
 The following tags are supported:
 
+* `@module`: Marks a module declaration, a module name should be given.
 * `@function`: Marks a function declaration, the function name should be given.
 * `@property`: Marks a property declaration, the property name should be given.
 * `@default`: Default value for a property.
@@ -113,16 +113,8 @@ The callback function is passed an error and also the AST on success:
 
 * `stream` Writable The stream to write to, default is `stdout`.
 * `level` Number Initial level for the first heading, default is `1`.
-* `heading` String Value for the initial heading, default is `API`.
+* `heading` String Value for an initial heading.
 * `lang` String Language for fenced code blocks, default is `javascript`.
-
-### HEADING
-
-```javascript
-HEADING (=API)
-```
-
-Default heading value.
 
 ### LANG
 
