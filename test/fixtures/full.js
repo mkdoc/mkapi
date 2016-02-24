@@ -2,7 +2,8 @@ var util = require('util')
   , EventEmitter = require('events').EventEmitter;
 
 /**
- *  This is mock code to verify the program output.
+ *  A mock program module, using the @module tag sets the overall 
+ *  title at the initial level setting.
  *
  *  @module API Documents
  *
@@ -11,11 +12,20 @@ var util = require('util')
  */
 
 /**
+ *  Mock class, you can add an extended description of the class behaviour here.
+ *
+ *  @class Component
+ */
+
+/**
  *  An abstract component.
  *
  *  @constructor Component
- *
  *  @inherits EventEmitter
+ *
+ *  @param opts Component options.
+ *
+ *  @option enabled Whether the component is initially enabled.
  */
 function Component(opts){
   opts = opts || {};
@@ -29,10 +39,12 @@ util.inherits(Component, EventEmitter);
  *  @function foo
  *  @prototype Component
  *
- *  @param {String} bar A bar argument.
+ *  @param {Object} opts An options arguments.
+ *  @param {Function} cb Callback function.
  */
-function foo(bar) {
-  console.log(bar);
+function foo(opts, cb) {
+  opts = opts || {};
+  return cb();
 }
 
 Component.prototype.foo = foo;
@@ -53,17 +65,6 @@ function create(opts) {
  *  @default baz
  */
 Component.BAZ= 'baz';
-
-/**
- *  An anonymous function, this will be ignored due to missing 
- *  function name.
- *
- *  @function
- */
-
-/* jshint ignore:start */
-function anon(){}
-/* jshint ignore:end */
 
 /**
  *  Sets the QUX variable.

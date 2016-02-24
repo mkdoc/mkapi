@@ -5,6 +5,7 @@ var fs = require('fs')
   , MODULE = 'module'
   , CLASS = 'class'
   , CONSTRUCTOR = 'constructor'
+  , INHERITS= 'inherits'
   , FUNCTION = 'function'
   //, PROTOTYPE = 'prototype'
   , PROPERTY = 'property'
@@ -60,11 +61,13 @@ function render(type, token, opts) {
   renderers[type.tag](type, token, opts); 
 }
 
-renderers[MODULE] = function(tag, token, opts) {
+renderers[MODULE] = renderers[CLASS] = function(tag, token, opts) {
   var stream = opts.stream;
 
-  // reset to default level
-  opts.depth = opts.level;
+  if(tag.tag === MODULE) {
+    // reset to default level
+    opts.depth = opts.level;
+  }
 
   if(tag.name) {
     heading(stream, tag.name + ' '  + tag.description, opts.depth);
@@ -81,33 +84,41 @@ renderers[MODULE] = function(tag, token, opts) {
   see(tag, token, opts);
 }
 
-renderers[CLASS] = function(tag, token, opts) {
-  see(tag, token, opts);
-}
-
-renderers[CONSTRUCTOR] = function(tag, token, opts) {
-  see(tag, token, opts);
-}
-
-renderers[FUNCTION] = function(tag, token, opts) {
-
+renderers[CONSTRUCTOR] = renderers[FUNCTION] = function(tag, token, opts) {
   var name = tag.name
+    , nm = name
     , stream = opts.stream
     , params
     , options
-    , level = opts.depth;
+    , level = opts.depth
+    , val = name
+    , inherits
+    , construct = (tag.tag=== CONSTRUCTOR);
+
+  if(construct) {
+    inherits = findTag(INHERITS, token); 
+  }
+
+  //console.dir(tag);
+  //console.log('construct', construct);
 
   if(!name) {
     return;
   }
 
   // method heading
-  heading(stream, name, level);
+  if(inherits) {
+    nm += ' < ' + inherits.name;
+  }
+  heading(stream, nm, level);
   newline(stream, 2);
 
   // method signature
   params = collect(PARAM, token);
-  signature(params, name, token, opts);
+  if(construct) {
+    val = 'new ' + name; 
+  }
+  signature(params, val, token, opts, {construct: construct});
   newline(stream, 2);
 
   // method description
