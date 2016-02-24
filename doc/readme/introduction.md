@@ -6,4 +6,4 @@ Quick and dirty (but effective and fast) API comments to commonmark compliant ma
 
 Designed for small to medium sized libraries, for large projects use one of the many other documentation tools. Uses `javascript` for fenced code blocks by default but you could conceivably use this tool with any language.
 
-See [api](#api) for example output.
+See [EXAMPLE.md](/EXAMPLE.md) or the [api](#api) for example output.
