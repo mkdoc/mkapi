@@ -9,6 +9,7 @@ Table of Contents
       * [Component < EventEmitter](#component-eventemitter)
         * [Options](#options)
       * [foo](#foo)
+        * [Options](#options-1)
       * [create](#create)
       * [BAZ](#baz)
       * [QUX](#qux)
@@ -64,6 +65,8 @@ util.inherits(Component, EventEmitter);
  *
  *  @param {Object} [opts] An options arguments.
  *  @param {Function} cb Callback function.
+ *
+ *  @option {Boolean} noop Dry run.
  */
 function foo(opts, cb) {
   opts = opts || {};
@@ -139,6 +142,10 @@ Do foo thing with bar.
 
 * `opts` Object An options arguments.
 * `cb` Function Callback function.
+
+##### Options
+
+* `noop` Boolean Dry run.
 
 #### create
 

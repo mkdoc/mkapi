@@ -41,6 +41,8 @@ util.inherits(Component, EventEmitter);
  *
  *  @param {Object} [opts] An options arguments.
  *  @param {Function} cb Callback function.
+ *
+ *  @option {Boolean} noop Dry run.
  */
 function foo(opts, cb) {
   opts = opts || {};
