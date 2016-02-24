@@ -1,0 +1,67 @@
+{
+  "name": "mdapi",
+  "version": "1.0.0",
+  "description": "Markdown api documentation generator",
+  "main": "index.js",
+  "author": "muji",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tmpfs/mdapi/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tmpfs/mdapi.git"
+  },
+  "keywords": [
+    "markdown",
+    "docs",
+    "documentation",
+    "comments",
+    "api",
+    "generator"
+  ],
+  "dependencies": {
+    "cli-argparse": "~1.1.1",
+    "comment-parser": "~0.4.0",
+    "string-repeater": "~1.0.3"
+  },
+  "devDependencies": {
+    "chai": "~3.5.0",
+    "coveralls": "~2.11.6",
+    "istanbul": "~0.4.2",
+    "mocha": "~2.4.5"
+  },
+  "scripts": {
+    "clean": "rm -rf coverage target",
+    "readme": "mdp --force -v",
+    "lint": "jshint . && jscs .",
+    "test": "NODE_env=test mocha ${SPEC:-test/spec}",
+    "cover": "NODE_ENV=test istanbul cover _mocha -- test/global ${SPEC:-test/spec}",
+    "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
+  },
+  "mdp": {
+    "title": "Markdown API",
+    "pedantic": true,
+    "include": "doc/readme",
+    "require": "lib",
+    "links": "links.md",
+    "toc": "Table of Contents",
+    "base": "https://github.com/tmpfs/mdapi",
+    "partial": [
+      {
+        "inc": [
+          "introduction.md",
+          "install.md"
+        ]
+      },
+      {
+        "bin": "./bin/mdapi index.js --level=2" 
+      },
+      {
+        "inc": [
+          "developer.md"
+        ]
+      }
+    ]
+  }
+}

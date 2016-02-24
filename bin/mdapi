@@ -1,0 +1,50 @@
+#!/usr/bin/env node
+
+var parser = require('cli-argparse')
+  , parse = require('../index')
+  , pkg = require('../package.json')
+  , args = parser()
+  , opts = {};
+
+function usage() {
+  var indent = '  ';
+  console.log('%s %s', pkg.name, '[options] [files...]'); 
+  console.log();
+  console.log(indent + '--level=[num] %s', 'Initial heading level');
+  console.log();
+  console.log('Report bugs to %s', pkg.bugs.url);
+}
+
+function version() {
+  console.log('%s %s', pkg.name, pkg.version); 
+}
+
+function error(msg) {
+  console.error(msg);
+  process.exit(1);
+}
+
+if(process.argv.length === 2 || args.flags.h || args.flags.help) {
+  return usage();
+}else if(args.flags.version) {
+  return version();
+}
+
+if(!args.unparsed.length) {
+  return error('no files specified');
+}
+
+if(args.options.level && !parseInt(args.options.level)) {
+  return error('--level must be an integer');
+}
+
+//console.error(args);
+
+opts.level = parseInt(args.options.level);
+
+parse(args.unparsed, opts, function(err) {
+  if(err) {
+    return error(err.stack); 
+  }
+  process.exit();
+});
