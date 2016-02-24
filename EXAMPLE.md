@@ -10,6 +10,7 @@ Table of Contents
         * [Options](#options)
       * [.foo](#foo)
         * [Options](#options-1)
+        * [Throws](#throws)
       * [#factory](#factory)
       * [create](#create)
       * [BAZ](#baz)
@@ -219,10 +220,9 @@ Do foo thing with bar.
 
 * `noop` Boolean Dry run.
 
+##### Throws
 
 * `Error` JSON parse error.
-
-
 * `Error` File create error.
 
 #### #factory

@@ -16,7 +16,6 @@ var fs = require('fs')
   , RETURN = 'return'
   , PROPERTY = 'property'
   , CONSTANT = 'constant'
-  , OPTIONS_HEADING = 'Options'
   , LANG = 'javascript'
   , DEFAULT ='default' 
   , DEPRECATED = 'deprecated'
@@ -26,7 +25,11 @@ var fs = require('fs')
   , SEE = 'see'
   , USAGE ='usage' 
   , OPTION = 'option'
-  , THROWS = 'throws';
+  , THROWS = 'throws'
+
+
+  , OPTIONS_HEADING = 'Options'
+  , THROWS_HEADING = 'Throws'
 
 /**
  *  var parse = require('mdapi');
@@ -123,7 +126,7 @@ renderers[CONSTRUCTOR] =
     , inherits
     , construct = (tag.tag === CONSTRUCTOR)
     , isStatic = (tag.tag === STATIC)
-    , throwables = collect(THROWS, token)
+    , throwables
     , proto = findTag(PROTOTYPE, token)
     , retval = findTag(RETURN, token)
     , className;
@@ -207,7 +210,11 @@ renderers[CONSTRUCTOR] =
     newline(stream);
   }
 
+  throwables = collect(THROWS, token);
+
   if(throwables.length) {
+    heading(stream, THROWS_HEADING, level + 1);
+    newline(stream, 2);
     // Errors @throws
     parameters(stream, throwables);
     if(params.length) {
