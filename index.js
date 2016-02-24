@@ -19,6 +19,9 @@ var fs = require('fs')
   , OPTIONS_HEADING = 'Options'
   , LANG = 'javascript'
   , DEFAULT ='default' 
+  , AUTHOR = 'author'
+  , VERSION = 'version'
+  , SINCE = 'since'
   , SEE = 'see'
   , USAGE ='usage' 
   , OPTION = 'option'
@@ -87,6 +90,8 @@ renderers[MODULE] = renderers[CLASS] = function(tag, token, opts) {
   if(tag.name) {
     heading(stream, tag.name + ' '  + tag.description, opts.depth);
     newline(stream, 2);
+
+    meta(token, opts);
 
     if(opts.usage.length) {
       renderers.usage(opts.usage, opts); 
@@ -171,6 +176,8 @@ renderers[CONSTRUCTOR] =
   signature(params, val, token, opts, {construct: construct});
   newline(stream, 2);
 
+  meta(token, opts);
+
   // method description
   if(token.description) {
     stream.write(token.description);
@@ -212,6 +219,7 @@ renderers[PROPERTY] = renderers[CONSTANT] = function(tag, token, opts) {
   if(name) {
     heading(stream, name, opts.depth);
     newline(stream, 2);
+
     if(value) {
       if(fixed) {
         value = 'const ' + value;
@@ -219,6 +227,9 @@ renderers[PROPERTY] = renderers[CONSTANT] = function(tag, token, opts) {
       fenced(stream, value, opts.lang) 
       newline(stream, 2);
     }
+
+    meta(token, opts);
+
     if(token.description) {
       stream.write(token.description);
       newline(stream, 2);
@@ -226,6 +237,34 @@ renderers[PROPERTY] = renderers[CONSTANT] = function(tag, token, opts) {
   }
 
   see(tag, token, opts);
+}
+
+function meta(token, opts) {
+  var stream = opts.stream
+    , author = findTag(AUTHOR, token)
+    , version = findTag(VERSION, token)
+    , since = findTag(SINCE, token)
+    , hasMeta = Boolean(author || version || since)
+    , list = '* **';
+
+  if(author) {
+    stream.write(list + AUTHOR + '** `' + author.name + '`'); 
+    newline(stream);
+  }
+
+  if(version) {
+    stream.write(list + VERSION + '** `' + version.name + '`'); 
+    newline(stream);
+  }
+
+  if(since) {
+    stream.write(list + SINCE + '** `' + since.name + '`');
+    newline(stream);
+  }
+
+  if(hasMeta) {
+    newline(stream);
+  }
 }
 
 function see(tag, token, opts) {

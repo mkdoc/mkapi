@@ -34,6 +34,10 @@ var util = require('util')
  *  @constructor Component
  *  @inherits EventEmitter Object
  *
+ *  @author muji
+ *  @version 1.1.0
+ *  @since 1.0
+ *
  *  @param opts Component options.
  *
  *  @option enabled Whether the component is initially enabled.
@@ -49,6 +53,10 @@ util.inherits(Component, EventEmitter);
  *
  *  @function foo
  *  @prototype
+ *
+ *  @author muji
+ *  @version 1.1.0
+ *  @since 1.0
  *
  *  @param {Object} [opts] An options arguments.
  *  @param {Function} cb Callback function.
@@ -87,6 +95,11 @@ function create(opts) {
  *
  *  @property BAZ
  *  @default baz
+ *
+ *  @author muji
+ *  @version 1.1.0
+ *  @since 1.0
+ *
  */
 Component.BAZ = 'baz';
 

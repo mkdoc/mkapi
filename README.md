@@ -81,6 +81,9 @@ The following tags are supported:
 * `@param`: Declares an argument for a function.
 * `@option`: Documents an option property.
 * `@usage`: Usage example(s) that appear below the first heading.
+* `@author`: Author meta data.
+* `@version`: Version information.
+* `@since`: Since version.
 * `@see`: Creates a list of links, each value should be a URL if a description is given it becomes the name for the link.
 
 Note that whilst declaring names explicitly (`@function` etc) is a little more maintenance it is deemed to be preferable to re-parsing the file to automatically extract function names.
