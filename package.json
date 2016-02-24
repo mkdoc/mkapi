@@ -36,6 +36,7 @@
     "clean": "rm -rf coverage target",
     "readme": "mdp --force -v",
     "lint": "jshint . && jscs .",
+    "example": "mdp --force -v -i doc/example.json -o EXAMPLE.md",
     "pretest": "rm -rf target && mkdir target",
     "test": "NODE_env=test mocha ${SPEC:-test/spec}",
     "precover": "npm run pretest",

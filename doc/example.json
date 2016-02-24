@@ -1,0 +1,25 @@
+{
+  "title": "Markdown API Example",
+  "pedantic": true,
+  "include": "",
+  "require": "lib",
+  "toc": false,
+  "base": "https://github.com/tmpfs/mdapi",
+  "partial": [
+    {
+      "title": "Input File",
+      "inc": "test/fixtures/full.js",
+      "type": "code",
+      "language": "javascript"
+    },
+    {
+      "title": "Markdown Output",
+      "bin": "./bin/mdapi test/fixtures/full.js",
+      "type": "code"
+    },
+    {
+      "title": "Result",
+      "bin": "./bin/mdapi test/fixtures/full.js"
+    }
+  ]
+}
