@@ -117,6 +117,9 @@ renderers[CONSTRUCTOR] =
   // method heading
   if(inherits) {
     nm += ' < ' + inherits.name;
+    if(inherits.description) {
+      nm += ' < ' + inherits.description.split(/\s+/).join(' < ');
+    }
   }
 
   if(isStatic) {

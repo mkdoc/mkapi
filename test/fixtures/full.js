@@ -21,7 +21,7 @@ var util = require('util')
  *  An abstract component.
  *
  *  @constructor Component
- *  @inherits EventEmitter
+ *  @inherits EventEmitter Object
  *
  *  @param opts Component options.
  *
