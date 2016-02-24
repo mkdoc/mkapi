@@ -209,9 +209,6 @@ function parse(files, opts, cb) {
   // language for function signature
   opts.lang = opts.lang !== undefined ? opts.lang : 'javascript';
 
-  // disable trim by default
-  //opts.trim = typeof(opts.trim) === 'boolean' ? opts.trim : false;
-
   concat(files.slice(), null, function onLoad(err, result) {
     if(err) {
       return cb(err); 
