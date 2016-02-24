@@ -4,6 +4,7 @@ var fs = require('fs')
   , repeat = require('string-repeater')
   , renderers = {}
   , current
+  , PRIVATE ='private' 
   , MODULE = 'module'
   , CLASS = 'class'
   , CONSTRUCTOR = 'constructor'
@@ -11,6 +12,8 @@ var fs = require('fs')
   , FUNCTION = 'function'
   , PROTOTYPE = 'prototype'
   , STATIC = 'static'
+  , PARAM = 'param'
+  , RETURN = 'return'
   , PROPERTY = 'property'
   , CONSTANT = 'constant'
   , OPTIONS_HEADING = 'Options'
@@ -18,9 +21,7 @@ var fs = require('fs')
   , DEFAULT ='default' 
   , SEE = 'see'
   , USAGE ='usage' 
-  , PRIVATE ='private' 
   , OPTION = 'option'
-  , PARAM = 'param';
 
 /**
  *  var parse = require('mdapi');
@@ -373,7 +374,9 @@ function print(ast, opts, cb) {
 
   // pre-processing
   ast.forEach(function(token) {
-    hasModule = findTag(MODULE, token);
+    if(!hasModule) {
+      hasModule = findTag(MODULE, token);
+    }
     if(findTag(USAGE, token)) {
       usage = usage.concat([token]);
     }
@@ -386,8 +389,7 @@ function print(ast, opts, cb) {
     opts.depth++;
   }
 
-  if(opts.heading && !hasModule && usage.length) {
-    console.dir('printing initial usage')
+  if(!hasModule && usage.length) {
     renderers.usage(usage, opts);
   }
 
