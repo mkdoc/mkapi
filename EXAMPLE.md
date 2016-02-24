@@ -10,6 +10,7 @@ Table of Contents
         * [Options](#options)
       * [.foo](#foo)
         * [Options](#options-1)
+      * [#factory](#factory)
       * [create](#create)
       * [BAZ](#baz)
       * [QUX](#qux)
@@ -75,6 +76,15 @@ function foo(opts, cb) {
 }
 
 Component.prototype.foo = foo;
+
+/**
+ *  A static function declaration.
+ *  
+ *  @static factory
+ */
+function factory() {
+  return create();
+}
 
 /**
  *  Create a new component.
@@ -155,6 +165,14 @@ Do foo thing with bar.
 ##### Options
 
 * `noop` Boolean Dry run.
+
+#### #factory
+
+```javascript
+static factory()
+```
+
+A static function declaration.
 
 #### create
 

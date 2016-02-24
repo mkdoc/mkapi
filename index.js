@@ -10,6 +10,7 @@ var fs = require('fs')
   , INHERITS= 'inherits'
   , FUNCTION = 'function'
   , PROTOTYPE = 'prototype'
+  , STATIC = 'static'
   , PROPERTY = 'property'
   , CONSTANT = 'constant'
   , OPTIONS_HEADING = 'Options'
@@ -55,9 +56,9 @@ function findType(token) {
     || findTag(CLASS, token)
     || findTag(CONSTRUCTOR, token)
     || findTag(FUNCTION, token)
+    || findTag(STATIC, token)
     || findTag(PROPERTY, token)
     || findTag(CONSTANT, token);
-
   return type;
 }
 
@@ -88,7 +89,9 @@ renderers[MODULE] = renderers[CLASS] = function(tag, token, opts) {
   see(tag, token, opts);
 }
 
-renderers[CONSTRUCTOR] = renderers[FUNCTION] = function(tag, token, opts) {
+renderers[CONSTRUCTOR] =
+  renderers[STATIC] =
+  renderers[FUNCTION] = function(tag, token, opts) {
   var name = tag.name
     , nm = name
     , stream = opts.stream
@@ -98,6 +101,7 @@ renderers[CONSTRUCTOR] = renderers[FUNCTION] = function(tag, token, opts) {
     , val = name
     , inherits
     , construct = (tag.tag === CONSTRUCTOR)
+    , isStatic = (tag.tag === STATIC)
     , proto = findTag(PROTOTYPE, token)
     , className;
 
@@ -115,7 +119,9 @@ renderers[CONSTRUCTOR] = renderers[FUNCTION] = function(tag, token, opts) {
     nm += ' < ' + inherits.name;
   }
 
-  if(proto) {
+  if(isStatic) {
+    nm = '#' + nm; 
+  }else if(proto) {
     nm = '.' + nm; 
   }
 
@@ -126,6 +132,8 @@ renderers[CONSTRUCTOR] = renderers[FUNCTION] = function(tag, token, opts) {
   params = collect(PARAM, token);
   if(construct) {
     val = 'new ' + name; 
+  }else if(isStatic) {
+    val = 'static ' + name; 
   }else if(proto) {
     if(current) {
       className = current.name; 
@@ -162,7 +170,6 @@ renderers[CONSTRUCTOR] = renderers[FUNCTION] = function(tag, token, opts) {
     parameters(stream, options);
     newline(stream);
   }
-
   see(tag, token, opts);
 }
 

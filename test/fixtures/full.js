@@ -52,6 +52,15 @@ function foo(opts, cb) {
 Component.prototype.foo = foo;
 
 /**
+ *  A static function declaration.
+ *  
+ *  @static factory
+ */
+function factory() {
+  return create();
+}
+
+/**
  *  Create a new component.
  *
  *  @function create
