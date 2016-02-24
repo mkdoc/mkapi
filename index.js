@@ -221,6 +221,9 @@ function print(ast, opts, cb) {
  *  into a string, parse the comments in the resulting string into an AST 
  *  and transform the AST into commonmark compliant markdown.
  *
+ *  The callback function is passed an error and also the AST on success: 
+ *  `function(err, ast)`.
+ *
  *  @name parse
  *
  *  @param {Array} files List of files to parse.

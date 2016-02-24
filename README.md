@@ -96,6 +96,9 @@ Accepts an array of files, concatenates the files in the order given
 into a string, parse the comments in the resulting string into an AST
 and transform the AST into commonmark compliant markdown.
 
+The callback function is passed an error and also the AST on success:
+`function(err, ast)`.
+
 * `files` Array List of files to parse.
 * `opts` Object Parse options.
 * `cb` Function Callback function.
