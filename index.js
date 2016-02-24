@@ -219,7 +219,7 @@ function print(ast, opts, cb) {
 /**
  *  Accepts an array of files, concatenates the files in the order given 
  *  into a string, parse the comments in the resulting string into an AST 
- *  and transforms the AST into commonmark compliant markdown.
+ *  and transform the AST into commonmark compliant markdown.
  *
  *  @name parse
  *
