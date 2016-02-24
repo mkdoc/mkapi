@@ -3,3 +3,5 @@
 [![Coverage Status](https://coveralls.io/repos/tmpfs/mdapi/badge.svg?branch=master&service=github&v=1)](https://coveralls.io/github/tmpfs/mdapi?branch=master)
 
 Quick and dirty (but effective) API comments to commonmark compliant markdown.
+
+See [api](#api) for example output.

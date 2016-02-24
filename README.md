@@ -24,6 +24,8 @@ Markdown API
 
 Quick and dirty (but effective) API comments to commonmark compliant markdown.
 
+See [api](#api) for example output.
+
 ## Install
 
 ```
