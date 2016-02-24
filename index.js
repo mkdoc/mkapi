@@ -129,10 +129,16 @@ function print(ast, opts, cb) {
     var sig = '('
       , params = collect(PARAM, token);
     params.forEach(function(param, index) {
+      if(param.optional) {
+        sig += '['; 
+      }
       if(index) {
         sig += ', '; 
       }
       sig += param.name;
+      if(param.optional) {
+        sig += ']'; 
+      }
     })
 
     sig += ')';
@@ -213,7 +219,7 @@ function print(ast, opts, cb) {
  *  @name parse
  *
  *  @param {Array} files List of files to parse.
- *  @param {Object} opts Parse options.
+ *  @param {Object} [opts] Parse options.
  *  @param {Function} cb Callback function.
  */
 function parse(files, opts, cb) {
