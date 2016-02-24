@@ -87,6 +87,8 @@ Note that whilst declaring names explicitly (`@function` etc) is a little more m
 
 ## API
 
+'printing initial usage'
+
 ```javascript
 var parse = require('mdapi');
 parse(['index.js'], {stream: process.stdout});

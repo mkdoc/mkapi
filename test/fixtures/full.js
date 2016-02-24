@@ -2,10 +2,21 @@ var util = require('util')
   , EventEmitter = require('events').EventEmitter;
 
 /**
+ *  var create = require('component');
+ *  var component = create();
+ *
+ *  @usage
+ */
+
+/**
  *  A mock program module, using the @module tag sets the overall 
  *  title at the initial level setting.
  *
  *  @module API Documents
+ *
+ *  @author muji
+ *  @version 1.1.0
+ *  @since 1.0
  *
  *  @see https://github.com/tmpfs/mdapi mdapi
  *  @see https://github.com/jgm/commonmark.js commonmark
@@ -75,7 +86,7 @@ function create(opts) {
  *  @property BAZ
  *  @default baz
  */
-Component.BAZ= 'baz';
+Component.BAZ = 'baz';
 
 /**
  *  Sets the QUX variable.

@@ -66,10 +66,19 @@ function render(type, token, opts) {
   renderers[type.tag](type, token, opts); 
 }
 
-renderers[MODULE] = renderers[CLASS] = function(tag, token, opts) {
+renderers.usage = function(tokens, opts) {
   var stream = opts.stream;
+  tokens.forEach(function(token) {
+    fenced(stream, token.description, opts.lang);
+    newline(stream, 2);
+  });
+}
 
-  if(tag.tag === MODULE) {
+renderers[MODULE] = renderers[CLASS] = function(tag, token, opts) {
+  var stream = opts.stream
+    , isModule = tag.tag === MODULE;
+
+  if(isModule) {
     // reset to default level
     opts.depth = opts.level;
   }
@@ -77,6 +86,10 @@ renderers[MODULE] = renderers[CLASS] = function(tag, token, opts) {
   if(tag.name) {
     heading(stream, tag.name + ' '  + tag.description, opts.depth);
     newline(stream, 2);
+
+    if(opts.usage.length) {
+      renderers.usage(opts.usage, opts); 
+    }
 
     if(token.description) {
       stream.write(token.description); 
@@ -327,6 +340,8 @@ function print(ast, opts, cb) {
   var stream = opts.stream
     , called = false
     , json
+    , usage = []
+    , hasModule = false
     , indent = typeof(opts.indent) === 'number' && !isNaN(opts.indent) 
         ? Math.abs(opts.indent) : 2;
 
@@ -356,6 +371,14 @@ function print(ast, opts, cb) {
     }
   }
 
+  // pre-processing
+  ast.forEach(function(token) {
+    hasModule = findTag(MODULE, token);
+    if(findTag(USAGE, token)) {
+      usage = usage.concat([token]);
+    }
+  })
+
   // initial heading
   if(opts.heading && typeof opts.heading === 'string') {
     heading(stream, opts.heading, opts.depth); 
@@ -363,15 +386,17 @@ function print(ast, opts, cb) {
     opts.depth++;
   }
 
+  if(opts.heading && !hasModule && usage.length) {
+    console.dir('printing initial usage')
+    renderers.usage(usage, opts);
+  }
+
+  // might need to render after a module declaration
+  opts.usage = usage;
+
   // walk the ast
   ast.forEach(function(token) {
-    var exclude = findTag(PRIVATE, token)
-      , usage = findTag(USAGE, token)
-
-    if(usage) {
-      fenced(stream, token.description, opts.lang);
-      newline(stream, 2);
-    }
+    var exclude = findTag(PRIVATE, token);
 
     var type = findType(token);
 
