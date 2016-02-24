@@ -4,4 +4,6 @@
 
 Quick and dirty (but effective) API comments to commonmark compliant markdown.
 
+Designed for small to medium sized libraries, for large projects use one of the many other documentation tools.
+
 See [api](#api) for example output.
