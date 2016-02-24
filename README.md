@@ -71,6 +71,7 @@ The following tags are supported:
 * `@module`: Marks a module declaration, a module name should be given.
 * `@class`: Marks a class declaration, a class name should be given.
 * `@constructor`: Marks a class constructor function, a function name should be given.
+* `inherits`: Indicates the super class hierarchy for a constructor, accepts multiple values.
 * `@function`: Marks a function declaration, the function name should be given.
 * `@prototype`: Marks a prototype function declaration, a class name may be specified; default is current class scope.
 * `@static`: Marks a function as static.
