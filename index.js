@@ -26,6 +26,7 @@ var fs = require('fs')
   , SEE = 'see'
   , USAGE ='usage' 
   , OPTION = 'option'
+  , THROWS = 'throws';
 
 /**
  *  var parse = require('mdapi');
@@ -122,6 +123,7 @@ renderers[CONSTRUCTOR] =
     , inherits
     , construct = (tag.tag === CONSTRUCTOR)
     , isStatic = (tag.tag === STATIC)
+    , throwables = collect(THROWS, token)
     , proto = findTag(PROTOTYPE, token)
     , retval = findTag(RETURN, token)
     , className;
@@ -190,13 +192,13 @@ renderers[CONSTRUCTOR] =
     newline(stream, 2);
   }
 
-  // parameter list
+  // parameter list @param
   parameters(stream, params);
   if(params.length) {
     newline(stream);
   }
 
-  // options list
+  // options list @option
   options = collect(OPTION, token);
   if(options.length) {
     heading(stream, OPTIONS_HEADING, level + 1);
@@ -204,6 +206,16 @@ renderers[CONSTRUCTOR] =
     parameters(stream, options);
     newline(stream);
   }
+
+  if(throwables.length) {
+    // Errors @throws
+    parameters(stream, throwables);
+    if(params.length) {
+      newline(stream);
+    }
+
+  }
+
   see(tag, token, opts);
 }
 

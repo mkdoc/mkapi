@@ -62,6 +62,9 @@ util.inherits(Component, EventEmitter);
  *  @param {Function} cb Callback function.
  *
  *  @option {Boolean} noop Dry run.
+ *
+ *  @throws Error JSON parse error.
+ *  @throws Error File create error.
  */
 function foo(opts, cb) {
   opts = opts || {};
