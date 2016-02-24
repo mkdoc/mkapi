@@ -75,9 +75,9 @@ concat(files, output, cb)
 
 Concatenate input files into a single string.
 
-* files: List of input file to load.
-* output: The output string.
-* cb: Callback function.
+* files `Array`: List of input file to load.
+* output `String`: The output string.
+* cb `Function`: Callback function.
 
 ### print
 
@@ -87,9 +87,9 @@ print(ast, opts, cb)
 
 Print the markdown from the parsed ast.
 
-* ast: The parsed comments abstract syntax tree.
-* opts: Parse options.
-* cb: Callback function.
+* ast `Object`: The parsed comments abstract syntax tree.
+* opts `Object`: Parse options.
+* cb `Function`: Callback function.
 
 ### parse
 
@@ -99,9 +99,9 @@ parse(files, opts, cb)
 
 Parse an array of files into a markdown string.
 
-* files: List of files to parse.
-* opts: Parse options.
-* cb: Callback function.
+* files `Array`: List of files to parse.
+* opts `Object`: Parse options.
+* cb `Function`: Callback function.
 
 ## Developer
 

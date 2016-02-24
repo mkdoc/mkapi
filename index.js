@@ -163,7 +163,11 @@ function print(ast, opts, cb) {
 
     // parameter list
     params.forEach(function(param) {
-      stream.write('* ' + param.name + ': ' + param.description);
+      var name = param.name;
+      if(param.type) {
+        name += ' `' + param.type + '`'; 
+      }
+      stream.write('* ' + name + ': ' + param.description);
       newline();
     })
 
