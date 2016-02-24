@@ -92,7 +92,9 @@ parse(['index.js'], {stream: process.stdout});
 parse(files[, opts], cb)
 ```
 
-Parse an array of files into a markdown string.
+Accepts an array of files, concatenates the files in the order given
+into a string, parse the comments in the resulting string into an AST
+and transforms the AST into commonmark compliant markdown.
 
 * `files` Array List of files to parse.
 * `opts` Object Parse options.
