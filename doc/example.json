@@ -8,13 +8,15 @@
   "partial": [
     {
       "title": "Input",
+      "text": "File from the [test fixture](/test/spec/full.js):",
       "inc": "test/fixtures/full.js",
       "type": "code",
       "language": "javascript"
     },
     {
       "title": "Result",
-      "bin": "./bin/mdapi test/fixtures/full.js"
+      "text": "Rendered output with initial level set to two:",
+      "bin": "./bin/mdapi test/fixtures/full.js --level=2"
     }
   ]
 }
