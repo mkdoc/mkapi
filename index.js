@@ -149,15 +149,20 @@ function print(ast, opts, cb) {
     newline(2);
 
     // method description
-    stream.write(token.description);
-    newline(2);
+    if(token.description) {
+      stream.write(token.description);
+      newline(2);
+    }
 
     // parameter list
     params.forEach(function(param) {
       stream.write('* ' + param.name + ': ' + param.description);
       newline();
     })
-    newline();
+
+    if(params.length) {
+      newline();
+    }
 
   })
 
