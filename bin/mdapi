@@ -67,8 +67,6 @@ if(args.flags.h || args.flags.help) {
   return version();
 }
 
-console.error(args);
-
 if(!args.unparsed.length) {
   return error('no files specified');
 }
