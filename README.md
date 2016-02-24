@@ -36,7 +36,11 @@ npm i mdapi
 
 mdapi [options] [files...]
 
-  --level=[num] Initial heading level.
+  -o, --output=[file]  Write output to file.
+  -t, --title=[val]    Value for initial heading (default: API).
+  -l, --level=[num]    Initial heading level (default: 1).
+  -h, --help           Display this help and exit.
+  --version            Print the version and exit.
 
 Report bugs to https://github.com/tmpfs/mdapi/issues.
 

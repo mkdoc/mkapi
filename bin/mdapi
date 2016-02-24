@@ -1,16 +1,48 @@
 #!/usr/bin/env node
 
 var parser = require('cli-argparse')
+  , repeat = require('string-repeater')
   , parse = require('../index')
   , pkg = require('../package.json')
-  , args = parser()
+  , hints = {
+      options: [
+        '-l', '-t', '-o'
+      ],
+      aliases: {
+        '-l --level': 'level',
+        '-t --title': 'title',
+        '-o --output': 'output'
+      }
+    }
+  , args = parser(null, hints)
   , opts = {};
 
 function usage() {
-  var indent = '  ';
+  var indent = '  '
+    , opts = {
+      '-o, --output=[file]': 'Write output to file.',
+      '-t, --title=[val]': 'Value for initial heading (default: API).',
+      '-l, --level=[num]': 'Initial heading level (default: 1).',
+      '-h, --help': 'Display this help and exit.',
+      '--version': 'Print the version and exit.'
+    }
+    , max = 0
+    , space = 2
+    , keys = Object.keys(opts);
+
+  keys.forEach(function(key) {
+    max = Math.max(max, key.length);
+  })
+
   console.log('%s %s', pkg.name, '[options] [files...]'); 
   console.log();
-  console.log(indent + '--level=[num] %s', 'Initial heading level');
+
+  keys.forEach(function(key) {
+    var padding = (max - key.length) + space;
+    padding = repeat(' ', padding);
+    console.log(indent + '%s%s%s', key, padding, opts[key]);
+  })
+
   console.log();
   console.log('Report bugs to %s', pkg.bugs.url);
 }
@@ -38,9 +70,13 @@ if(args.options.level && !parseInt(args.options.level)) {
   return error('--level must be an integer');
 }
 
-//console.error(args);
+console.error(args);
 
 opts.level = parseInt(args.options.level);
+
+if(args.options.title !== undefined) {
+  opts.heading = args.options.title;
+}
 
 parse(args.unparsed, opts, function(err) {
   if(err) {
