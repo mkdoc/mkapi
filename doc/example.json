@@ -4,6 +4,7 @@
   "include": "",
   "require": "lib",
   "toc": "Table of Contents",
+  "pedantic": false,
   "base": "https://github.com/tmpfs/mdapi",
   "partial": [
     {

@@ -153,9 +153,9 @@ Rendered output with `--level=2`:
 
 ## API Documents
 
-* **author** `muji`.
-* **version** `1.1.0`.
-* **since** `1.0`.
+* **author** `muji`
+* **version** `1.1.0`
+* **since** `1.0`
 
 ```javascript
 var create = require('component');
@@ -165,8 +165,8 @@ var component = create();
 A mock program module, using the @module tag sets the overall
 title at the initial level setting.
 
-* [mdapi](https://github.com/tmpfs/mdapi).
-* [commonmark](https://github.com/jgm/commonmark.js).
+* [mdapi](https://github.com/tmpfs/mdapi)
+* [commonmark](https://github.com/jgm/commonmark.js)
 
 ### Component
 
@@ -183,9 +183,9 @@ Mock class, you can add an extended description of the class behaviour here.
 new Component(opts)
 ```
 
-* **author** `muji`.
-* **version** `1.1.0`.
-* **since** `1.0`.
+* **author** `muji`
+* **version** `1.1.0`
+* **since** `1.0`
 
 An abstract component.
 
@@ -201,9 +201,9 @@ An abstract component.
 Component.prototype.foo([opts], cb)
 ```
 
-* **author** `muji`.
-* **version** `1.1.0`.
-* **since** `1.0`.
+* **author** `muji`
+* **version** `1.1.0`
+* **since** `1.0`
 
 Do foo thing with bar.
 
@@ -238,9 +238,9 @@ Create a new component.
 BAZ = baz;
 ```
 
-* **author** `muji`.
-* **version** `1.1.0`.
-* **since** `1.0`.
+* **author** `muji`
+* **version** `1.1.0`
+* **since** `1.0`
 
 Sets the BAZ variable.
 
