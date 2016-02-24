@@ -6,7 +6,7 @@ Table of Contents
   * [Result](#result)
   * [API Documents](#api-documents)
     * [Component](#component)
-      * [Component < EventEmitter](#component-eventemitter)
+      * [Component < EventEmitter < Object](#component-eventemitter-object)
         * [Options](#options)
       * [.foo](#foo)
         * [Options](#options-1)
@@ -47,7 +47,7 @@ var util = require('util')
  *  An abstract component.
  *
  *  @constructor Component
- *  @inherits EventEmitter
+ *  @inherits EventEmitter Object
  *
  *  @param opts Component options.
  *
@@ -137,7 +137,7 @@ title at the initial level setting.
 
 Mock class, you can add an extended description of the class behaviour here.
 
-#### Component < EventEmitter
+#### Component < EventEmitter < Object
 
 ```javascript
 new Component(opts)
