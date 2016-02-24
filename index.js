@@ -84,6 +84,7 @@ function print(ast, opts, cb) {
     stream.write(repeat('\n', num)); 
   }
 
+  // print a fenced code block
   function fenced(code, lang) {
     stream.write('```'); 
     if(typeof lang === 'string') {
@@ -99,12 +100,6 @@ function print(ast, opts, cb) {
   function signature(name, token) {
     var sig = '('
       , params = collect(PARAM, token);
-
-    stream.write('```'); 
-    if(typeof opts.lang === 'string') {
-      stream.write(opts.lang); 
-    }
-
     params.forEach(function(param, index) {
       if(index) {
         sig += ', '; 
@@ -114,12 +109,7 @@ function print(ast, opts, cb) {
 
     sig += ')';
 
-    newline();
-    stream.write(name);
-    stream.write(sig);
-    newline();
-    stream.write('```'); 
-
+    fenced(name + sig, opts.lang);
     return params;
   }
 
