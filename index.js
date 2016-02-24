@@ -169,6 +169,7 @@ function print(ast, opts, cb) {
 
   stream.once('finish', done);
 
+  /* istanbul ignore else: never write to stdout in tests */
   if(stream !== process.stdout) {
     stream.end(); 
   }else{
@@ -203,7 +204,7 @@ function parse(files, opts, cb) {
   // starting level for headings
   opts.level = opts.level || 1;
 
-  opts.heading = opts.heading || 'API';
+  opts.heading = opts.heading !== undefined ? opts.heading : 'API';
 
   // language for function signature
   opts.lang = opts.lang !== undefined ? opts.lang : 'javascript';
