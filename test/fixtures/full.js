@@ -40,13 +40,12 @@ function create(opts) {
 }
 
 /**
- *  A property with a default value.
+ *  Sets the BAZ variable.
  *
- *  @property FIELD
- *
+ *  @property BAZ
  *  @default baz
  */
-Component.FIELD = 'baz';
+Component.BAZ= 'baz';
 
 /**
  *  An anonymous function, this will be ignored due to missing 
@@ -58,5 +57,12 @@ Component.FIELD = 'baz';
 /* jshint ignore:start */
 function anon(){}
 /* jshint ignore:end */
+
+/**
+ *  Sets the QUX variable.
+ *
+ *  @property QUX
+ */
+create.QUX = null;
 
 module.exports = create;

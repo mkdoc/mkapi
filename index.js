@@ -8,7 +8,9 @@ var fs = require('fs')
   , CLASS = 'class'
   , CONSTRUCTOR = 'constructor'
   , FUNCTION = 'function'
+  , PROPERTY = 'property'
   //, PROTOTYPE = 'prototype'
+  , DEFAULT ='default' 
   , USAGE ='usage' 
   , PRIVATE ='private' 
   , OPTION = 'option'
@@ -44,7 +46,8 @@ function findType(token) {
   var type = 
     findTag(CLASS, token)
     || findTag(CONSTRUCTOR, token)
-    || findTag(FUNCTION, token);
+    || findTag(FUNCTION, token)
+    || findTag(PROPERTY, token);
 
   return type;
 }
@@ -106,6 +109,29 @@ renderers[FUNCTION] = function(tag, token, opts) {
     newline(stream);
   }
 }
+
+renderers[PROPERTY] = function(tag, token, opts) {
+  var name = tag.name
+    , value = name
+    , defaultValue = findTag(DEFAULT, token)
+    , stream = opts.stream;
+  if(name && defaultValue) {
+    value += ' (=' + defaultValue.name + ')'
+  }
+  if(name) {
+    heading(stream, name, opts.depth);
+    newline(stream, 2);
+    if(value) {
+      fenced(stream, value, opts.lang) 
+      newline(stream, 2);
+    }
+    if(token.description) {
+      stream.write(token.description);
+      newline(stream, 2);
+    }
+  }
+}
+
 
 // print a heading
 function heading(stream, str, level) {

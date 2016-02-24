@@ -8,6 +8,8 @@ Table of Contents
   * [API](#api)
     * [parse](#parse)
       * [Options](#options)
+    * [HEADING](#heading)
+    * [LANG](#lang)
   * [Developer](#developer)
     * [Test](#test)
     * [Cover](#cover)
@@ -74,6 +76,8 @@ mdapi index.js --title=
 The following tags are supported:
 
 * `@function`: Marks a function declaration, the function name should be given.
+* `@property`: Marks a property declaration, the property name should be given.
+* `@default`: Default value for a property.
 * `@private`: Exclude the comment from the output.
 * `@param`: Declares an argument for a function.
 * `@option`: Documents an option property.
@@ -111,6 +115,22 @@ The callback function is passed an error and also the AST on success:
 * `level` Number Initial level for the first heading, default is `1`.
 * `heading` String Value for the initial heading, default is `API`.
 * `lang` String Language for fenced code blocks, default is `javascript`.
+
+### HEADING
+
+```javascript
+HEADING (=API)
+```
+
+Default heading value.
+
+### LANG
+
+```javascript
+LANG (=javascript)
+```
+
+Default language for fenced code blocks.
 
 ## Developer
 

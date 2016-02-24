@@ -3,6 +3,8 @@
 The following tags are supported:
 
 * `@function`: Marks a function declaration, the function name should be given.
+* `@property`: Marks a property declaration, the property name should be given.
+* `@default`: Default value for a property.
 * `@private`: Exclude the comment from the output.
 * `@param`: Declares an argument for a function.
 * `@option`: Documents an option property.
