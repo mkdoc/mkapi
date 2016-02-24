@@ -94,9 +94,9 @@ parse(files[, opts], cb)
 
 Parse an array of files into a markdown string.
 
-* files `{Array}`: List of files to parse.
-* opts `{Object}`: Parse options.
-* cb `{Function}`: Callback function.
+* `files` Array List of files to parse.
+* `opts` Object Parse options.
+* `cb` Function Callback function.
 
 ## Developer
 
