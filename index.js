@@ -261,7 +261,7 @@ function parse(files, opts, cb) {
       if(err) {
         return cb(err);
       }
-      cb();
+      cb(null, ast);
     }
 
     print(ast, opts, onPrint);
