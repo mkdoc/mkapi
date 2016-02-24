@@ -231,6 +231,7 @@ function print(ast, opts, cb) {
   }
 }
 
+// jscs:disable maximumLineLength
 /**
  *  Accepts an array of files, concatenates the files in the order given 
  *  into a string, parse the comments in the resulting string into an AST 
@@ -248,8 +249,7 @@ function print(ast, opts, cb) {
  *  @option {Writable} stream The stream to write to, default is `stdout`.
  *  @option {Number} level Initial level for the first heading, default is `1`.
  *  @option {String} heading Value for the initial heading, default is `API`.
- *  @option {String} lang Language for fenced code blocks, 
- *  default is `javascript`.
+ *  @option {String} lang Language for fenced code blocks, default is `javascript`.
  */
 function parse(files, opts, cb) {
   assert(Array.isArray(files), 'array of files expected');
