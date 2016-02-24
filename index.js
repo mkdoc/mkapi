@@ -2,8 +2,10 @@ var fs = require('fs')
   , assert = require('assert')
   , comments = require('comment-parser')
   , repeat = require('string-repeater')
+  , OPTIONS_HEADING = 'Options'
   , USAGE ='usage' 
   , PRIVATE ='private' 
+  , OPTION = 'option'
   , NAME = 'name'
   , PARAM = 'param';
 
@@ -155,13 +157,28 @@ function print(ast, opts, cb) {
     level++;
   }
 
+  // print a list of parameters
+  function parameters(params) {
+    params.forEach(function(param) {
+      var name = param.name
+        , type = '';
+
+      if(param.type) {
+        type = param.type + ' '; 
+      }
+      stream.write('* `' + name + '` ' + type + param.description);
+      newline();
+    })
+  }
+
   // walk the ast
   ast.forEach(function(token) {
     var tag = findTag(NAME, token)
       , exclude = findTag(PRIVATE, token)
       , name
       , usage = findTag(USAGE, token)
-      , params;
+      , params
+      , options;
 
     if(usage) {
       fenced(usage.name + ' ' + usage.description, opts.lang);
@@ -189,21 +206,19 @@ function print(ast, opts, cb) {
     }
 
     // parameter list
-    params.forEach(function(param) {
-      var name = param.name
-        , type = '';
-
-      if(param.type) {
-        type = param.type + ' '; 
-      }
-      stream.write('* `' + name + '` ' + type + param.description);
-      newline();
-    })
-
+    parameters(params);
     if(params.length) {
       newline();
     }
 
+    // options list
+    options = collect(OPTION, token);
+    if(options.length) {
+      heading(OPTIONS_HEADING, level + 1);
+      newline(2);
+      parameters(options);
+      newline();
+    }
   })
 
   stream.once('finish', done);
@@ -229,6 +244,12 @@ function print(ast, opts, cb) {
  *  @param {Array} files List of files to parse.
  *  @param {Object} [opts] Parse options.
  *  @param {Function} cb Callback function.
+ *
+ *  @option {Writable} stream The stream to write to, default is `stdout`.
+ *  @option {Number} level Initial level for the first heading, default is `1`.
+ *  @option {String} heading Value for the initial heading, default is `API`.
+ *  @option {String} lang Language for fenced code blocks, 
+ *  default is `javascript`.
  */
 function parse(files, opts, cb) {
   assert(Array.isArray(files), 'array of files expected');

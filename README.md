@@ -7,6 +7,7 @@ Table of Contents
   * [Tags](#tags)
   * [API](#api)
     * [parse](#parse)
+      * [Options](#options)
   * [Developer](#developer)
     * [Test](#test)
     * [Cover](#cover)
@@ -23,7 +24,7 @@ Markdown API
 
 Quick and dirty (but effective and fast) API comments to commonmark compliant markdown.
 
-Designed for small to medium sized libraries, for large projects use one of the many other documentation tools. Uses `javascript` for fenced code blocks by default, but you could conceivably use this tool with any language.
+Designed for small to medium sized libraries, for large projects use one of the many other documentation tools. Uses `javascript` for fenced code blocks by default but you could conceivably use this tool with any language.
 
 See [api](#api) for example output.
 
@@ -103,6 +104,14 @@ The callback function is passed an error and also the AST on success:
 * `files` Array List of files to parse.
 * `opts` Object Parse options.
 * `cb` Function Callback function.
+
+#### Options
+
+* `stream` Writable The stream to write to, default is `stdout`.
+* `level` Number Initial level for the first heading, default is `1`.
+* `heading` String Value for the initial heading, default is `API`.
+* `lang` String Language for fenced code blocks,
+default is `javascript`.
 
 ## Developer
 
