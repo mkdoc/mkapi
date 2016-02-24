@@ -52,11 +52,12 @@ function version() {
 }
 
 function error(msg) {
-  console.error(msg);
+  var prefix = 'error: '
+  console.error(prefix + msg);
   process.exit(1);
 }
 
-if(process.argv.length === 2 || args.flags.h || args.flags.help) {
+if(args.flags.h || args.flags.help) {
   return usage();
 }else if(args.flags.version) {
   return version();
@@ -80,7 +81,7 @@ if(args.options.title !== undefined) {
 
 parse(args.unparsed, opts, function(err) {
   if(err) {
-    return error(err.stack); 
+    return error(err.message || err.stack); 
   }
   process.exit();
 });
