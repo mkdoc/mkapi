@@ -137,7 +137,7 @@ function print(ast, opts, cb) {
   }
 
   // initial heading
-  if(typeof opts.heading === 'string') {
+  if(opts.heading && typeof opts.heading === 'string') {
     heading(opts.heading, level); 
     newline(2);
     level++;

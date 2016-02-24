@@ -4,6 +4,7 @@ Table of Contents
 * [Markdown API](#markdown-api)
   * [Install](#install)
   * [Usage](#usage)
+  * [Tags](#tags)
   * [API](#api)
     * [concat](#concat)
     * [print](#print)
@@ -62,6 +63,23 @@ Need HTML or XML? No problem, install [commonmark](https://github.com/jgm/common
 mdapi index.js | commonmark
 ```
 
+If you need to suppress the initial heading, use:
+
+```
+mdapi index.js --title=
+```
+
+## Tags
+
+The following tags are supported:
+
+* `@name`: Specifies the method name (required).
+* `@param`: Declares an argument for a function.
+* `@opt`: Documents an option property.
+* `@usage`: Usage examples that appear below the first heading.
+
+Note that whilst declaring the method name using `@name` is a little more maintenance it is deemed to be preferable to re-parsing the file to automatically extract function names.
+
 ## API
 
 ```javascript
@@ -77,9 +95,9 @@ concat(files, output, cb)
 
 Concatenate input files into a single string.
 
-* files `Array`: List of input file to load.
-* output `String`: The output string.
-* cb `Function`: Callback function.
+* files `{Array}`: List of input file to load.
+* output `{String}`: The output string.
+* cb `{Function}`: Callback function.
 
 ### print
 
@@ -89,9 +107,9 @@ print(ast, opts, cb)
 
 Print the markdown from the parsed ast.
 
-* ast `Object`: The parsed comments abstract syntax tree.
-* opts `Object`: Parse options.
-* cb `Function`: Callback function.
+* ast `{Object}`: The parsed comments abstract syntax tree.
+* opts `{Object}`: Parse options.
+* cb `{Function}`: Callback function.
 
 ### parse
 
@@ -101,9 +119,9 @@ parse(files, opts, cb)
 
 Parse an array of files into a markdown string.
 
-* files `Array`: List of files to parse.
-* opts `Object`: Parse options.
-* cb `Function`: Callback function.
+* files `{Array}`: List of files to parse.
+* opts `{Object}`: Parse options.
+* cb `{Function}`: Callback function.
 
 ## Developer
 

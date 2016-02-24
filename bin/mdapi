@@ -79,6 +79,8 @@ opts.level = parseInt(args.options.level);
 opts.ast = args.flags.ast;
 opts.indent = parseInt(args.options.indent);
 
+//console.dir(args);
+
 if(args.options.title !== undefined) {
   opts.heading = args.options.title;
 }

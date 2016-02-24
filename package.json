@@ -63,7 +63,10 @@
         "type": "code"
       },
       {
-        "inc": "usage.md"
+        "inc": [
+          "usage.md",
+          "tags.md"
+        ]
       },
       {
         "bin": "./bin/mdapi index.js --level=2" 
