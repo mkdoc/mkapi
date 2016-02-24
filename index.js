@@ -179,7 +179,7 @@ function print(ast, opts, cb) {
     params.forEach(function(param) {
       var name = param.name;
       if(param.type) {
-        name += ' `' + param.type + '`'; 
+        name += ' `{' + param.type + '}`'; 
       }
       stream.write('* ' + name + ': ' + param.description);
       newline();
