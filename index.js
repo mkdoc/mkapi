@@ -100,7 +100,7 @@ renderers[CONSTRUCTOR] = renderers[FUNCTION] = function(tag, token, opts) {
     , className;
 
   if(construct) {
-    current = construct;
+    current = tag;
     inherits = findTag(INHERITS, token); 
   }
 
