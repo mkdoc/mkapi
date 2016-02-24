@@ -110,8 +110,7 @@ The callback function is passed an error and also the AST on success:
 * `stream` Writable The stream to write to, default is `stdout`.
 * `level` Number Initial level for the first heading, default is `1`.
 * `heading` String Value for the initial heading, default is `API`.
-* `lang` String Language for fenced code blocks,
-default is `javascript`.
+* `lang` String Language for fenced code blocks, default is `javascript`.
 
 ## Developer
 
