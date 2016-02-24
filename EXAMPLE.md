@@ -1,7 +1,22 @@
+Table of Contents
+=================
+
+* [Markdown API Example](#markdown-api-example)
+  * [Input](#input)
+  * [Result](#result)
+* [API Documents](#api-documents)
+  * [Component](#component)
+    * [Component < EventEmitter](#component-eventemitter)
+      * [Options](#options)
+    * [foo](#foo)
+    * [create](#create)
+    * [BAZ](#baz)
+    * [QUX](#qux)
+
 Markdown API Example
 ====================
 
-## Input File
+## Input
 
 ```javascript
 var util = require('util')
@@ -82,82 +97,18 @@ create.QUX = null;
 module.exports = create;
 ```
 
-## Markdown Output
-
-```
-# API Documents
-
-A mock program module, using the @module tag sets the overall
-title at the initial level setting.
-
-* [mdapi](https://github.com/tmpfs/mdapi)
-* [commonmark](https://github.com/jgm/commonmark.js)
-
-## Component 
-
-Mock class, you can add an extended description of the class behaviour here.
-
-### Component < EventEmitter
-
-```javascript
-new Component(opts)
-```
-
-An abstract component.
-
-* `opts` Component options.
-
-#### Options
-
-* `enabled` Whether the component is initially enabled.
-
-### foo
-
-```javascript
-foo(opts, cb)
-```
-
-Do foo thing with bar.
-
-* `opts` Object An options arguments.
-* `cb` Function Callback function.
-
-### create
-
-```javascript
-create()
-```
-
-Create a new component.
-
-### BAZ
-
-```javascript
-BAZ (=baz)
-```
-
-Sets the BAZ variable.
-
-### QUX
-
-```javascript
-QUX
-```
-
-Sets the QUX variable.
-
-```
-
 ## Result
-# API Documents
+
+API Documents
+=============
 
 A mock program module, using the @module tag sets the overall
 title at the initial level setting.
 
-* [mdapi](https://github.com/tmpfs/mdapi)
-* [commonmark](https://github.com/jgm/commonmark.js)
+* [mdapi](https://github.com/tmpfs/mdapi).
+* [commonmark](https://github.com/jgm/commonmark.js).
 
-## Component 
+## Component
 
 Mock class, you can add an extended description of the class behaviour here.
 

@@ -64,12 +64,6 @@ Need HTML or XML? No problem, install [commonmark](https://github.com/jgm/common
 mdapi index.js | commonmark
 ```
 
-If you need to suppress the initial heading, use:
-
-```
-mdapi index.js --title=
-```
-
 ## Tags
 
 The following tags are supported:
