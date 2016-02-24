@@ -82,6 +82,7 @@ The following tags are supported:
 * `@param`: Declares an argument for a function.
 * `@option`: Documents an option property.
 * `@usage`: Usage example(s) that appear below the first heading.
+* `@deprecated`: Flag as deprecated.
 * `@author`: Author meta data.
 * `@version`: Version information.
 * `@since`: Since version.

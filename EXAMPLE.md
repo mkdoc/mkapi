@@ -98,6 +98,8 @@ Component.prototype.foo = foo;
 
 /**
  *  A static function declaration.
+ *
+ *  @deprecated use create instead.
  *  
  *  @static factory
  *
@@ -219,6 +221,8 @@ Do foo thing with bar.
 ```javascript
 static factory()
 ```
+
+> deprecated use create instead.
 
 A static function declaration.
 

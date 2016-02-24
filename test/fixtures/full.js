@@ -72,6 +72,8 @@ Component.prototype.foo = foo;
 
 /**
  *  A static function declaration.
+ *
+ *  @deprecated use create instead.
  *  
  *  @static factory
  *

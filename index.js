@@ -19,6 +19,7 @@ var fs = require('fs')
   , OPTIONS_HEADING = 'Options'
   , LANG = 'javascript'
   , DEFAULT ='default' 
+  , DEPRECATED = 'deprecated'
   , AUTHOR = 'author'
   , VERSION = 'version'
   , SINCE = 'since'
@@ -241,11 +242,18 @@ renderers[PROPERTY] = renderers[CONSTANT] = function(tag, token, opts) {
 
 function meta(token, opts) {
   var stream = opts.stream
+    , deprecated = findTag(DEPRECATED, token)
     , author = findTag(AUTHOR, token)
     , version = findTag(VERSION, token)
     , since = findTag(SINCE, token)
     , hasMeta = Boolean(author || version || since)
     , list = '* **';
+
+  if(deprecated) {
+    stream.write('> ' + DEPRECATED + ' '
+      + deprecated.name + ' ' + deprecated.description);
+    newline(stream, 2);
+  }
 
   if(author) {
     stream.write(list + AUTHOR + '** `' + author.name + '`'); 
