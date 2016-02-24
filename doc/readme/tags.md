@@ -3,6 +3,7 @@
 The following tags are supported:
 
 * `@name`: Specifies the method name (required).
+* `@private`: Exclude the marked method from the output.
 * `@param`: Declares an argument for a function.
 * `@opt`: Documents an option property.
 * `@usage`: Usage examples that appear below the first heading.

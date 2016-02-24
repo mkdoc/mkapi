@@ -3,6 +3,7 @@ var fs = require('fs')
   , comments = require('comment-parser')
   , repeat = require('string-repeater')
   , USAGE ='usage' 
+  , PRIVATE ='private' 
   , NAME = 'name'
   , PARAM = 'param';
 
@@ -13,10 +14,12 @@ var fs = require('fs')
 
 /**
  *  Concatenate input files into a single string.
+ *
+ *  @private
  *  
  *  @name concat
  *
- *  @param {Array} files List of input file to load.
+ *  @param {Array} files List of input files to load.
  *  @param {String} output The output string.
  *  @param {Function} cb Callback function.
  */
@@ -36,8 +39,10 @@ function concat(files, output, cb) {
   fs.readFile(file, onRead);
 }
 
-/**
- *  Print the markdown from the parsed ast.
+/** 
+ *  Print markdown from the parsed AST.
+ *
+ *  @private
  *
  *  @name print
  *
@@ -146,6 +151,7 @@ function print(ast, opts, cb) {
   // walk the ast
   ast.forEach(function(token) {
     var tag = findTag(NAME, token)
+      , exclude = findTag(PRIVATE, token)
       , name
       , usage = findTag(USAGE, token)
       , params;
@@ -155,7 +161,7 @@ function print(ast, opts, cb) {
       newline(2);
     }
 
-    if(!tag || !tag.name) {
+    if(exclude || (!tag || !tag.name)) {
       return; 
     }
 
@@ -250,8 +256,5 @@ function parse(files, opts, cb) {
     print(ast, opts, onPrint);
   })
 }
-
-parse.concat = concat;
-parse.print = print;
 
 module.exports = parse;

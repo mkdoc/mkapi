@@ -6,8 +6,6 @@ Table of Contents
   * [Usage](#usage)
   * [Tags](#tags)
   * [API](#api)
-    * [concat](#concat)
-    * [print](#print)
     * [parse](#parse)
   * [Developer](#developer)
     * [Test](#test)
@@ -74,6 +72,7 @@ mdapi index.js --title=
 The following tags are supported:
 
 * `@name`: Specifies the method name (required).
+* `@private`: Exclude the marked method from the output.
 * `@param`: Declares an argument for a function.
 * `@opt`: Documents an option property.
 * `@usage`: Usage examples that appear below the first heading.
@@ -86,30 +85,6 @@ Note that whilst declaring the method name using `@name` is a little more mainte
 var parse = require('mdapi');
 parse(['index.js'], {stream: process.stdout});
 ```
-
-### concat
-
-```javascript
-concat(files, output, cb)
-```
-
-Concatenate input files into a single string.
-
-* files `{Array}`: List of input file to load.
-* output `{String}`: The output string.
-* cb `{Function}`: Callback function.
-
-### print
-
-```javascript
-print(ast, opts, cb)
-```
-
-Print the markdown from the parsed ast.
-
-* ast `{Object}`: The parsed comments abstract syntax tree.
-* opts `{Object}`: Parse options.
-* cb `{Function}`: Callback function.
 
 ### parse
 
