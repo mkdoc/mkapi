@@ -82,11 +82,11 @@ renderers[MODULE] = function(tag, token, opts) {
 }
 
 renderers[CLASS] = function(tag, token, opts) {
-  //console.log(token);
+  see(tag, token, opts);
 }
 
 renderers[CONSTRUCTOR] = function(tag, token, opts) {
-  //console.log(token);
+  see(tag, token, opts);
 }
 
 renderers[FUNCTION] = function(tag, token, opts) {
@@ -130,6 +130,8 @@ renderers[FUNCTION] = function(tag, token, opts) {
     parameters(stream, options);
     newline(stream);
   }
+
+  see(tag, token, opts);
 }
 
 renderers[PROPERTY] = function(tag, token, opts) {
@@ -152,6 +154,8 @@ renderers[PROPERTY] = function(tag, token, opts) {
       newline(stream, 2);
     }
   }
+
+  see(tag, token, opts);
 }
 
 function see(tag, token, opts) {
