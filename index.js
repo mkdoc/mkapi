@@ -5,8 +5,8 @@ var fs = require('fs')
   , heading = Writers.heading
   , api = require('./api')
   , render = require('./render')
-  , tag = require('./tag')
-  , findTag = tag.findTag
+  , Tag = require('./tag')
+  , findTag = Tag.findTag
   , LANG = 'javascript'
 
 /**

@@ -7,9 +7,6 @@ var writers = require('./writers')
   , parameters = writers.parameters
   , meta = writers.meta
   , see = writers.see
-  , Tag = require('./tag')
-  , findTag = Tag.findTag
-  , collect = Tag.collect
   , current
   , render = {};
 
@@ -64,13 +61,13 @@ function _function(type, token, opts) {
     , construct = (type.tag === api.CONSTRUCTOR)
     , isStatic = (type.tag === api.STATIC)
     , throwables
-    , proto = findTag(api.PROTOTYPE, token)
-    , retval = findTag(api.RETURN, token)
+    , proto = this.findTag(api.PROTOTYPE, token)
+    , retval = this.findTag(api.RETURN, token)
     , className;
 
   if(construct) {
     current = type;
-    inherits = findTag(api.INHERITS, token); 
+    inherits = this.findTag(api.INHERITS, token); 
   }
 
   if(!name) {
@@ -94,7 +91,7 @@ function _function(type, token, opts) {
   heading(stream, nm, level);
 
   // method signature
-  params = collect(api.PARAM, token);
+  params = this.collect(api.PARAM, token);
   if(construct) {
     val = 'new ' + name; 
   }else if(isStatic) {
@@ -138,14 +135,14 @@ function _function(type, token, opts) {
   }
 
   // options list @option
-  options = collect(api.OPTION, token);
+  options = this.collect(api.OPTION, token);
   if(options.length) {
     heading(stream, api.header.OPTIONS, level + 1);
     parameters(stream, options);
     newline(stream);
   }
 
-  throwables = collect(api.THROWS, token);
+  throwables = this.collect(api.THROWS, token);
 
   if(throwables.length) {
     heading(stream, api.header.THROWS, level + 1);
@@ -162,7 +159,7 @@ function _function(type, token, opts) {
 function _property(type, token, opts) {
   var name = type.name
     , value = name
-    , defaultValue = findTag(api.DEFAULT, token)
+    , defaultValue = this.findTag(api.DEFAULT, token)
     , stream = this.stream
     , fixed = (type.tag === api.CONSTANT);
 
