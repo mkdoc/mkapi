@@ -1,9 +1,9 @@
 var fs = require('fs')
   , assert = require('assert')
   , comments = require('comment-parser')
-  , Writers = require('./writers')
-  , api = require('./api')
-  , render = require('./render')
+  , Writers = require('./lib/writers')
+  , api = require('./lib/api')
+  , render = require('./lib/render')
   , LANG = 'javascript'
 
 /**
