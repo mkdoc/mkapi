@@ -234,7 +234,7 @@ Write a heading at the specified level.
 #### newline
 
 ```javascript
-newline(num)
+newline([num])
 ```
 
 Write one or more newlines.
