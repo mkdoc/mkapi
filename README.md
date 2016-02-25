@@ -14,6 +14,10 @@ Table of Contents
       * [Options](#options)
     * [conf](#conf)
       * [LANG](#lang)
+    * [render](#render)
+      * [_class](#_class)
+      * [_function](#_function)
+      * [_property](#_property)
     * [tags](#tags)
       * [findTag](#findtag)
       * [collect](#collect)
@@ -180,6 +184,43 @@ LANG = javascript;
 ```
 
 Default language for fenced code blocks.
+
+### render
+
+Default render functions.
+
+#### _class
+
+```javascript
+_class(type, token)
+```
+
+Render a class (or module) block.
+
+* `type` Object The tag that initiated the render.
+* `token` Object The current comment AST token.
+
+#### _function
+
+```javascript
+_function(type, token)
+```
+
+Render a function block.
+
+* `type` Object The tag that initiated the render.
+* `token` Object The current comment AST token.
+
+#### _property
+
+```javascript
+_property(type, token)
+```
+
+Render a property block.
+
+* `type` Object The tag that initiated the render.
+* `token` Object The current comment AST token.
 
 ### tags
 

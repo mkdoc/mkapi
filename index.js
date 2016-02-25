@@ -78,16 +78,16 @@ function getScope(conf, state, opts) {
   // map render functions to tag types
   render[conf.MODULE]
     = render[conf.CLASS]
-    = render._class;
+    = render._class.bind(scope);
 
   render[conf.CONSTRUCTOR] 
     = render[conf.STATIC]
     = render[conf.FUNCTION] 
-    = render._function;
+    = render._function.bind(scope);
 
   render[conf.PROPERTY]
     = render[conf.CONSTANT]
-    = render._property;
+    = render._property.bind(scope);
 
   return scope;
 }
@@ -97,10 +97,11 @@ function getScope(conf, state, opts) {
  *
  *  @private
  */
-function write(type, token, opts) {
-  this.type = type;
-  this.token = token;
-  this.render[type.tag].call(this, type, token, opts); 
+function write(type, token) {
+  // set current type tag and token on the scope
+  this.currentType = type;
+  this.currentToken = token;
+  this.render[type.tag](type, token);
 }
 
 /**
