@@ -16,7 +16,7 @@ Table of Contents
       * [heading](#heading)
       * [meta](#meta)
       * [fenced](#fenced)
-      * [tag](#tag)
+      * [deprecated](#deprecated)
       * [signature](#signature)
       * [parameter](#parameter)
       * [returns](#returns)
@@ -232,10 +232,10 @@ Returns formatted string.
 * `code` String The content for the code block.
 * `info` String A language info string.
 
-#### tag
+#### deprecated
 
 ```javascript
-tag(tag)
+deprecated(tag)
 ```
 
 Gets a deprecated notice.
