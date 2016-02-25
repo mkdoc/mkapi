@@ -2,7 +2,7 @@ var fs = require('fs')
   , assert = require('assert')
   , comments = require('comment-parser')
   , Writers = require('./lib/writers')
-  , api = require('./lib/api')
+  , api = require('./lib/conf')
   , render = require('./lib/render')
   , LANG = 'javascript'
 
