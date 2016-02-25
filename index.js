@@ -156,11 +156,10 @@ function print(ast, opts, cb) {
  *  Accepts an array of files and iterates the file contents in series 
  *  asynchronously.
  *
- *  Parse the comments in the each file into a comment AST 
+ *  Parse the comments in each file into a comment AST 
  *  and transform the AST into commonmark compliant markdown.
  *
- *  The callback function is passed an error on failure: 
- *  `function(err)`.
+ *  The callback function is passed an error on failure: `function(err)`.
  *
  *  @function parse
  *

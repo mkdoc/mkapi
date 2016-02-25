@@ -28,7 +28,7 @@ Markdown API
 [<img src="http://img.shields.io/npm/v/mdapi.svg?v=2" alt="npm version">](https://npmjs.org/package/mdapi)
 [<img src="https://coveralls.io/repos/tmpfs/mdapi/badge.svg?branch=master&service=github&v=2" alt="Coverage Status">](https://coveralls.io/github/tmpfs/mdapi?branch=master).
 
-Quick and dirty (but effective and fast) API comments to commonmark compliant markdown.
+Effective and fast API comments to commonmark compliant markdown.
 
 Designed for small to medium sized libraries, for large projects use one of the many other documentation tools. Uses `javascript` for fenced code blocks by default but you could conceivably use this tool with any language.
 
@@ -140,11 +140,10 @@ parse(files[, opts], cb)
 Accepts an array of files and iterates the file contents in series
 asynchronously.
 
-Parse the comments in the each file into a comment AST
+Parse the comments in each file into a comment AST
 and transform the AST into commonmark compliant markdown.
 
-The callback function is passed an error on failure:
-`function(err)`.
+The callback function is passed an error on failure: `function(err)`.
 
 * `files` Array List of files to parse.
 * `opts` Object Parse options.
