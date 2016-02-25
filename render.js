@@ -7,9 +7,9 @@ var writers = require('./writers')
   , parameters = writers.parameters
   , meta = writers.meta
   , see = writers.see
-  , tag = require('./tag')
-  , findTag = tag.findTag
-  , collect = tag.collect
+  , Tag = require('./tag')
+  , findTag = Tag.findTag
+  , collect = Tag.collect
   , current
   , render = {};
 
@@ -23,17 +23,17 @@ function _usage(tokens, opts) {
 
 render.usage = _usage;
 
-function _class(tag, token, opts) {
-  var stream = opts.stream
-    , isModule = tag.tag === api.MODULE;
+function _class(type, token, opts) {
+  var stream = this.stream
+    , isModule = type.tag === api.MODULE;
 
   if(isModule) {
     // reset to default level
     opts.depth = opts.level;
   }
 
-  if(tag.name) {
-    heading(stream, tag.name + ' '  + tag.description, opts.depth);
+  if(type.name) {
+    heading(stream, type.name + ' '  + type.description, opts.depth);
 
     meta(token, opts);
 
@@ -49,27 +49,27 @@ function _class(tag, token, opts) {
     opts.depth++;
   }
 
-  see(tag, token, opts);
+  see(type, token, opts);
 }
 
-function _function(tag, token, opts) {
-  var name = tag.name
+function _function(type, token, opts) {
+  var name = type.name
     , nm = name
-    , stream = opts.stream
+    , stream = this.stream
     , params
     , options
     , level = opts.depth
     , val = name
     , inherits
-    , construct = (tag.tag === api.CONSTRUCTOR)
-    , isStatic = (tag.tag === api.STATIC)
+    , construct = (type.tag === api.CONSTRUCTOR)
+    , isStatic = (type.tag === api.STATIC)
     , throwables
     , proto = findTag(api.PROTOTYPE, token)
     , retval = findTag(api.RETURN, token)
     , className;
 
   if(construct) {
-    current = tag;
+    current = type;
     inherits = findTag(api.INHERITS, token); 
   }
 
@@ -98,8 +98,8 @@ function _function(tag, token, opts) {
   if(construct) {
     val = 'new ' + name; 
   }else if(isStatic) {
-    if(tag.description) {
-      name = tag.description + '.' + name; 
+    if(type.description) {
+      name = type.description + '.' + name; 
     }
     val = 'static ' + name; 
   }else if(proto) {
@@ -156,15 +156,15 @@ function _function(tag, token, opts) {
     }
   }
 
-  see(tag, token, opts);
+  see(type, token, opts);
 }
 
-function _property(tag, token, opts) {
-  var name = tag.name
+function _property(type, token, opts) {
+  var name = type.name
     , value = name
     , defaultValue = findTag(api.DEFAULT, token)
-    , stream = opts.stream
-    , fixed = (tag.tag === api.CONSTANT);
+    , stream = this.stream
+    , fixed = (type.tag === api.CONSTANT);
 
   if(name && defaultValue) {
     value += ' = ' + defaultValue.name + ';'
@@ -188,7 +188,7 @@ function _property(tag, token, opts) {
     }
   }
 
-  see(tag, token, opts);
+  see(type, token, opts);
 }
 
 render[api.MODULE] = render[api.CLASS] = _class;

@@ -1,8 +1,8 @@
 var fs = require('fs')
   , assert = require('assert')
   , comments = require('comment-parser')
-  , writers = require('./writers')
-  , heading = writers.heading
+  , Writers = require('./writers')
+  , heading = Writers.heading
   , api = require('./api')
   , render = require('./render')
   , tag = require('./tag')
@@ -39,7 +39,12 @@ function findType(token) {
  *  @private
  */
 function write(type, token, opts) {
-  render[type.tag](type, token, opts); 
+  var scope = Writers();
+  scope.type = type;
+  scope.token = token;
+  scope.opts = opts;
+  scope.stream = opts.stream;
+  render[type.tag].call(scope, type, token, opts); 
 }
 
 /**
