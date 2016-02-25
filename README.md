@@ -13,8 +13,6 @@ Table of Contents
     * [parse](#parse)
       * [Options](#options)
     * [LANG](#lang)
-  * [API](#api-1)
-  * [Conf](#conf)
   * [Developer](#developer)
     * [Test](#test)
     * [Cover](#cover)
@@ -165,10 +163,6 @@ LANG = javascript;
 ```
 
 Default language for fenced code blocks.
-
-## API
-
-## Conf
 
 Every aspect of the program output may be modified by changing the
 configuration variables.
