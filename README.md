@@ -191,8 +191,8 @@ Finds a tag in the tag list by tag id.
 
 Returns a tag or `null` if not found.
 
-* `id` {String} The tag identifier.
-* `token` {Object} The current AST token.
+* `id` String The tag identifier.
+* `token` Object The current AST token.
 
 ##### collect
 
@@ -204,8 +204,8 @@ Collects all tags with the specified id.
 
 Returns an array of tags.
 
-* `id` {String} The tag identifier.
-* `token` {Object} The current AST token.
+* `id` String The tag identifier.
+* `token` Object The current AST token.
 
 ##### writers
 
