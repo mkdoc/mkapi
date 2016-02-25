@@ -3,6 +3,7 @@ var fs = require('fs')
   , comments = require('comment-parser')
   , Writers = require('./lib/writers')
   , conf = require('./lib/conf')
+  , Tag = require('./lib/tag')
   , render = require('./lib/render');
 
 /**
@@ -19,13 +20,13 @@ var fs = require('fs')
  */
 function findType(token) {
   var type = 
-    this.findTag(conf.MODULE, token)
-    || this.findTag(conf.CLASS, token)
-    || this.findTag(conf.CONSTRUCTOR, token)
-    || this.findTag(conf.FUNCTION, token)
-    || this.findTag(conf.STATIC, token)
-    || this.findTag(conf.PROPERTY, token)
-    || this.findTag(conf.CONSTANT, token);
+    this.tags.findTag(conf.MODULE, token)
+    || this.tags.findTag(conf.CLASS, token)
+    || this.tags.findTag(conf.CONSTRUCTOR, token)
+    || this.tags.findTag(conf.FUNCTION, token)
+    || this.tags.findTag(conf.STATIC, token)
+    || this.tags.findTag(conf.PROPERTY, token)
+    || this.tags.findTag(conf.CONSTANT, token);
   return type;
 }
 
@@ -35,7 +36,24 @@ function findType(token) {
  *  @private
  */
 function getScope(state, opts) {
-  var scope = Writers();
+  var scope = Writers()
+    , stream = opts.stream
+    , k;
+
+  // bind writers to the stream scope
+  for(k in scope) {
+    // must all be functions
+    scope[k] = scope[k].bind(stream);
+  }
+
+  // expose tags on the primary scope for render functions
+  // and on the stream scope for writers
+  scope.tags = stream.tags = {};
+  for(k in Tag) {
+    scope.tags[k] = stream.tags[k] = Tag[k];
+  }
+
+
   // state for the entire execution
   scope.state = state;
 
@@ -43,7 +61,8 @@ function getScope(state, opts) {
   scope.opts = opts;
 
   // stream to write to
-  scope.stream = opts.stream;
+  scope.stream = stream;
+
   return scope;
 }
 
@@ -117,9 +136,9 @@ function print(ast, opts, cb) {
   // pre-processing
   ast.forEach(function(token) {
     if(!hasModule) {
-      hasModule = scope.findTag(conf.MODULE, token);
+      hasModule = scope.tags.findTag(conf.MODULE, token);
     }
-    if(scope.findTag(conf.USAGE, token)) {
+    if(scope.tags.findTag(conf.USAGE, token)) {
       usage = usage.concat([token]);
     }
   })
@@ -133,7 +152,7 @@ function print(ast, opts, cb) {
 
   // walk the ast
   ast.forEach(function(token) {
-    var exclude = scope.findTag(conf.PRIVATE, token);
+    var exclude = scope.tags.findTag(conf.PRIVATE, token);
     var type = findType.call(scope, token);
 
     // marked @private

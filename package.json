@@ -72,7 +72,7 @@
         ]
       },
       {
-        "bin": "./bin/mdapi index.js lib/conf.js --level=2 --title=API"
+        "bin": "./bin/mdapi index.js lib/*.js --level=2 --title=API"
       },
       {
         "inc": [
