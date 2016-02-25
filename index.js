@@ -19,13 +19,13 @@ var fs = require('fs')
  */
 function findType(token) {
   var type = 
-    this.tags.findTag(this.conf.MODULE, token)
-    || this.tags.findTag(this.conf.CLASS, token)
-    || this.tags.findTag(this.conf.CONSTRUCTOR, token)
-    || this.tags.findTag(this.conf.FUNCTION, token)
-    || this.tags.findTag(this.conf.STATIC, token)
-    || this.tags.findTag(this.conf.PROPERTY, token)
-    || this.tags.findTag(this.conf.CONSTANT, token);
+    this.tags.find(this.conf.MODULE, token)
+    || this.tags.find(this.conf.CLASS, token)
+    || this.tags.find(this.conf.CONSTRUCTOR, token)
+    || this.tags.find(this.conf.FUNCTION, token)
+    || this.tags.find(this.conf.STATIC, token)
+    || this.tags.find(this.conf.PROPERTY, token)
+    || this.tags.find(this.conf.CONSTANT, token);
   return type;
 }
 
@@ -163,9 +163,9 @@ function print(ast, opts, cb) {
   // pre-processing
   ast.forEach(function(token) {
     if(!hasModule) {
-      hasModule = scope.tags.findTag(scope.conf.MODULE, token);
+      hasModule = scope.tags.find(scope.conf.MODULE, token);
     }
-    if(scope.tags.findTag(scope.conf.USAGE, token)) {
+    if(scope.tags.find(scope.conf.USAGE, token)) {
       usage = usage.concat([token]);
     }
   })
@@ -179,7 +179,7 @@ function print(ast, opts, cb) {
 
   // walk the ast
   ast.forEach(function(token) {
-    var exclude = scope.tags.findTag(scope.conf.PRIVATE, token);
+    var exclude = scope.tags.find(scope.conf.PRIVATE, token);
     var type = findType.call(scope, token);
 
     // marked @private

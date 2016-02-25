@@ -19,7 +19,7 @@ Table of Contents
       * [_function](#_function)
       * [_property](#_property)
     * [tags](#tags)
-      * [findTag](#findtag)
+      * [find](#find)
       * [collect](#collect)
     * [writers](#writers)
       * [heading](#heading)
@@ -230,10 +230,10 @@ These functions are available via a `tags` property on the scope for
 render functions as well as writer functions which are bound to the
 scope of the stream.
 
-#### findTag
+#### find
 
 ```javascript
-findTag(id, token)
+find(id, token)
 ```
 
 Finds a tag in the tag list by tag id.
