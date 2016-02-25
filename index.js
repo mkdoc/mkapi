@@ -2,7 +2,7 @@ var fs = require('fs')
   , assert = require('assert')
   , comments = require('comment-parser')
   , Writers = require('./lib/writers')
-  , api = require('./lib/conf')
+  , conf = require('./lib/conf')
   , render = require('./lib/render')
   , LANG = 'javascript'
 
@@ -20,13 +20,13 @@ var fs = require('fs')
  */
 function findType(token) {
   var type = 
-    this.findTag(api.MODULE, token)
-    || this.findTag(api.CLASS, token)
-    || this.findTag(api.CONSTRUCTOR, token)
-    || this.findTag(api.FUNCTION, token)
-    || this.findTag(api.STATIC, token)
-    || this.findTag(api.PROPERTY, token)
-    || this.findTag(api.CONSTANT, token);
+    this.findTag(conf.MODULE, token)
+    || this.findTag(conf.CLASS, token)
+    || this.findTag(conf.CONSTRUCTOR, token)
+    || this.findTag(conf.FUNCTION, token)
+    || this.findTag(conf.STATIC, token)
+    || this.findTag(conf.PROPERTY, token)
+    || this.findTag(conf.CONSTANT, token);
   return type;
 }
 
@@ -132,9 +132,9 @@ function print(ast, opts, cb) {
   // pre-processing
   ast.forEach(function(token) {
     if(!hasModule) {
-      hasModule = scope.findTag(api.MODULE, token);
+      hasModule = scope.findTag(conf.MODULE, token);
     }
-    if(scope.findTag(api.USAGE, token)) {
+    if(scope.findTag(conf.USAGE, token)) {
       usage = usage.concat([token]);
     }
   })
@@ -154,7 +154,7 @@ function print(ast, opts, cb) {
 
   // walk the ast
   ast.forEach(function(token) {
-    var exclude = scope.findTag(api.PRIVATE, token);
+    var exclude = scope.findTag(conf.PRIVATE, token);
     var type = findType.call(scope, token);
 
     // marked @private
