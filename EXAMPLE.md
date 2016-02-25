@@ -163,7 +163,7 @@ Rendered output with `--level=2`:
 * **version** `1.1.0`
 * **since** `1.0`
 
-```javscript
+```javascript
 var create = require('component');
 var component = create();
 ```
@@ -176,7 +176,7 @@ title at the initial level setting.
 
 ### Component
 
-```javscript
+```javascript
 var create = require('component');
 var component = create();
 ```
@@ -185,7 +185,7 @@ Mock class, you can add an extended description of the class behaviour here.
 
 #### Component < EventEmitter < Object
 
-```javscript
+```javascript
 new Component(opts)
 ```
 
@@ -203,7 +203,7 @@ An abstract component.
 
 #### .foo
 
-```javscript
+```javascript
 Component.prototype.foo([opts], cb)
 ```
 
@@ -227,7 +227,7 @@ Do foo thing with bar.
 
 #### #factory
 
-```javscript
+```javascript
 static factory()
 ```
 
@@ -239,7 +239,7 @@ Returns a new component.
 
 #### create
 
-```javscript
+```javascript
 create()
 ```
 
@@ -247,7 +247,7 @@ Create a new component.
 
 #### BAZ
 
-```javscript
+```javascript
 BAZ = baz;
 ```
 
@@ -259,7 +259,7 @@ Sets the BAZ variable.
 
 #### QUX
 
-```javscript
+```javascript
 QUX
 ```
 
@@ -267,7 +267,7 @@ Sets the QUX variable.
 
 #### ZAR
 
-```javscript
+```javascript
 const ZAR = foo;
 ```
 

@@ -126,14 +126,14 @@ Indicates an inheritance hierarchy, borrowed from Ruby.
 
 ## API
 
-```javscript
+```javascript
 var parse = require('mdapi');
 parse(['index.js'], {stream: process.stdout});
 ```
 
 ### parse
 
-```javscript
+```javascript
 parse(files[, opts], cb)
 ```
 
@@ -164,7 +164,7 @@ configuration variables.
 
 #### LANG
 
-```javscript
+```javascript
 LANG = javascript;
 ```
 
