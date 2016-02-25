@@ -64,6 +64,9 @@ function getScope(conf, state, opts) {
   // stream to write to
   scope.stream = stream;
 
+  // alias the render map at the top-level
+  scope.render = conf.render;
+
   return scope;
 }
 
@@ -75,7 +78,7 @@ function getScope(conf, state, opts) {
 function write(type, token, opts) {
   this.type = type;
   this.token = token;
-  this.conf.render[type.tag].call(this, type, token, opts); 
+  this.render[type.tag].call(this, type, token, opts); 
 }
 
 /**
@@ -145,7 +148,7 @@ function print(ast, opts, cb) {
   })
 
   if(!hasModule && usage.length) {
-    this.conf.render.usage.call(this, usage, opts);
+    this.render.usage.call(this, usage, opts);
   }
 
   // might need to render after a module declaration
