@@ -52,6 +52,11 @@ function getScope(conf, state, opts) {
     scope.tags[k] = stream.tags[k] = Tag[k];
   }
 
+  // bind format functions to scope
+  for(k in conf.format) {
+    conf.format[k] = conf.format[k].bind(scope);
+  }
+
   // pass configuration object in scope
   scope.conf = conf;
 
@@ -66,6 +71,9 @@ function getScope(conf, state, opts) {
 
   // alias the render map at the top-level
   scope.render = conf.render;
+
+  // alias the format functions at the top-level
+  scope.format = conf.format;
 
   return scope;
 }
