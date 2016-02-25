@@ -268,7 +268,7 @@ Sets the QUX variable.
 ##### ZAR
 
 ```javascript
-const ZAR = foo;
+const [object Object]
 ```
 
 Gets the ZAR variable.

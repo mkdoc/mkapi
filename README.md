@@ -19,7 +19,13 @@ Table of Contents
       * [tag](#tag)
       * [signature](#signature)
       * [parameter](#parameter)
+      * [returns](#returns)
       * [link](#link)
+      * [property](#property)
+      * [method](#method)
+      * [title](#title)
+      * [format](#format)
+      * [cues](#cues)
       * [LANG](#lang)
     * [render](#render)
       * [_class](#_class)
@@ -184,6 +190,9 @@ The callback function is passed an error on failure: `function(err)`.
 Every aspect of the program output may be modified by changing the
 configuration variables.
 
+Constants representing each of the recognised tags are exposed on this
+module, for example: `this.conf.MODULE` yields `module`.
+
 #### heading
 
 ```javascript
@@ -259,6 +268,18 @@ Returns formatted string.
 
 * `tag` tag The param tag.
 
+#### returns
+
+```javascript
+returns(tag)
+```
+
+Gets a returns statement.
+
+Returns formatted string.
+
+* `tag` tag The returns tag.
+
 #### link
 
 ```javascript
@@ -270,6 +291,54 @@ Gets a link from a tag.
 Returns formatted string.
 
 * `tag` tag The see tag.
+
+#### property
+
+```javascript
+property(tag, value)
+```
+
+Gets a property code string.
+
+Returns formatted string.
+
+* `tag` tag The declaring tag.
+* `value` tag A tag containing a value for the property.
+
+#### method
+
+```javascript
+method(tag, opts)
+```
+
+Gets the heading title for a function.
+
+* `tag` Object The declaring tag.
+* `opts` Object Format options describing the function.
+
+#### title
+
+```javascript
+title
+```
+
+Variables for headings and notices, eg: `Deprecated`.
+
+#### format
+
+```javascript
+format
+```
+
+Map of format functions.
+
+#### cues
+
+```javascript
+cues
+```
+
+Map of variables for visual cues.
 
 #### LANG
 
