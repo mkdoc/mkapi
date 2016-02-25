@@ -12,8 +12,8 @@ Table of Contents
   * [API](#api)
     * [parse](#parse)
       * [Options](#options)
-    * [LANG](#lang)
     * [conf](#conf)
+      * [LANG](#lang)
   * [Developer](#developer)
     * [Test](#test)
     * [Cover](#cover)
@@ -126,14 +126,14 @@ Indicates an inheritance hierarchy, borrowed from Ruby.
 
 ## API
 
-```javascript
+```javscript
 var parse = require('mdapi');
 parse(['index.js'], {stream: process.stdout});
 ```
 
 ### parse
 
-```javascript
+```javscript
 parse(files[, opts], cb)
 ```
 
@@ -157,18 +157,18 @@ The callback function is passed an error on failure:
 * `heading` String Value for an initial heading.
 * `lang` String Language for fenced code blocks, default is `javascript`.
 
-### LANG
-
-```javascript
-LANG = javascript;
-```
-
-Default language for fenced code blocks.
-
 ### conf
 
 Every aspect of the program output may be modified by changing the
 configuration variables.
+
+#### LANG
+
+```javscript
+LANG = javascript;
+```
+
+Default language for fenced code blocks.
 
 ## Developer
 

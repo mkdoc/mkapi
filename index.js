@@ -3,8 +3,7 @@ var fs = require('fs')
   , comments = require('comment-parser')
   , Writers = require('./lib/writers')
   , conf = require('./lib/conf')
-  , render = require('./lib/render')
-  , LANG = 'javascript'
+  , render = require('./lib/render');
 
 /**
  *  var parse = require('mdapi');
@@ -200,7 +199,7 @@ function parse(files, opts, cb) {
   opts.level = opts.level || 1;
 
   // language for fenced code blocks
-  opts.lang = opts.lang !== undefined ? opts.lang : parse.LANG;
+  opts.lang = opts.lang !== undefined ? opts.lang : conf.LANG;
 
   // state of the depth level
   state.depth = opts.level;
@@ -250,13 +249,5 @@ function parse(files, opts, cb) {
       }
     });
 }
-
-/**
- *  Default language for fenced code blocks.
- *
- *  @property {String} LANG
- *  @default javascript
- */
-parse.LANG = LANG;
 
 module.exports = parse;
