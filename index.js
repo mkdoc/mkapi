@@ -43,7 +43,8 @@ function getScope(state, opts) {
   // bind writers to the stream scope
   for(k in scope) {
     // must all be functions
-    scope[k] = scope[k].bind(stream);
+    scope[k] = scope[k].bind(scope);
+    //console.dir('binding to stream: ' + k);
   }
 
   // expose tags on the primary scope for render functions
