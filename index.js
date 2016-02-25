@@ -2,9 +2,8 @@ var fs = require('fs')
   , assert = require('assert')
   , comments = require('comment-parser')
   , Writers = require('./lib/writers')
-  , conf = require('./lib/conf')
   , Tag = require('./lib/tag')
-  , render = require('./lib/render');
+  //, render = require('./lib/render');
 
 /**
  *  var parse = require('mdapi');
@@ -20,13 +19,13 @@ var fs = require('fs')
  */
 function findType(token) {
   var type = 
-    this.tags.findTag(conf.MODULE, token)
-    || this.tags.findTag(conf.CLASS, token)
-    || this.tags.findTag(conf.CONSTRUCTOR, token)
-    || this.tags.findTag(conf.FUNCTION, token)
-    || this.tags.findTag(conf.STATIC, token)
-    || this.tags.findTag(conf.PROPERTY, token)
-    || this.tags.findTag(conf.CONSTANT, token);
+    this.tags.findTag(this.conf.MODULE, token)
+    || this.tags.findTag(this.conf.CLASS, token)
+    || this.tags.findTag(this.conf.CONSTRUCTOR, token)
+    || this.tags.findTag(this.conf.FUNCTION, token)
+    || this.tags.findTag(this.conf.STATIC, token)
+    || this.tags.findTag(this.conf.PROPERTY, token)
+    || this.tags.findTag(this.conf.CONSTANT, token);
   return type;
 }
 
@@ -35,7 +34,7 @@ function findType(token) {
  *
  *  @private
  */
-function getScope(state, opts) {
+function getScope(conf, state, opts) {
   var scope = Writers()
     , stream = opts.stream
     , k;
@@ -53,6 +52,8 @@ function getScope(state, opts) {
     scope.tags[k] = stream.tags[k] = Tag[k];
   }
 
+  // pass configuration object in scope
+  scope.conf = conf;
 
   // state for the entire execution
   scope.state = state;
@@ -74,7 +75,7 @@ function getScope(state, opts) {
 function write(type, token, opts) {
   this.type = type;
   this.token = token;
-  render[type.tag].call(this, type, token, opts); 
+  this.conf.render[type.tag].call(this, type, token, opts); 
 }
 
 /**
@@ -136,15 +137,15 @@ function print(ast, opts, cb) {
   // pre-processing
   ast.forEach(function(token) {
     if(!hasModule) {
-      hasModule = scope.tags.findTag(conf.MODULE, token);
+      hasModule = scope.tags.findTag(scope.conf.MODULE, token);
     }
-    if(scope.tags.findTag(conf.USAGE, token)) {
+    if(scope.tags.findTag(scope.conf.USAGE, token)) {
       usage = usage.concat([token]);
     }
   })
 
   if(!hasModule && usage.length) {
-    render.usage.call(this, usage, opts);
+    this.conf.render.usage.call(this, usage, opts);
   }
 
   // might need to render after a module declaration
@@ -152,7 +153,7 @@ function print(ast, opts, cb) {
 
   // walk the ast
   ast.forEach(function(token) {
-    var exclude = scope.tags.findTag(conf.PRIVATE, token);
+    var exclude = scope.tags.findTag(scope.conf.PRIVATE, token);
     var type = findType.call(scope, token);
 
     // marked @private
@@ -205,7 +206,8 @@ function parse(files, opts, cb) {
   var state = {}
     , stream
     , called = false
-    , scope;
+    , scope
+    , config = require('./lib/conf');
 
   opts = opts || {};
 
@@ -217,7 +219,7 @@ function parse(files, opts, cb) {
   opts.level = opts.level || 1;
 
   // language for fenced code blocks
-  opts.lang = opts.lang !== undefined ? opts.lang : conf.LANG;
+  opts.lang = opts.lang !== undefined ? opts.lang : config.LANG;
 
   // state of the depth level
   state.depth = opts.level;
@@ -234,7 +236,7 @@ function parse(files, opts, cb) {
   stream.once('error', done);
 
   // set scope after opts are parsed
-  scope = getScope(state, opts);
+  scope = getScope(config, state, opts);
 
   // initial heading
   if(opts.heading && typeof opts.heading === 'string') {
