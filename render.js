@@ -2,6 +2,11 @@ var api = require('./api')
   , current
   , render = {};
 
+/**
+ *  Render a usage code block.
+ *
+ *  @private
+ */
 function _usage(tokens, opts) {
   var stream = opts.stream;
   function it(token) {
@@ -13,6 +18,11 @@ function _usage(tokens, opts) {
 
 render.usage = _usage;
 
+/**
+ *  Render a class (or module) block.
+ *
+ *  @private
+ */
 function _class(type, token, opts) {
   var stream = this.stream
     , isModule = type.tag === api.MODULE;
@@ -42,6 +52,11 @@ function _class(type, token, opts) {
   this.see(type, token, opts);
 }
 
+/**
+ *  Render a function block.
+ *
+ *  @private
+ */
 function _function(type, token, opts) {
   var name = type.name
     , nm = name
@@ -69,16 +84,17 @@ function _function(type, token, opts) {
 
   // method inheritance
   if(inherits) {
-    nm += ' < ' + inherits.name;
+    nm += api.cues.CONSTRUCTOR + inherits.name;
     if(inherits.description) {
-      nm += ' < ' + inherits.description.split(/\s+/).join(' < ');
+      nm += api.cues.CONSTRUCTOR
+        + inherits.description.split(/\s+/).join(api.cues.CONSTRUCTOR);
     }
   }
 
   if(isStatic) {
-    nm = '#' + nm; 
+    nm = api.cues.STATIC + nm; 
   }else if(proto) {
-    nm = '.' + nm; 
+    nm = api.cues.MEMBER + nm; 
   }
 
   this.heading(stream, nm, level);
@@ -149,6 +165,11 @@ function _function(type, token, opts) {
   this.see(type, token, opts);
 }
 
+/**
+ *  Render a property block.
+ *
+ *  @private
+ */
 function _property(type, token, opts) {
   var name = type.name
     , value = name

@@ -1,8 +1,33 @@
 var repeat = require('string-repeater')
-  , api = require('./api')
-  , tag = require('./tag')
-  , findTag = tag.findTag
-  , collect = tag.collect;
+  , api = require('./api');
+
+/**
+ *  Helper function to find a tag by name.
+ *
+ *  @private
+ */
+function findTag(name, ast) {
+  for(var i = 0;i < ast.tags.length;i++) {
+    if(ast.tags[i].tag === name) {
+      return ast.tags[i]; 
+    }
+  }
+}
+
+/** 
+ *  Helper function to collect all tags with a name.
+ *
+ *  @private
+ */
+function collect(name, ast) {
+  var o = [];
+  for(var i = 0;i < ast.tags.length;i++) {
+    if(ast.tags[i].tag === name) {
+      o.push(ast.tags[i]);
+    }
+  }
+  return o;
+}
 
 // print a heading
 function heading(stream, str, level) {
