@@ -6,10 +6,8 @@ Table of Contents
   * [Result](#result)
     * [API Documents](#api-documents)
       * [Component](#component)
-        * [Component < EventEmitter < Object](#component-eventemitter-object)
-          * [Options](#options)
         * [.foo](#foo)
-          * [Options](#options-1)
+          * [Options](#options)
           * [Throws](#throws)
         * [#factory](#factory)
         * [create](#create)
@@ -183,28 +181,10 @@ var component = create();
 
 Mock class, you can add an extended description of the class behaviour here.
 
-##### Component < EventEmitter < Object
-
-```javascript
-new Component(opts)
-```
-
-* **author** `muji`
-* **version** `1.1.0`
-* **since** `1.0`
-
-An abstract component.
-
-* `opts` Component options.
-
-###### Options
-
-* `enabled` Whether the component is initially enabled.
-
 ##### .foo
 
 ```javascript
-Component.prototype.foo([opts], cb)
+foo([opts], cb)
 ```
 
 * **author** `muji`

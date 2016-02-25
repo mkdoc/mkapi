@@ -16,17 +16,22 @@ var fs = require('fs')
 /**
  *  Find a type tag for a token.
  *
+ *  Iterates the registered renderers and returns the tag for the 
+ *  first match.
+ *
  *  @private
+ *  @function getType
+ *  @param token The current AST token.
  */
-function findType(token) {
-  var type = 
-    this.tags.find(this.conf.MODULE, token)
-    || this.tags.find(this.conf.CLASS, token)
-    || this.tags.find(this.conf.CONSTRUCTOR, token)
-    || this.tags.find(this.conf.FUNCTION, token)
-    || this.tags.find(this.conf.STATIC, token)
-    || this.tags.find(this.conf.PROPERTY, token)
-    || this.tags.find(this.conf.CONSTANT, token);
+function getType(token) {
+  var k, type;
+  // first come first served, do not mix type tags!
+  for(k in registry) {
+    type = this.tags.find(k, token);
+    if(type) {
+      break;
+    } 
+  }
   return type;
 }
 
@@ -76,6 +81,7 @@ function getScope(conf, state, opts) {
   // alias the format functions at the top-level
   scope.format = conf.format;
 
+  // set up default renderers
   defaults(conf, render);
 
   // bind registered renderers
@@ -84,18 +90,6 @@ function getScope(conf, state, opts) {
   }
 
   return scope;
-}
-
-/**
- *  Write a token to the stream based on the given type tag.
- *
- *  @private
- */
-function write(type, token) {
-  // set current type tag and token on the scope
-  this.currentType = type;
-  this.currentToken = token;
-  this.render[type.tag](type, token);
 }
 
 /**
@@ -174,7 +168,7 @@ function print(ast, opts, cb) {
   // walk the ast
   ast.forEach(function(token) {
     var exclude = scope.tags.find(scope.conf.PRIVATE, token);
-    var type = findType.call(scope, token);
+    var type = getType.call(scope, token);
 
     // marked @private
     if(exclude) {
@@ -184,7 +178,7 @@ function print(ast, opts, cb) {
     // render for the type tag
     if(type) {
       // TODO: make this async
-      return write.call(scope, type, token, opts);
+      scope.render[type.tag](type, token);
     }
   })
 
@@ -308,25 +302,32 @@ function parse(files, opts, cb) {
  *  @param {String} type The type name for the tag.
  *  @param {Function} renderer The render function.
  */
-function register(type, renderer, overwrite) {
-  if(!overwrite && registry[type]) {
-    return registry[type];
-  }
+function register(type, renderer) {
   registry[type] = renderer;
-  return renderer;
 }
 
 /**
- *  Register default renderer mappins.
+ *  Register default renderer mappings.
+ *
+ *  @private
+ *  @function defaults
+ *  @param {Object} conf The program configuration.
+ *  @param {Object} render The map of render functions.
  */
 function defaults(conf, render) {
-  register(conf.MODULE, render._class, false);
-  register(conf.CLASS, render._class, false);
-  register(conf.CONSTRUCTOR, render._function, false);
-  register(conf.STATIC, render._function, false);
-  register(conf.FUNCTION, render._function, false);
-  register(conf.PROPERTY, render._property, false);
-  register(conf.CONSTANT, render._property, false);
+  // do not overwrite previously registered renders
+  function set(key, method) {
+    if(!registry[key]) {
+      register(key, method);
+    }
+  }
+  set(conf.MODULE, render._class);
+  set(conf.CLASS, render._class);
+  set(conf.CONSTRUCTOR, render._function);
+  set(conf.STATIC, render._function);
+  set(conf.FUNCTION, render._function);
+  set(conf.PROPERTY, render._property);
+  set(conf.CONSTANT, render._property);
 }
 
 parse.register = register;

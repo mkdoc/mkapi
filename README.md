@@ -12,6 +12,7 @@ Table of Contents
   * [API](#api)
     * [parse](#parse)
       * [Options](#options)
+    * [register](#register)
     * [conf](#conf)
       * [heading](#heading)
       * [meta](#meta)
@@ -184,6 +185,17 @@ The callback function is passed an error on failure: `function(err)`.
 * `level` Number Initial level for the first heading, default is `1`.
 * `heading` String Value for an initial heading.
 * `lang` String Language for fenced code blocks, default is `javascript`.
+
+### register
+
+```javascript
+register(type, renderer)
+```
+
+Register a render function for a given type tag.
+
+* `type` String The type name for the tag.
+* `renderer` Function The render function.
 
 ### conf
 
