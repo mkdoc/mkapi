@@ -1,21 +1,14 @@
-var writers = require('./writers')
-  , api = require('./api')
-  , fenced = writers.fenced
-  , newline = writers.newline
-  , heading = writers.heading
-  , signature = writers.signature
-  , parameters = writers.parameters
-  , meta = writers.meta
-  , see = writers.see
+var api = require('./api')
   , current
   , render = {};
 
 function _usage(tokens, opts) {
   var stream = opts.stream;
-  tokens.forEach(function(token) {
-    fenced(stream, token.description, opts.lang);
-    newline(stream, 2);
-  });
+  function it(token) {
+    this.fenced(stream, token.description, opts.lang);
+    this.newline(stream, 2);
+  }
+  tokens.forEach(it.bind(this));
 }
 
 render.usage = _usage;
@@ -30,23 +23,23 @@ function _class(type, token, opts) {
   }
 
   if(type.name) {
-    heading(stream, type.name + ' '  + type.description, opts.depth);
+    this.heading(stream, type.name + ' '  + type.description, opts.depth);
 
-    meta(token, opts);
+    this.meta(token, opts);
 
     if(opts.usage.length) {
-      render.usage(opts.usage, opts); 
+      render.usage.call(this, opts.usage, opts); 
     }
 
     if(token.description) {
       stream.write(token.description); 
-      newline(stream, 2);
+      this.newline(stream, 2);
     }
 
     opts.depth++;
   }
 
-  see(type, token, opts);
+  this.see(type, token, opts);
 }
 
 function _function(type, token, opts) {
@@ -88,7 +81,7 @@ function _function(type, token, opts) {
     nm = '.' + nm; 
   }
 
-  heading(stream, nm, level);
+  this.heading(stream, nm, level);
 
   // method signature
   params = this.collect(api.PARAM, token);
@@ -112,48 +105,48 @@ function _function(type, token, opts) {
       val = className + '.prototype.' + name;
     }
   }
-  signature(params, val, token, opts, {construct: construct});
-  newline(stream, 2);
+  this.signature(params, val, token, opts, {construct: construct});
+  this.newline(stream, 2);
 
-  meta(token, opts);
+  this.meta(token, opts);
 
   // method description
   if(token.description) {
     stream.write(token.description);
-    newline(stream, 2);
+    this.newline(stream, 2);
   }
 
   if(retval) {
     stream.write('Returns ' + retval.name + ' ' + retval.description);
-    newline(stream, 2);
+    this.newline(stream, 2);
   }
 
   // parameter list @param
-  parameters(stream, params);
+  this.parameters(stream, params);
   if(params.length) {
-    newline(stream);
+    this.newline(stream);
   }
 
   // options list @option
   options = this.collect(api.OPTION, token);
   if(options.length) {
-    heading(stream, api.header.OPTIONS, level + 1);
-    parameters(stream, options);
-    newline(stream);
+    this.heading(stream, api.header.OPTIONS, level + 1);
+    this.parameters(stream, options);
+    this.newline(stream);
   }
 
   throwables = this.collect(api.THROWS, token);
 
   if(throwables.length) {
-    heading(stream, api.header.THROWS, level + 1);
+    this.heading(stream, api.header.THROWS, level + 1);
     // Errors @throws
-    parameters(stream, throwables);
+    this.parameters(stream, throwables);
     if(params.length) {
-      newline(stream);
+      this.newline(stream);
     }
   }
 
-  see(type, token, opts);
+  this.see(type, token, opts);
 }
 
 function _property(type, token, opts) {
@@ -167,25 +160,25 @@ function _property(type, token, opts) {
     value += ' = ' + defaultValue.name + ';'
   }
   if(name) {
-    heading(stream, name, opts.depth);
+    this.heading(stream, name, opts.depth);
 
     if(value) {
       if(fixed) {
         value = 'const ' + value;
       }
-      fenced(stream, value, opts.lang) 
-      newline(stream, 2);
+      this.fenced(stream, value, opts.lang) 
+      this.newline(stream, 2);
     }
 
-    meta(token, opts);
+    this.meta(token, opts);
 
     if(token.description) {
       stream.write(token.description);
-      newline(stream, 2);
+      this.newline(stream, 2);
     }
   }
 
-  see(type, token, opts);
+  this.see(type, token, opts);
 }
 
 render[api.MODULE] = render[api.CLASS] = _class;

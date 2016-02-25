@@ -2,11 +2,8 @@ var fs = require('fs')
   , assert = require('assert')
   , comments = require('comment-parser')
   , Writers = require('./writers')
-  , heading = Writers.heading
   , api = require('./api')
   , render = require('./render')
-  , Tag = require('./tag')
-  , findTag = Tag.findTag
   , LANG = 'javascript'
 
 /**
@@ -23,14 +20,28 @@ var fs = require('fs')
  */
 function findType(token) {
   var type = 
-    findTag(api.MODULE, token)
-    || findTag(api.CLASS, token)
-    || findTag(api.CONSTRUCTOR, token)
-    || findTag(api.FUNCTION, token)
-    || findTag(api.STATIC, token)
-    || findTag(api.PROPERTY, token)
-    || findTag(api.CONSTANT, token);
+    this.findTag(api.MODULE, token)
+    || this.findTag(api.CLASS, token)
+    || this.findTag(api.CONSTRUCTOR, token)
+    || this.findTag(api.FUNCTION, token)
+    || this.findTag(api.STATIC, token)
+    || this.findTag(api.PROPERTY, token)
+    || this.findTag(api.CONSTANT, token);
   return type;
+}
+
+/**
+ *  Gets the scope for render function calls.
+ *
+ *  @private
+ */
+function getScope(type, token, opts) {
+  var scope = Writers();
+  scope.type = type;
+  scope.token = token;
+  scope.opts = opts;
+  scope.stream = opts.stream;
+  return scope;
 }
 
 /**
@@ -39,11 +50,7 @@ function findType(token) {
  *  @private
  */
 function write(type, token, opts) {
-  var scope = Writers();
-  scope.type = type;
-  scope.token = token;
-  scope.opts = opts;
-  scope.stream = opts.stream;
+  var scope = getScope(type, token, opts);
   render[type.tag].call(scope, type, token, opts); 
 }
 
@@ -120,24 +127,26 @@ function print(ast, opts, cb) {
     }
   }
 
+  var scope = getScope(null, null, opts);
+
   // pre-processing
   ast.forEach(function(token) {
     if(!hasModule) {
-      hasModule = findTag(api.MODULE, token);
+      hasModule = scope.findTag(api.MODULE, token);
     }
-    if(findTag(api.USAGE, token)) {
+    if(scope.findTag(api.USAGE, token)) {
       usage = usage.concat([token]);
     }
   })
 
   // initial heading
   if(opts.heading && typeof opts.heading === 'string') {
-    heading(stream, opts.heading, opts.depth); 
+    scope.heading(stream, opts.heading, opts.depth); 
     opts.depth++;
   }
 
   if(!hasModule && usage.length) {
-    render.usage(usage, opts);
+    render.usage.call(scope, usage, opts);
   }
 
   // might need to render after a module declaration
@@ -145,9 +154,8 @@ function print(ast, opts, cb) {
 
   // walk the ast
   ast.forEach(function(token) {
-    var exclude = findTag(api.PRIVATE, token);
-
-    var type = findType(token);
+    var exclude = scope.findTag(api.PRIVATE, token);
+    var type = findType.call(scope, token);
 
     // marked @private
     if(exclude) {

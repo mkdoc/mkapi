@@ -134,13 +134,4 @@ function Writer() {
   }
 }
 
-// legacy static access
-Writer.heading = heading;
-Writer.newline = newline;
-Writer.fenced = fenced;
-Writer.signature = signature;
-Writer.parameters = parameters;
-Writer.meta = meta;
-Writer.see = see;
-
 module.exports = Writer;
