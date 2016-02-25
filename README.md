@@ -25,7 +25,6 @@ Table of Contents
       * [parameters](#parameters)
       * [meta](#meta)
       * [see](#see)
-      * [Writer](#writer)
   * [Developer](#developer)
     * [Test](#test)
     * [Cover](#cover)
@@ -295,14 +294,6 @@ see(token)
 Write the list of see also links.
 
 * `token` Object The current token.
-
-#### Writer
-
-```javascript
-Writer()
-```
-
-Writer scope.
 
 ## Developer
 
