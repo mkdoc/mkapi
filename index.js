@@ -2,8 +2,10 @@ var fs = require('fs')
   , assert = require('assert')
   , comments = require('comment-parser')
   , repeat = require('string-repeater')
+  , api = require('./api')
   , renderers = {}
   , current
+
   , PRIVATE ='private' 
   , MODULE = 'module'
   , CLASS = 'class'
@@ -27,9 +29,8 @@ var fs = require('fs')
   , OPTION = 'option'
   , THROWS = 'throws'
 
-
-  , OPTIONS_HEADING = 'Options'
-  , THROWS_HEADING = 'Throws'
+  //, OPTIONS_HEADING = 'Options'
+  //, THROWS_HEADING = 'Throws'
   //, EVENTS_HEADING = 'Events'
 
 /**
@@ -205,7 +206,7 @@ renderers[CONSTRUCTOR] =
   // options list @option
   options = collect(OPTION, token);
   if(options.length) {
-    heading(stream, OPTIONS_HEADING, level + 1);
+    heading(stream, api.header.OPTIONS, level + 1);
     newline(stream, 2);
     parameters(stream, options);
     newline(stream);
@@ -214,14 +215,13 @@ renderers[CONSTRUCTOR] =
   throwables = collect(THROWS, token);
 
   if(throwables.length) {
-    heading(stream, THROWS_HEADING, level + 1);
+    heading(stream, api.header.THROWS, level + 1);
     newline(stream, 2);
     // Errors @throws
     parameters(stream, throwables);
     if(params.length) {
       newline(stream);
     }
-
   }
 
   see(tag, token, opts);
