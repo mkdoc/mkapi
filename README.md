@@ -14,10 +14,10 @@ Table of Contents
       * [Options](#options)
     * [conf](#conf)
       * [LANG](#lang)
-      * [tags](#tags)
-        * [findTag](#findtag)
-        * [collect](#collect)
-        * [writers](#writers)
+    * [tags](#tags)
+      * [findTag](#findtag)
+      * [collect](#collect)
+    * [writers](#writers)
   * [Developer](#developer)
     * [Test](#test)
     * [Cover](#cover)
@@ -173,7 +173,7 @@ LANG = javascript;
 
 Default language for fenced code blocks.
 
-#### tags
+### tags
 
 Helper functions for working with AST comment tags.
 
@@ -181,7 +181,7 @@ These functions are available via a `tags` property on the scope for
 render functions as well as writer functions which are bound to the
 scope of the stream.
 
-##### findTag
+#### findTag
 
 ```javascript
 findTag(id, token)
@@ -194,7 +194,7 @@ Returns a tag or `null` if not found.
 * `id` String The tag identifier.
 * `token` Object The current AST token.
 
-##### collect
+#### collect
 
 ```javascript
 collect(id, token)
@@ -207,7 +207,7 @@ Returns an array of tags.
 * `id` String The tag identifier.
 * `token` Object The current AST token.
 
-##### writers
+### writers
 
 Stream writer helper functions, render functions can access these methods
 using `this`.

@@ -4,18 +4,18 @@ Table of Contents
 * [Markdown API Example](#markdown-api-example)
   * [Input](#input)
   * [Result](#result)
-  * [API Documents](#api-documents)
-    * [Component](#component)
-      * [Component < EventEmitter < Object](#component-eventemitter-object)
-        * [Options](#options)
-      * [.foo](#foo)
-        * [Options](#options-1)
-        * [Throws](#throws)
-      * [#factory](#factory)
-      * [create](#create)
-      * [BAZ](#baz)
-      * [QUX](#qux)
-      * [ZAR](#zar)
+    * [API Documents](#api-documents)
+      * [Component](#component)
+        * [Component < EventEmitter < Object](#component-eventemitter-object)
+          * [Options](#options)
+        * [.foo](#foo)
+          * [Options](#options-1)
+          * [Throws](#throws)
+        * [#factory](#factory)
+        * [create](#create)
+        * [BAZ](#baz)
+        * [QUX](#qux)
+        * [ZAR](#zar)
 
 Markdown API Example
 ====================
@@ -157,7 +157,7 @@ module.exports = create;
 
 Rendered output with `--level=2`:
 
-## API Documents
+### API Documents
 
 * **author** `muji`
 * **version** `1.1.0`
@@ -174,7 +174,7 @@ title at the initial level setting.
 * [mdapi](https://github.com/tmpfs/mdapi)
 * [commonmark](https://github.com/jgm/commonmark.js)
 
-### Component
+#### Component
 
 ```javascript
 var create = require('component');
@@ -183,7 +183,7 @@ var component = create();
 
 Mock class, you can add an extended description of the class behaviour here.
 
-#### Component < EventEmitter < Object
+##### Component < EventEmitter < Object
 
 ```javascript
 new Component(opts)
@@ -197,11 +197,11 @@ An abstract component.
 
 * `opts` Component options.
 
-##### Options
+###### Options
 
 * `enabled` Whether the component is initially enabled.
 
-#### .foo
+##### .foo
 
 ```javascript
 Component.prototype.foo([opts], cb)
@@ -216,16 +216,16 @@ Do foo thing with bar.
 * `opts` Object An options arguments.
 * `cb` Function Callback function.
 
-##### Options
+###### Options
 
 * `noop` Boolean Dry run.
 
-##### Throws
+###### Throws
 
 * `Error` JSON parse error.
 * `Error` File create error.
 
-#### #factory
+##### #factory
 
 ```javascript
 static factory()
@@ -237,7 +237,7 @@ A static function declaration.
 
 Returns a new component.
 
-#### create
+##### create
 
 ```javascript
 create()
@@ -245,7 +245,7 @@ create()
 
 Create a new component.
 
-#### BAZ
+##### BAZ
 
 ```javascript
 BAZ = baz;
@@ -257,7 +257,7 @@ BAZ = baz;
 
 Sets the BAZ variable.
 
-#### QUX
+##### QUX
 
 ```javascript
 QUX
@@ -265,7 +265,7 @@ QUX
 
 Sets the QUX variable.
 
-#### ZAR
+##### ZAR
 
 ```javascript
 const ZAR = foo;
