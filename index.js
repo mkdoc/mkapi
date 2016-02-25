@@ -70,10 +70,24 @@ function getScope(conf, state, opts) {
   scope.stream = stream;
 
   // alias the render map at the top-level
-  scope.render = conf.render;
+  var render = scope.render = conf.render;
 
   // alias the format functions at the top-level
   scope.format = conf.format;
+
+  // map render functions to tag types
+  render[conf.MODULE]
+    = render[conf.CLASS]
+    = render._class;
+
+  render[conf.CONSTRUCTOR] 
+    = render[conf.STATIC]
+    = render[conf.FUNCTION] 
+    = render._function;
+
+  render[conf.PROPERTY]
+    = render[conf.CONSTANT]
+    = render._property;
 
   return scope;
 }
@@ -156,7 +170,7 @@ function print(ast, opts, cb) {
   })
 
   if(!hasModule && usage.length) {
-    this.render.usage.call(this, usage, opts);
+    this.usage(usage, opts);
   }
 
   // might need to render after a module declaration
