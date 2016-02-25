@@ -217,18 +217,26 @@ Returns an array of tags.
 
 ### writers
 
-Stream writer helper functions, render functions can access these methods
-using `this`.
+Stream writer helper functions.
+
+Responsible for writing to the output stream but should **not** perform
+any formatting of the output string, their role is to extract the
+relevant information; call a format function and write the result to
+the stream appending newlines where necessary.
+
+Render functions can access these methods using `this`.
+
+These functions call the format functions using `this.format`.
 
 #### heading
 
 ```javascript
-heading(str, level)
+heading(val, level)
 ```
 
 Write a heading at the specified level.
 
-* `str` String The value for the heading.
+* `val` String The value for the heading.
 * `level` Number The level for the heading.
 
 #### newline
@@ -282,7 +290,7 @@ meta(token)
 ```
 
 Write meta data (author, version, since etc) and handle writing the
-deprecated blockquote.
+deprecated notice.
 
 * `token` Object The current token.
 
