@@ -110,10 +110,6 @@ function print(ast, opts, cb) {
     , indent = typeof(opts.indent) === 'number' && !isNaN(opts.indent) 
         ? Math.abs(opts.indent) : 2;
 
-  // state of the depth level
-  // TODO: move to state object
-  opts.depth = opts.level;
-
   if(opts.ast) {
     json = JSON.stringify(ast, undefined, indent);
     return stream.write(json, cb); 
@@ -128,12 +124,6 @@ function print(ast, opts, cb) {
       usage = usage.concat([token]);
     }
   })
-
-  // initial heading
-  if(opts.heading && typeof opts.heading === 'string') {
-    this.heading(stream, opts.heading, opts.depth); 
-    opts.depth++;
-  }
 
   if(!hasModule && usage.length) {
     render.usage.call(this, usage, opts);
@@ -212,6 +202,9 @@ function parse(files, opts, cb) {
   // language for fenced code blocks
   opts.lang = opts.lang !== undefined ? opts.lang : parse.LANG;
 
+  // state of the depth level
+  state.depth = opts.level;
+
   function done(err) {
     /* istanbul ignore if: guard against error race condition */
     if(called) {
@@ -225,6 +218,14 @@ function parse(files, opts, cb) {
 
   // set scope after opts are parsed
   scope = getScope(state, opts);
+
+  // initial heading
+  if(opts.heading && typeof opts.heading === 'string') {
+    scope.heading(stream, opts.heading, state.depth); 
+    state.depth++;
+    // global header written
+    state.header = true;
+  }
 
   each(files.slice(),
     function onLoad(file, result, next) {
