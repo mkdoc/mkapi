@@ -1,0 +1,18 @@
+[
+  {
+    "tags": [
+      {
+        "tag": "usage",
+        "name": "",
+        "optional": false,
+        "type": "",
+        "description": "",
+        "line": 3,
+        "source": "@usage"
+      }
+    ],
+    "line": 0,
+    "description": "var foo = 'bar';",
+    "source": "var foo = 'bar';\n\n@usage"
+  }
+]

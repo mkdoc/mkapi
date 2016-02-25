@@ -6,12 +6,8 @@ describe('mdapi:', function() {
 
   it('should print usage as AST JSON', function(done) {
     var output = 'target/usage-ast.json'
-      , expected = '[\n  {\n    "tags": [\n      {\n        "tag": "usage",'
-          + '\n        "name": "",\n        "optional": false,\n        '
-          + '"type": "",\n        "description": "",\n        "line": 3,'
-          + '\n        "source": "@usage"\n      }\n    ],\n    "line": 0,'
-          + '\n    "description": "var foo = \'bar\';",\n    "source": '
-          + '"var foo = \'bar\';\\n\\n@usage"\n  }\n]';
+      , expected = '' + fs.readFileSync(
+          'test/fixtures/expect/usage-ast.json');
 
     function complete(err) {
       if(err) {
@@ -29,10 +25,8 @@ describe('mdapi:', function() {
 
   it('should print usage as AST JSON with indent', function(done) {
     var output = 'target/usage-ast-indent.json'
-      , expected = '[{"tags":[{"tag":"usage","name":"","optional":false,'
-          + '"type":"","description":"","line":3,"source":"@usage"}],'
-          + '"line":0,"description":"var foo = \'bar\';","source":'
-          + '"var foo = \'bar\';\\n\\n@usage"}]';
+      , expected = '' + fs.readFileSync(
+          'test/fixtures/expect/usage-ast-compact.json');
 
     function complete(err) {
       if(err) {

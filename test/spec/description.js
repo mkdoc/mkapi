@@ -6,8 +6,8 @@ describe('mdapi:', function() {
 
   it('should print method description', function(done) {
     var output = 'target/description.md'
-      , expected = '# description\n\n```javascript\ndescription()\n'
-          + '```\n\nDescription of the function.\n\n';
+      , expected = '' + fs.readFileSync(
+          'test/fixtures/expect/description.md');
 
     function complete(err) {
       if(err) {
@@ -17,6 +17,7 @@ describe('mdapi:', function() {
       expect(contents).to.eql(expected);
       done(); 
     }
+
     parse(
       ['test/fixtures/description.js'],
       {stream: fs.createWriteStream(output)},

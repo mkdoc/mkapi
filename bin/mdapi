@@ -8,6 +8,9 @@ var parser = require('cli-argparse')
       options: [
         '-l', '-t', '-o', '-i', '-L'
       ],
+      flags: [
+        '--ast' 
+      ],
       alias: {
         '-a --ast': 'ast',
         '-l --level': 'level',
