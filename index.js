@@ -29,10 +29,6 @@ var fs = require('fs')
   , OPTION = 'option'
   , THROWS = 'throws'
 
-  //, OPTIONS_HEADING = 'Options'
-  //, THROWS_HEADING = 'Throws'
-  //, EVENTS_HEADING = 'Events'
-
 /**
  *  var parse = require('mdapi');
  *  parse(['index.js'], {stream: process.stdout});
@@ -96,7 +92,6 @@ renderers[MODULE] = renderers[CLASS] = function(tag, token, opts) {
 
   if(tag.name) {
     heading(stream, tag.name + ' '  + tag.description, opts.depth);
-    newline(stream, 2);
 
     meta(token, opts);
 
@@ -142,7 +137,7 @@ renderers[CONSTRUCTOR] =
     return;
   }
 
-  // method heading
+  // method inheritance
   if(inherits) {
     nm += ' < ' + inherits.name;
     if(inherits.description) {
@@ -157,7 +152,6 @@ renderers[CONSTRUCTOR] =
   }
 
   heading(stream, nm, level);
-  newline(stream, 2);
 
   // method signature
   params = collect(PARAM, token);
@@ -207,7 +201,6 @@ renderers[CONSTRUCTOR] =
   options = collect(OPTION, token);
   if(options.length) {
     heading(stream, api.header.OPTIONS, level + 1);
-    newline(stream, 2);
     parameters(stream, options);
     newline(stream);
   }
@@ -216,7 +209,6 @@ renderers[CONSTRUCTOR] =
 
   if(throwables.length) {
     heading(stream, api.header.THROWS, level + 1);
-    newline(stream, 2);
     // Errors @throws
     parameters(stream, throwables);
     if(params.length) {
@@ -239,7 +231,6 @@ renderers[PROPERTY] = renderers[CONSTANT] = function(tag, token, opts) {
   }
   if(name) {
     heading(stream, name, opts.depth);
-    newline(stream, 2);
 
     if(value) {
       if(fixed) {
@@ -315,6 +306,7 @@ function see(tag, token, opts) {
 // print a heading
 function heading(stream, str, level) {
   stream.write(repeat('#', level) + ' ' + str); 
+  newline(stream, 2);
 }
 
 // print newline(s)
@@ -458,7 +450,6 @@ function print(ast, opts, cb) {
   // initial heading
   if(opts.heading && typeof opts.heading === 'string') {
     heading(stream, opts.heading, opts.depth); 
-    newline(stream, 2);
     opts.depth++;
   }
 
