@@ -57,7 +57,7 @@ Markdown API
 [<img src="http://img.shields.io/npm/v/mdapi.svg?v=2" alt="npm version">](https://npmjs.org/package/mdapi)
 [<img src="https://coveralls.io/repos/tmpfs/mdapi/badge.svg?branch=master&service=github&v=2" alt="Coverage Status">](https://coveralls.io/github/tmpfs/mdapi?branch=master).
 
-Effective and fast API comments to commonmark compliant markdown for any language.
+Declarative, extensible, language neutral and fast API comments to commonmark compliant markdown.
 
 Designed for small to medium sized libraries, for large projects use one of the many other documentation tools. Uses `javascript` for fenced code blocks by default but you can [configure](#conf) this library for any language.
 
@@ -107,12 +107,12 @@ The following tags are supported:
 * `@constructor`: Marks a class constructor function, a function name should be given.
 * `@inherits`: Indicates the super class hierarchy for a constructor, accepts multiple values.
 * `@function`: Marks a function declaration, the function name should be given.
-* `@prototype`: Marks a prototype function declaration, a class name may be specified; default is current class scope.
-* `@static`: Marks a function as static.
-* `@property`: Marks a property declaration, the property name should be given.
-* `@constant`: Marks a constant property, the property name should be given.
+* `@member`: Marks a member of a class; a class name may be specified; default is current class scope.
+* `@static`: Marks a member as static.
+* `@property`: Property declaration, the property name should be given.
+* `@constant`: Constant property, the property name should be given.
 * `@default`: Default value for a property.
-* `@private`: Exclude the comment from the output.
+* `@private`: Member is private, excluded from the output by default.
 * `@param`: Declares an argument for a function.
 * `@option`: Documents an option property.
 * `@usage`: Usage example(s) that appear below the first heading.

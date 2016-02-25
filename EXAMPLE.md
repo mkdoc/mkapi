@@ -77,7 +77,7 @@ util.inherits(Component, EventEmitter);
  *  Do foo thing with bar.
  *
  *  @function foo
- *  @prototype
+ *  @member
  *
  *  @author muji
  *  @version 1.1.0
