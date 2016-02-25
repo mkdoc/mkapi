@@ -35,12 +35,12 @@ function findType(token) {
  *
  *  @private
  */
-function getScope(type, token, opts) {
+function getScope(file, state) {
   var scope = Writers();
-  scope.type = type;
-  scope.token = token;
-  scope.opts = opts;
-  scope.stream = opts.stream;
+  // state for each file
+  scope.file = file || {};
+  // state for the entire execution
+  scope.state = state || {};
   return scope;
 }
 
@@ -50,8 +50,11 @@ function getScope(type, token, opts) {
  *  @private
  */
 function write(type, token, opts) {
-  var scope = getScope(type, token, opts);
-  render[type.tag].call(scope, type, token, opts); 
+  this.type = type;
+  this.token = token;
+  this.opts = opts;
+  this.stream = opts.stream;
+  render[type.tag].call(this, type, token, opts); 
 }
 
 /**
@@ -127,7 +130,7 @@ function print(ast, opts, cb) {
     }
   }
 
-  var scope = getScope(null, null, opts);
+  var scope = getScope();
 
   // pre-processing
   ast.forEach(function(token) {
@@ -164,7 +167,7 @@ function print(ast, opts, cb) {
 
     // render for the type tag
     if(type) {
-      return write(type, token, opts); 
+      return write.call(scope, type, token, opts); 
     }
   })
 
