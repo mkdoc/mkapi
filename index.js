@@ -239,7 +239,7 @@ function parse(files, opts, cb) {
 
   // initial heading
   if(opts.heading && typeof opts.heading === 'string') {
-    scope.heading(stream, opts.heading, state.depth); 
+    scope.heading(opts.heading, state.depth); 
     state.depth++;
     // global header written
     state.header = true;
