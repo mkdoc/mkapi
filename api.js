@@ -33,12 +33,13 @@ var list = [
   },
   tags = {};
 
+// expose constants
 list.forEach(function(tag) {
-  tags[tag.toUpperCase()] = tag;
+  var nm = tag.toUpperCase();
+  tags[nm] = tag;
+  module.exports[nm] = tag;
 })
 
-module.exports = {
-  header: header,
-  cues: cues,
-  tags: tags
-}
+module.exports.header = header;
+module.exports.cues = cues;
+module.exports.tags = tags;
