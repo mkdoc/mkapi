@@ -44,7 +44,6 @@ function getScope(state, opts) {
   for(k in scope) {
     // must all be functions
     scope[k] = scope[k].bind(scope);
-    //console.dir('binding to stream: ' + k);
   }
 
   // expose tags on the primary scope for render functions
@@ -247,6 +246,7 @@ function parse(files, opts, cb) {
 
   each(files.slice(),
     function onLoad(file, result, next) {
+
       var ast = comments(result.toString('utf8'), {trim: true});
 
       // update file state

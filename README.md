@@ -18,6 +18,14 @@ Table of Contents
       * [findTag](#findtag)
       * [collect](#collect)
     * [writers](#writers)
+      * [heading](#heading)
+      * [newline](#newline)
+      * [fenced](#fenced)
+      * [signature](#signature)
+      * [parameters](#parameters)
+      * [meta](#meta)
+      * [see](#see)
+      * [Writer](#writer)
   * [Developer](#developer)
     * [Test](#test)
     * [Cover](#cover)
@@ -211,6 +219,90 @@ Returns an array of tags.
 
 Stream writer helper functions, render functions can access these methods
 using `this`.
+
+#### heading
+
+```javascript
+heading(str, level)
+```
+
+Write a heading at the specified level.
+
+* `str` String The value for the heading.
+* `level` Number The level for the heading.
+
+#### newline
+
+```javascript
+newline(num)
+```
+
+Write one or more newlines.
+
+* `num` Number The number of newlines to print, default is 1.
+
+#### fenced
+
+```javascript
+fenced(code)
+```
+
+Write a fenced code block.
+
+* `code` String The code content for the fenced block.
+
+#### signature
+
+```javascript
+signature(params, name, lang)
+```
+
+Write a function signature as a fenced code block.
+
+* `params` Array List of tags.
+* `name` String A name for the function.
+* `lang` String A language for the info string.
+
+#### parameters
+
+```javascript
+parameters(params)
+```
+
+Write a list of parameters.
+
+Used for writing param, option, throws etc.
+
+* `params` Array List of tags.
+
+#### meta
+
+```javascript
+meta(token)
+```
+
+Write meta data (author, version, since etc) and handle writing the
+deprected blockquote.
+
+* `token` Object The current token.
+
+#### see
+
+```javascript
+see(token)
+```
+
+Write the list of see also links.
+
+* `token` Object The current token.
+
+#### Writer
+
+```javascript
+Writer()
+```
+
+Writer scope.
 
 ## Developer
 
