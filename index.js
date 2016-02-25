@@ -30,6 +30,7 @@ var fs = require('fs')
 
   , OPTIONS_HEADING = 'Options'
   , THROWS_HEADING = 'Throws'
+  //, EVENTS_HEADING = 'Events'
 
 /**
  *  var parse = require('mdapi');

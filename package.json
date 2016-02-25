@@ -67,7 +67,8 @@
       {
         "inc": [
           "usage.md",
-          "tags.md"
+          "tags.md",
+          "cues.md"
         ]
       },
       {

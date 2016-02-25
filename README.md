@@ -5,6 +5,10 @@ Table of Contents
   * [Install](#install)
   * [Usage](#usage)
   * [Tags](#tags)
+  * [Cues](#cues)
+    * [Member](#member)
+    * [Static](#static)
+    * [Inheritance](#inheritance)
   * [API](#api)
     * [parse](#parse)
       * [Options](#options)
@@ -90,6 +94,34 @@ The following tags are supported:
 * `@see`: Creates a list of links, each value should be a URL if a description is given it becomes the name for the link.
 
 Note that whilst declaring names explicitly (`@function` etc) is a little more maintenance it is deemed to be preferable to re-parsing the file to automatically extract function names.
+
+## Cues
+
+The generated markdown includes certain visual cues in headings:
+
+### Member
+
+```
+.member
+```
+
+Indicates a class member.
+
+### Static
+
+```
+#member
+```
+
+Indicates a static class member, borrowed from HTML identifiers.
+
+### Inheritance
+
+```
+SubClass < SuperClass
+```
+
+Indicates an inheritance hierarchy, borrowed from Ruby.
 
 ## API
 
