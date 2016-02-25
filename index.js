@@ -35,12 +35,16 @@ function findType(token) {
  *
  *  @private
  */
-function getScope(file, state) {
+function getScope(state, opts) {
   var scope = Writers();
-  // state for each file
-  scope.file = file || {};
   // state for the entire execution
-  scope.state = state || {};
+  scope.state = state;
+
+  // parse options
+  scope.opts = opts;
+
+  // stream to write to
+  scope.stream = opts.stream;
   return scope;
 }
 
@@ -52,34 +56,36 @@ function getScope(file, state) {
 function write(type, token, opts) {
   this.type = type;
   this.token = token;
-  this.opts = opts;
-  this.stream = opts.stream;
   render[type.tag].call(this, type, token, opts); 
 }
 
 /**
- *  Concatenate input files into a single string.
+ *  Iterate input files in series asynchronously.
  *
  *  @private
  *  
  *  @function concat
  *
  *  @param {Array} files List of input files to load.
- *  @param {String} output The output string.
+ *  @param {Function} it File iterator function.
  *  @param {Function} cb Callback function.
  */
-function concat(files, output, cb) {
+function each(files, it, cb) {
   var file = files.shift();
-  output = output || '';
+  if(!file) {
+    return cb(null); 
+  } 
   function onRead(err, contents) {
     if(err) {
       return cb(err); 
     }
-    output += contents;
-    if(!files.length) {
-      return cb(null, output); 
-    } 
-    concat(files, output, cb);
+    it(file, contents, function(err) {
+      // callback reported an error
+      if(err) {
+        return cb(err); 
+      }
+      each(files, it, cb);
+    });
   }
   fs.readFile(file, onRead);
 }
@@ -96,8 +102,8 @@ function concat(files, output, cb) {
  *  @param {Function} cb Callback function.
  */
 function print(ast, opts, cb) {
-  var stream = opts.stream
-    , called = false
+  var scope = this
+    , stream = this.stream
     , json
     , usage = []
     , hasModule = false
@@ -105,32 +111,13 @@ function print(ast, opts, cb) {
         ? Math.abs(opts.indent) : 2;
 
   // state of the depth level
+  // TODO: move to state object
   opts.depth = opts.level;
-
-  function done(err) {
-    /* istanbul ignore if: guard against error race condition */
-    if(called) {
-      return;
-    }
-    cb(err || null); 
-    called = true;
-  }
-
-  stream.once('error', done);
 
   if(opts.ast) {
     json = JSON.stringify(ast, undefined, indent);
-
-    /* istanbul ignore else: never print to stdout in test env */
-    if(stream !== process.stdout) {
-      stream.write(json); 
-      return stream.end(done);
-    }else{
-      return stream.write(json);
-    }
+    return stream.write(json, cb); 
   }
-
-  var scope = getScope();
 
   // pre-processing
   ast.forEach(function(token) {
@@ -144,12 +131,12 @@ function print(ast, opts, cb) {
 
   // initial heading
   if(opts.heading && typeof opts.heading === 'string') {
-    scope.heading(stream, opts.heading, opts.depth); 
+    this.heading(stream, opts.heading, opts.depth); 
     opts.depth++;
   }
 
   if(!hasModule && usage.length) {
-    render.usage.call(scope, usage, opts);
+    render.usage.call(this, usage, opts);
   }
 
   // might need to render after a module declaration
@@ -167,30 +154,24 @@ function print(ast, opts, cb) {
 
     // render for the type tag
     if(type) {
-      return write.call(scope, type, token, opts); 
+      // TODO: make this async
+      return write.call(scope, type, token, opts);
     }
   })
 
-  stream.once('finish', done);
-
-  /* istanbul ignore else: never write to stdout in tests */
-  if(stream !== process.stdout) {
-    stream.end(); 
-  }else{
-    done();
-  }
+  cb();
 }
 
 // jscs:disable maximumLineLength
 /**
- *  Accepts an array of files and concatenates them in the order given 
- *  to a string. 
+ *  Accepts an array of files and iterates the file contents in series 
+ *  asynchronously.
  *
- *  Parse the comments in the resulting string into an AST 
+ *  Parse the comments in the each file into a comment AST 
  *  and transform the AST into commonmark compliant markdown.
  *
- *  The callback function is passed an error and also the AST on success: 
- *  `function(err, ast)`.
+ *  The callback function is passed an error on failure: 
+ *  `function(err)`.
  *
  *  @function parse
  *
@@ -213,10 +194,17 @@ function parse(files, opts, cb) {
 
   assert(cb instanceof Function, 'callback function expected');
 
+  // state for the entire execution
+  var state = {}
+    , stream
+    , called = false
+    , scope;
+
   opts = opts || {};
 
   // stream to print to
-  opts.stream = opts.stream !== undefined ? opts.stream : process.stdout;
+  stream = opts.stream =
+    (opts.stream !== undefined) ? opts.stream : process.stdout;
 
   // starting level for headings
   opts.level = opts.level || 1;
@@ -224,19 +212,40 @@ function parse(files, opts, cb) {
   // language for fenced code blocks
   opts.lang = opts.lang !== undefined ? opts.lang : parse.LANG;
 
-  concat(files.slice(), null, function onLoad(err, result) {
-    if(err) {
-      return cb(err); 
+  function done(err) {
+    /* istanbul ignore if: guard against error race condition */
+    if(called) {
+      return;
     }
-    var ast = comments(result, {trim: true});
-    function onPrint(err) {
+    cb(err || null); 
+    called = true;
+  }
+
+  stream.once('error', done);
+
+  // set scope after opts are parsed
+  scope = getScope(state, opts);
+
+  each(files.slice(),
+    function onLoad(file, result, next) {
+      var ast = comments(result.toString('utf8'), {trim: true});
+      // update file state
+      scope.file = {info: file, result: result};
+      print.call(scope, ast, opts, next);
+    },
+    function onComplete(err) {
       if(err) {
-        return cb(err);
+        return done(err);
       }
-      cb(null, ast);
-    }
-    print(ast, opts, onPrint);
-  })
+
+      /* istanbul ignore else: never write to stdout in tests */
+      if(stream !== process.stdout) {
+        stream.once('finish', done);
+        stream.end(); 
+      }else{
+        done();
+      }
+    });
 }
 
 /**

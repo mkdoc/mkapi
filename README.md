@@ -13,6 +13,8 @@ Table of Contents
     * [parse](#parse)
       * [Options](#options)
     * [LANG](#lang)
+  * [API](#api-1)
+  * [Conf](#conf)
   * [Developer](#developer)
     * [Test](#test)
     * [Cover](#cover)
@@ -136,14 +138,14 @@ parse(['index.js'], {stream: process.stdout});
 parse(files[, opts], cb)
 ```
 
-Accepts an array of files and concatenates them in the order given
-to a string.
+Accepts an array of files and iterates the file contents in series
+asynchronously.
 
-Parse the comments in the resulting string into an AST
+Parse the comments in the each file into a comment AST
 and transform the AST into commonmark compliant markdown.
 
-The callback function is passed an error and also the AST on success:
-`function(err, ast)`.
+The callback function is passed an error on failure:
+`function(err)`.
 
 * `files` Array List of files to parse.
 * `opts` Object Parse options.
@@ -163,6 +165,13 @@ LANG = javascript;
 ```
 
 Default language for fenced code blocks.
+
+## API
+
+## Conf
+
+Every aspect of the program output may be modified by changing the
+configuration variables.
 
 ## Developer
 
