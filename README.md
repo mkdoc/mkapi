@@ -13,6 +13,13 @@ Table of Contents
     * [parse](#parse)
       * [Options](#options)
     * [conf](#conf)
+      * [heading](#heading)
+      * [meta](#meta)
+      * [fenced](#fenced)
+      * [tag](#tag)
+      * [signature](#signature)
+      * [parameter](#parameter)
+      * [link](#link)
       * [LANG](#lang)
     * [render](#render)
       * [_class](#_class)
@@ -22,12 +29,12 @@ Table of Contents
       * [find](#find)
       * [collect](#collect)
     * [writers](#writers)
-      * [heading](#heading)
+      * [heading](#heading-1)
       * [newline](#newline)
-      * [fenced](#fenced)
-      * [signature](#signature)
+      * [fenced](#fenced-1)
+      * [signature](#signature-1)
       * [parameters](#parameters)
-      * [meta](#meta)
+      * [meta](#meta-1)
       * [see](#see)
   * [Developer](#developer)
     * [Test](#test)
@@ -176,6 +183,93 @@ The callback function is passed an error on failure: `function(err)`.
 
 Every aspect of the program output may be modified by changing the
 configuration variables.
+
+#### heading
+
+```javascript
+heading(val, level)
+```
+
+Gets a heading string.
+
+Returns formatted string.
+
+* `val` String The value for the heading.
+* `level` Number The level for the heading.
+
+#### meta
+
+```javascript
+meta(val, title)
+```
+
+Gets a list item for the meta data.
+
+Returns formatted string.
+
+* `val` Object The value for the heading.
+* `title` String A prefix for the meta item.
+
+#### fenced
+
+```javascript
+fenced(code, info)
+```
+
+Gets a fenced code block.
+
+Returns formatted string.
+
+* `code` String The content for the code block.
+* `info` String A language info string.
+
+#### tag
+
+```javascript
+tag(tag)
+```
+
+Gets a deprecated notice.
+
+Returns formatted string.
+
+* `tag` Object The deprecated tag.
+
+#### signature
+
+```javascript
+signature(params)
+```
+
+Gets a function signature.
+
+Returns formatted string.
+
+* `params` Array Collection of param tags.
+
+#### parameter
+
+```javascript
+parameter(tag)
+```
+
+Gets a list item for parameter listings.
+
+Returns formatted string.
+
+* `tag` tag The param tag.
+
+#### link
+
+```javascript
+link(tag)
+```
+
+Gets a link from a tag.
+
+Returns formatted string.
+
+* `tag` tag The see tag.
 
 #### LANG
 
