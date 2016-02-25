@@ -6,7 +6,8 @@ describe('mdapi:', function() {
 
   it('should print usage without lang', function(done) {
     var output = 'target/usage-no-lang.md'
-      , expected = '```\nvar foo = \'bar\';\n```\n\n';
+      , expected = '' + fs.readFileSync(
+          'test/fixtures/expect/usage-no-lang.md');
     function complete(err) {
       if(err) {
         return done(err); 

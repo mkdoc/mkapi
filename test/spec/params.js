@@ -6,8 +6,8 @@ describe('mdapi:', function() {
 
   it('should print method parameters', function(done) {
     var output = 'target/usage.md'
-      , expected = '# foobar\n\n```javascript\nfoobar(foo, bar)\n```'
-          + '\n\n* `foo` A foo parameter.\n* `bar` A bar parameter.\n\n';
+      , expected = '' + fs.readFileSync(
+          'test/fixtures/expect/params.md');
     function complete(err) {
       if(err) {
         return done(err); 

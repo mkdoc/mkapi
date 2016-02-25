@@ -6,7 +6,6 @@ describe('mdapi:', function() {
 
   it('should print usage without heading', function(done) {
     var output = 'target/usage-no-heading.md'
-      //, expected = '```javascript\nvar foo = \'bar\';\n```\n\n';
       , expected = '' + fs.readFileSync(
           'test/fixtures/expect/usage-no-heading.md');
     function complete(err) {

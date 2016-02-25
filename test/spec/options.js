@@ -6,10 +6,8 @@ describe('mdapi:', function() {
 
   it('should print method parameters with options', function(done) {
     var output = 'target/options.md'
-      , expected = '# optional\n\n```javascript\noptional'
-          + '(files[, opts], cb)\n```\n\n* `files` A files parameter.'
-          + '\n* `opts` An options parameter.\n* `cb` A function parameter.'
-          + '\n\n## Options\n\n* `foo` String A foo option.\n\n';
+      , expected = '' + fs.readFileSync(
+          'test/fixtures/expect/options.md');
 
     function complete(err) {
       if(err) {

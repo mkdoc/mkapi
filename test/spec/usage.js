@@ -6,7 +6,8 @@ describe('mdapi:', function() {
 
   it('should print usage', function(done) {
     var output = 'target/usage.md'
-      , expected = '```javascript\nvar foo = \'bar\';\n```\n\n';
+      , expected = '' + fs.readFileSync(
+          'test/fixtures/expect/usage.md');
     function complete(err) {
       if(err) {
         return done(err); 

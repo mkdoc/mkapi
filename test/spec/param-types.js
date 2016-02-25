@@ -6,8 +6,8 @@ describe('mdapi:', function() {
 
   it('should print method parameters w/ types', function(done) {
     var output = 'target/usage.md'
-      , expected = '# foo\n\n```javascript\nfoo(foo)\n```\n\n'
-          + '* `foo` String A foo parameter.\n\n';
+      , expected = '' + fs.readFileSync(
+          'test/fixtures/expect/param-types.md');
 
     function complete(err) {
       if(err) {

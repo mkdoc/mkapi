@@ -6,10 +6,8 @@ describe('mdapi:', function() {
 
   it('should print optional parameters', function(done) {
     var output = 'target/optional.md'
-      , expected = '# optional\n\n```javascript\noptional'
-          + '(files[, options], cb)\n```\n\n* `files` A files parameter.\n'
-          + '* `options` An options parameter.\n* `cb`'
-          + ' A function parameter.\n\n';
+      , expected = '' + fs.readFileSync(
+          'test/fixtures/expect/optional.md');
 
     function complete(err) {
       if(err) {

@@ -6,8 +6,8 @@ describe('mdapi:', function() {
 
   it('should print with multiple input files', function(done) {
     var output = 'target/usage.md'
-      , expected = '```javascript\nvar foo = \'bar\';\n```\n\n'
-        + '# method\n\n```javascript\nmethod()\n```\n\n';
+      , expected = '' + fs.readFileSync(
+          'test/fixtures/expect/multiple.md');
     function complete(err) {
       if(err) {
         return done(err); 
