@@ -211,10 +211,14 @@ function parse(files, opts, cb) {
     , stream
     , called = false
     , scope
-    , config = require('./lib/conf');
+    // default config
+    , config = require('./lib/conf')
+    // comment parser options
+    , parser = {trim: true};
 
   opts = opts || {};
 
+  // merge user configuration with default config
   if(opts.conf) {
     opts.conf = merge(true, config, opts.conf); 
   }
@@ -222,6 +226,8 @@ function parse(files, opts, cb) {
   // stream to print to
   stream = opts.stream =
     (opts.stream !== undefined) ? opts.stream : process.stdout;
+
+  assert(stream.write instanceof Function, 'stream expected to have write()');
 
   // starting level for headings
   opts.level = opts.level || 1;
@@ -243,7 +249,7 @@ function parse(files, opts, cb) {
 
   stream.once('error', done);
 
-  // set scope after opts are parsed
+  // get scope after opts have been configured
   scope = getScope(config, state, opts);
 
   // initial heading
@@ -254,9 +260,10 @@ function parse(files, opts, cb) {
     state.header = true;
   }
 
-  each(files.slice(),
-    function onLoad(file, result, next) {
-      var ast = comments(result.toString('utf8'), {trim: true});
+  each(
+    files.slice(),
+    function onFile(file, result, next) {
+      var ast = comments(result.toString('utf8'), parser);
       // update file state
       scope.file = {info: file, buffer: result};
       print.call(scope, ast, opts, next);
@@ -273,7 +280,8 @@ function parse(files, opts, cb) {
       }else{
         done();
       }
-    });
+    }
+  );
 }
 
 module.exports = parse;

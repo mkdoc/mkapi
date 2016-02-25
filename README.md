@@ -163,6 +163,7 @@ The callback function is passed an error on failure: `function(err)`.
 #### Options
 
 * `stream` Writable The stream to write to, default is `stdout`.
+* `conf` Object Configuration overrides.
 * `level` Number Initial level for the first heading, default is `1`.
 * `heading` String Value for an initial heading.
 * `lang` String Language for fenced code blocks, default is `javascript`.
