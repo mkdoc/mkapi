@@ -1,9 +1,10 @@
 var fs = require('fs')
   , assert = require('assert')
   , comments = require('comment-parser')
+  , merge = require('merge')
   , Writers = require('./lib/writers')
   , Tag = require('./lib/tag')
-  , merge = require('merge');
+  , registry = {};
 
 /**
  *  var parse = require('mdapi');
@@ -75,19 +76,12 @@ function getScope(conf, state, opts) {
   // alias the format functions at the top-level
   scope.format = conf.format;
 
-  // map render functions to tag types
-  render[conf.MODULE]
-    = render[conf.CLASS]
-    = render._class.bind(scope);
+  defaults(conf, render);
 
-  render[conf.CONSTRUCTOR] 
-    = render[conf.STATIC]
-    = render[conf.FUNCTION] 
-    = render._function.bind(scope);
-
-  render[conf.PROPERTY]
-    = render[conf.CONSTANT]
-    = render._property.bind(scope);
+  // bind registered renderers
+  for(k in registry) {
+    render[k] = registry[k].bind(scope);
+  }
 
   return scope;
 }
@@ -306,5 +300,35 @@ function parse(files, opts, cb) {
     }
   );
 }
+
+/**
+ *  Register a render function for a given type tag.
+ *
+ *  @function register
+ *  @param {String} type The type name for the tag.
+ *  @param {Function} renderer The render function.
+ */
+function register(type, renderer, overwrite) {
+  if(!overwrite && registry[type]) {
+    return registry[type];
+  }
+  registry[type] = renderer;
+  return renderer;
+}
+
+/**
+ *  Register default renderer mappins.
+ */
+function defaults(conf, render) {
+  register(conf.MODULE, render._class, false);
+  register(conf.CLASS, render._class, false);
+  register(conf.CONSTRUCTOR, render._function, false);
+  register(conf.STATIC, render._function, false);
+  register(conf.FUNCTION, render._function, false);
+  register(conf.PROPERTY, render._property, false);
+  register(conf.CONSTANT, render._property, false);
+}
+
+parse.register = register;
 
 module.exports = parse;
