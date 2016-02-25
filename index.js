@@ -170,7 +170,7 @@ function print(ast, opts, cb) {
   })
 
   if(!hasModule && usage.length) {
-    this.usage(usage, opts);
+    this.usage(usage, opts.lang);
   }
 
   // might need to render after a module declaration
