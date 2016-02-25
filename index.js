@@ -3,7 +3,7 @@ var fs = require('fs')
   , comments = require('comment-parser')
   , Writers = require('./lib/writers')
   , Tag = require('./lib/tag')
-  //, render = require('./lib/render');
+  , merge = require('merge');
 
 /**
  *  var parse = require('mdapi');
@@ -191,6 +191,7 @@ function print(ast, opts, cb) {
  *  @param {Function} cb Callback function.
  *
  *  @option {Writable} stream The stream to write to, default is `stdout`.
+ *  @option {Object} conf Configuration overrides.
  *  @option {Number} level Initial level for the first heading, default is `1`.
  *  @option {String} heading Value for an initial heading.
  *  @option {String} lang Language for fenced code blocks, default is `javascript`.
@@ -213,6 +214,10 @@ function parse(files, opts, cb) {
     , config = require('./lib/conf');
 
   opts = opts || {};
+
+  if(opts.conf) {
+    opts.conf = merge(true, config, opts.conf); 
+  }
 
   // stream to print to
   stream = opts.stream =
@@ -251,12 +256,9 @@ function parse(files, opts, cb) {
 
   each(files.slice(),
     function onLoad(file, result, next) {
-
       var ast = comments(result.toString('utf8'), {trim: true});
-
       // update file state
       scope.file = {info: file, buffer: result};
-
       print.call(scope, ast, opts, next);
     },
     function onComplete(err) {
