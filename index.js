@@ -229,8 +229,10 @@ function parse(files, opts, cb) {
   each(files.slice(),
     function onLoad(file, result, next) {
       var ast = comments(result.toString('utf8'), {trim: true});
+
       // update file state
-      scope.file = {info: file, result: result};
+      scope.file = {info: file, buffer: result};
+
       print.call(scope, ast, opts, next);
     },
     function onComplete(err) {
