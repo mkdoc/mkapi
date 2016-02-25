@@ -282,7 +282,7 @@ meta(token)
 ```
 
 Write meta data (author, version, since etc) and handle writing the
-deprected blockquote.
+deprecated blockquote.
 
 * `token` Object The current token.
 
