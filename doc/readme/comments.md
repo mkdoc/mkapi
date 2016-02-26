@@ -4,7 +4,7 @@ Comments are parsed from `/**...*/` at the moment, later the aim is to support o
 
 ## Description
 
-Whilst many [tags](#tags) allow for a description parameter it is recommended that the description starts the comment:
+Whilst many [tags](#tags) allow for a description parameter it is recommended that the description starts the comment so that the description is more prominent.
 
 ```javascript
 /**
