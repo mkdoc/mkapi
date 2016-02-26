@@ -17,10 +17,10 @@ Table of Contents
     * [Static](#static)
     * [Inheritance](#inheritance)
   * [API](#api)
-    * [Tag](#tag)
     * [parse](#parse)
       * [Options](#options)
     * [register](#register)
+    * [Tag](#tag)
     * [Comment](#comment)
       * [getInfo](#getinfo)
       * [find](#find)
@@ -303,14 +303,6 @@ var parse = require('mdapi');
 parse(['index.js'], {stream: process.stdout});
 ```
 
-### Tag
-
-```javascript
-new Tag()
-```
-
-Encapsulates a tag definition.
-
 ### parse
 
 ```javascript
@@ -352,6 +344,14 @@ Returns a renderer or the registry.
 
 * `type` String The type name for the tag.
 * `renderer` Function The render function.
+
+### Tag
+
+```javascript
+new Tag()
+```
+
+Encapsulates a tag definition.
 
 ### Comment
 

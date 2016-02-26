@@ -14,21 +14,6 @@ tags.constructor = registry.constructor = null;
 
 
 /**
- *  Encapsulates a tag definition.
- *
- *  @constructor Tag
- *
- *  @property {String} name The tag name.
- *  @property {Array} synonyms List of synonyms for this tag.
- */
-function Tag(name, opts) {
-  for(var k in opts) {
-    this[k] = opts[k];
-  }
-  this.name = name;
-}
-
-/**
  *  var parse = require('mdapi');
  *  parse(['index.js'], {stream: process.stdout});
  *
@@ -363,6 +348,21 @@ function tag(name, opts) {
     tags[name][k] = opts[k];
   }
   return tags[name];
+}
+
+/**
+ *  Encapsulates a tag definition.
+ *
+ *  @constructor Tag
+ *
+ *  @property {String} name The tag name.
+ *  @property {Array} synonyms List of synonyms for this tag.
+ */
+function Tag(name, opts) {
+  for(var k in opts) {
+    this[k] = opts[k];
+  }
+  this.name = name;
 }
 
 /**
