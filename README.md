@@ -389,7 +389,7 @@ fields specific to the `function` type.
 find(id)
 ```
 
-Finds the first tag in the tag list by tag id.
+Finds the last tag in the tag list by tag id.
 
 Returns a tag or `null` if not found.
 
