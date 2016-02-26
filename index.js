@@ -6,6 +6,9 @@ var fs = require('fs')
   , Comment = require('./lib/comment')
   , registry = {};
 
+// prevent conflict on constructor keyword
+registry.constructor = null;
+
 /**
  *  var parse = require('mdapi');
  *  parse(['index.js'], {stream: process.stdout});
@@ -27,7 +30,6 @@ function getType(token) {
   var k, type;
   // first come first served, do not mix type tags!
   for(k in registry) {
-    k = k.replace(/^_/, '');
     type = token.find(k);
     if(type) {
       break;
@@ -80,7 +82,9 @@ function getScope(conf, state, opts) {
 
   // bind registered renderers
   for(k in registry) {
-    render[k] = registry[k].bind(scope);
+    if(typeof registry[k] === 'function') {
+      render[k] = registry[k].bind(scope);
+    }
   }
 
   return scope;
@@ -168,10 +172,6 @@ function print(ast, opts, cb) {
     var exclude = token.find(scope.conf.PRIVATE);
     var type = getType.call(scope, token);
 
-    //console.dir(token)
-
-    //console.dir(type);
-
     // marked @private
     if(exclude) {
       return false; 
@@ -180,7 +180,7 @@ function print(ast, opts, cb) {
     // render for the type tag
     if(type) {
       // TODO: make this async
-      scope.render['_' + type.tag](type, token);
+      scope.render[type.tag](type, token);
     }
   })
 
@@ -307,10 +307,10 @@ function parse(files, opts, cb) {
 function register(type, renderer) {
   // mutated getter
   if(type && !renderer) {
-    return registry['_' + type];
+    return registry[type];
   }
   if(typeof renderer === 'function') {
-    registry['_' + type] = renderer;
+    registry[type] = renderer;
   }
   return registry;
 }
