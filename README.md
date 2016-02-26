@@ -22,6 +22,7 @@ Table of Contents
     * [register](#register)
     * [Tag](#tag)
     * [Comment](#comment)
+      * [getDetail](#getdetail)
       * [getInfo](#getinfo)
       * [find](#find)
       * [collect](#collect)
@@ -356,6 +357,18 @@ Encapsulates a tag definition.
 ### Comment
 
 Encapsulates operation on a comment AST token.
+
+#### getDetail
+
+```javascript
+getDetail([names])
+```
+
+Get the details (name, type tag and id) for this comment.
+
+Returns an object with `name`, `type` and `id`.
+
+* `names` Array List of custom tag names.
 
 #### getInfo
 
