@@ -9,6 +9,14 @@ var parse = require('../index')
         output: 'test/fixtures/expect/module.md'
       },
       {
+        files: ['test/fixtures/property.js'],
+        output: 'test/fixtures/expect/property.md'
+      },
+      {
+        files: ['test/fixtures/property-no-description.js'],
+        output: 'test/fixtures/expect/property-no-description.md'
+      },
+      {
         files: ['test/fixtures/class.js'],
         output: 'test/fixtures/expect/class.md'
       },

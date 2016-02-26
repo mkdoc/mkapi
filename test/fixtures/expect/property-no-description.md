@@ -1,0 +1,6 @@
+# hasNoDescription
+
+```javascript
+hasNoDescription
+```
+
