@@ -23,9 +23,6 @@ Markdown API Example
 File from the [test fixture](https://github.com/tmpfs/mdapi/blob/master/test/spec/full.js):
 
 ```javascript
-var util = require('util')
-  , EventEmitter = require('events').EventEmitter;
-
 /**
  *  var create = require('component');
  *  var component = create();
@@ -67,11 +64,6 @@ var util = require('util')
  *
  *  @option enabled Whether the component is initially enabled.
  */
-function Component(opts){
-  opts = opts || {};
-}
-
-util.inherits(Component, EventEmitter);
 
 /** 
  *  Do foo thing with bar.
@@ -91,12 +83,6 @@ util.inherits(Component, EventEmitter);
  *  @throws Error JSON parse error.
  *  @throws Error File create error.
  */
-function foo(opts, cb) {
-  opts = opts || {};
-  return cb();
-}
-
-Component.prototype.foo = foo;
 
 /**
  *  A static function declaration.
@@ -107,18 +93,12 @@ Component.prototype.foo = foo;
  *
  *  @returns a new component.
  */
-function factory() {
-  return create();
-}
 
 /**
  *  Create a new component.
  *
  *  @function create
  */
-function create(opts) {
-  return new Component(opts);
-}
 
 /**
  *  Sets the BAZ variable.
@@ -131,14 +111,12 @@ function create(opts) {
  *  @since 1.0
  *
  */
-Component.BAZ = 'baz';
 
 /**
  *  Sets the QUX variable.
  *
  *  @property QUX
  */
-create.QUX = null;
 
 /**
  *  Gets the ZAR variable.
@@ -146,9 +124,6 @@ create.QUX = null;
  *  @constant ZAR
  *  @default foo
  */
-const ZAR = 'foo';
-
-module.exports = create;
 ```
 
 ## Result
