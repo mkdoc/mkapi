@@ -17,6 +17,9 @@ Table of Contents
     * [parse](#parse)
       * [Options](#options)
     * [register](#register)
+    * [Comment](#comment)
+      * [find](#find)
+      * [collect](#collect)
     * [conf](#conf)
       * [heading](#heading)
       * [meta](#meta)
@@ -36,9 +39,6 @@ Table of Contents
       * [_class](#_class)
       * [_function](#_function)
       * [_property](#_property)
-    * [tags](#tags)
-      * [find](#find)
-      * [collect](#collect)
     * [writers](#writers)
       * [heading](#heading-1)
       * [newline](#newline)
@@ -266,6 +266,34 @@ Register a render function for a given type tag.
 * `type` String The type name for the tag.
 * `renderer` Function The render function.
 
+### Comment
+
+Encapsulates operation on a comment AST token.
+
+#### find
+
+```javascript
+find(id)
+```
+
+Finds the first tag in the tag list by tag id.
+
+Returns a tag or `null` if not found.
+
+* `id` String The tag identifier.
+
+#### collect
+
+```javascript
+collect(id)
+```
+
+Collects all tags with the specified id.
+
+Returns an array of tags.
+
+* `id` String The tag identifier.
+
 ### conf
 
 Every aspect of the program output may be modified by changing the
@@ -465,40 +493,6 @@ Render a property block.
 
 * `type` Object The tag that initiated the render.
 * `token` Object The current comment AST token.
-
-### tags
-
-Helper functions for working with AST comment tags.
-
-These functions are available via a `tags` property on the scope for
-render functions as well as writer functions which are bound to the
-scope of the stream.
-
-#### find
-
-```javascript
-find(id, token)
-```
-
-Finds a tag in the tag list by tag id.
-
-Returns a tag or `null` if not found.
-
-* `id` String The tag identifier.
-* `token` Object The current AST token.
-
-#### collect
-
-```javascript
-collect(id, token)
-```
-
-Collects all tags with the specified id.
-
-Returns an array of tags.
-
-* `id` String The tag identifier.
-* `token` Object The current AST token.
 
 ### writers
 

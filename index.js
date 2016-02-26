@@ -17,28 +17,6 @@ registry.constructor = null;
  */
 
 /**
- *  Find a type tag for a token.
- *
- *  Iterates the registered renderers and returns the tag for the 
- *  first match.
- *
- *  @private
- *  @function getType
- *  @param token The current AST token.
- */
-//function getType(token) {
-  //var k, type;
-  //// first come first served, do not mix type tags!
-  //for(k in registry) {
-    //type = token.find(k);
-    //if(type) {
-      //break;
-    //} 
-  //}
-  //return type;
-//}
-
-/**
  *  Gets the scope for render function calls.
  *
  *  @private
