@@ -3,22 +3,22 @@
 The following tags are supported:
 
 * `@name`: Sets the symbol name and optionally the symbol type.
-* `@module`: Marks a module declaration, a module name should be given.
-* `@class`: Marks a class declaration, a class name should be given.
-* `@constructor`: Marks a class constructor function, a function name should be given.
-* `@inherits`: Indicates the super class hierarchy for a constructor, accepts multiple values.
-* `@function`: Marks a function declaration, the function name should be given.
-* `@member`: Marks a member of a class; a class name may be specified; default is current class scope.
-* `@static`: Marks a member as static.
-* `@property`: Property declaration, the property name should be given.
-* `@constant`: Constant property, the property name should be given.
+* `@module`: Symbol is a module. 
+* `@class`: Symbol is a class. 
+* `@constructor`: Symbol is a constructor function.
+* `@inherits`: Indicates the super class hierarchy for `@constructor`.
+* `@function`: Symbol is a function.
+* `@member`: Symbol is a member of an object.
+* `@static`: Symbol is static.
+* `@property`: Symbol is a property.
+* `@constant`: Constant symbol, implies `@readonly`.
 * `@default`: Default value for a property.
 * `@private`: Member is private, excluded from the output by default.
 * `@param`: Declares an argument for a function.
 * `@option`: Documents an option property.
 * `@usage`: Usage example(s) that appear below the first heading.
 * `@throws`: Function throws exception(s).
-* `@deprecated`: Flag as deprecated.
+* `@deprecated`: Flag symbol as deprecated.
 * `@author`: Author meta data.
 * `@version`: Version information.
 * `@since`: Since version.
@@ -34,6 +34,23 @@ The following symbol type identifiers are supported:
 * `member`: Symbol is a member of an object.
 * `function`: Symbol is a function.
 * `property`: Symbol is a property.
+
+A type maps to a render function, see the [render api docs](#render).
+
+Type identifiers may be specified using `{id}` to the following tags:
+
+* `@name`: Set the name and type.
+* `@static`: Set the name, type and mark as static.
+* `@constant`: Set the name, type and mark as a constant.
+
+### Flags
+
+These tags should not be given and values:
+
+* `@private`: Flag symbol as private.
+* `@protected`: Flag symbol as protected.
+* `@public`: Flag symbol as public.
+* `@readonly`: Flag symbol as read-only.
 
 ### Name
 
