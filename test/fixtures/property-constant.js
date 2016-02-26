@@ -1,0 +1,4 @@
+/**
+ *  @property {String} isReadOnlyConstant 
+ *  @constant
+ */

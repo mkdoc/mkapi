@@ -1,0 +1,6 @@
+# isReadOnlyConstant
+
+```javascript
+const isReadOnlyConstant
+```
+
