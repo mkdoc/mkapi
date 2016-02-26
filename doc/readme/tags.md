@@ -1,5 +1,20 @@
 ## Tags
 
+The general syntax for tags is:
+
+```javascript
+@tag [{type}] [name] [description]
+```
+
+When a tag name is enclosed in `[]` it is deemed to be optional, for example:
+
+```javascript
+/**
+ *  @name {function} noop
+ *  @param {Function} [cb] Callback function.
+ */
+```
+
 The following tags are supported:
 
 * `@name`: Sets the symbol name and optionally the symbol type.
@@ -51,7 +66,7 @@ For example to declare a `function` symbol with the name `noop`:
 
 ### Flags
 
-These tags should not be given and values:
+Flag tags should not be given values:
 
 * `@private`: Flag symbol as private.
 * `@protected`: Flag symbol as protected.
