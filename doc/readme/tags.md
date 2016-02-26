@@ -21,7 +21,7 @@ The following tags are supported:
 * `@module`: Symbol is a module. 
 * `@class`: Symbol is a class. 
 * `@constructor`: Symbol is a constructor function.
-* `@inherits`: Indicates the super class hierarchy for `@constructor`.
+* `@inherits`: Indicates the super class hierarchy for `@constructor` or `@class`.
 * `@function`: Symbol is a function.
 * `@member`: Symbol is a member of an object.
 * `@static`: Symbol is static.
@@ -148,7 +148,7 @@ Document a constructor function.
 @inherits <superclass...>
 ```
 
-Document inheritance hierarchy for a constructor function.
+Document inheritance hierarchy for a constructor function or class.
 
 ```javascript
 /**
