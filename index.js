@@ -114,8 +114,7 @@ function each(files, it, cb) {
  *  @param {Function} cb Callback function.
  */
 function print(ast, opts, cb) {
-  var scope = this
-    , stream = this.stream
+  var stream = this.stream
     , json
     , usage = []
     , hasModule = false
@@ -128,18 +127,20 @@ function print(ast, opts, cb) {
   }
 
   // pre-processing
-  ast = ast.map(function(token) {
+  function preprocess(token) {
     // wrap tokens
-    token = new Comment(token, scope);
+    token = new Comment(token, this);
 
     if(!hasModule) {
-      hasModule = token.find(scope.conf.MODULE);
+      hasModule = token.find(this.conf.MODULE);
     }
-    if(token.find(scope.conf.USAGE)) {
+    if(token.find(this.conf.USAGE)) {
       usage = usage.concat([token]);
     }
     return token;
-  })
+  }
+
+  ast = ast.map(preprocess.bind(this));
 
   if(!hasModule && usage.length) {
     this.usage(usage, opts.lang);
@@ -148,29 +149,40 @@ function print(ast, opts, cb) {
   // might need to render after a module declaration
   opts.usage = usage;
 
+  var comments = ast.slice();
+
   // walk the ast
-  ast.forEach(function(token) {
-    var exclude = token.find(scope.conf.PRIVATE);
+  var run = (function(err) {
+    var token = comments.shift();
+    // completed all tokens
+    if(!token || err) {
+      return cb(err || null);
+    }
+
+    var exclude = token.find(this.conf.PRIVATE);
     //var type = getType.call(scope, token);
     var info = token.getDetail();
 
     // marked @private
-    if(exclude) {
+    if(exclude && !this.opts.includePrivate) {
       return false; 
     }
 
-    //console.dir(info)
-    //console.dir(token.getDetail());
-    //console.dir(info.id)
-
     // render for the type tag
-    if(info && info.id && (typeof scope.render[info.id] === 'function')) {
-      // TODO: make this async
-      scope.render[info.id](info.type, token);
+    if(info && info.id && (typeof this.render[info.id] === 'function')) {
+      // call render function async
+      this.render[info.id](info.type, token, function(err) {
+        run(err || null); 
+      });
+    }else{
+      // continue processing
+      run();
     }
-  })
+  }).bind(this);
 
-  cb();
+  run();
+
+  //cb();
 }
 
 // jscs:disable maximumLineLength
