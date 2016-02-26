@@ -17,6 +17,14 @@ var parse = require('../index')
         output: 'test/fixtures/expect/constructor.md'
       },
       {
+        files: ['test/fixtures/meta.js'],
+        output: 'test/fixtures/expect/meta.md'
+      },
+      {
+        files: ['test/fixtures/deprecated.js'],
+        output: 'test/fixtures/expect/deprecated.md'
+      },
+      {
         files: ['test/fixtures/usage.js'],
         output: 'test/fixtures/expect/usage-ast.json',
         opts: {

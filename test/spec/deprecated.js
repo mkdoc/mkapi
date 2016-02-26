@@ -4,11 +4,10 @@ var expect = require('chai').expect
 
 describe('mdapi:', function() {
 
-  it('should print method parameters with @option', function(done) {
-    var output = 'target/options.md'
+  it('should print @deprecated', function(done) {
+    var output = 'target/deprecated.md'
       , expected = '' + fs.readFileSync(
-          'test/fixtures/expect/options.md');
-
+          'test/fixtures/expect/deprecated.md');
     function complete(err) {
       if(err) {
         return done(err); 
@@ -18,7 +17,7 @@ describe('mdapi:', function() {
       done(); 
     }
     parse(
-      ['test/fixtures/options.js'],
+      ['test/fixtures/deprecated.js'],
       {stream: fs.createWriteStream(output)},
       complete);
   });
