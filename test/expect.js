@@ -45,6 +45,10 @@ var parse = require('../index')
         output: 'test/fixtures/expect/name.md'
       },
       {
+        files: ['test/fixtures/name-override.js'],
+        output: 'test/fixtures/expect/name-override.md'
+      },
+      {
         files: ['test/fixtures/name-type.js'],
         output: 'test/fixtures/expect/name-type.md'
       },
