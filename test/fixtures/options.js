@@ -7,8 +7,3 @@
  *
  *  @option {String} foo A foo option.
  */
-
-/* jshint ignore:start */
-function options(files, opts, cb){}
-module.exports = options;
-/* jshint ignore:end */

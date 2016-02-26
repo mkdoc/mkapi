@@ -3,6 +3,3 @@
  *
  *  @function description
  */
-function description(){}
-
-module.exports = description;
