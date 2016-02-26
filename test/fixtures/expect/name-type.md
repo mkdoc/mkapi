@@ -1,0 +1,6 @@
+# FunctionName
+
+```javascript
+FunctionName()
+```
+

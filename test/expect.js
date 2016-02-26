@@ -33,6 +33,10 @@ var parse = require('../index')
         output: 'test/fixtures/expect/name.md'
       },
       {
+        files: ['test/fixtures/name-type.js'],
+        output: 'test/fixtures/expect/name-type.md'
+      },
+      {
         files: ['test/fixtures/returns.js'],
         output: 'test/fixtures/expect/returns.md'
       },
@@ -114,6 +118,11 @@ function expected() {
   parse(info.files, info.opts, function(err) {
     if(err) {
       console.error(err.stack); 
+      process.exit(1);
+    }
+    var contents = '' + fs.readFileSync(info.output);
+    if(!contents) {
+      console.error('wrote empty file: ' + info.output); 
       process.exit(1);
     }
     expected();
