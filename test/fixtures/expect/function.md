@@ -1,0 +1,6 @@
+# method
+
+```javascript
+method()
+```
+

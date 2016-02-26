@@ -139,7 +139,11 @@ var parse = require('../index')
         output: 'test/fixtures/expect/optional.md'
       },
       {
-        files: ['test/fixtures/usage.js', 'test/fixtures/method.js'],
+        files: ['test/fixtures/function.js'],
+        output: 'test/fixtures/expect/function.md'
+      },
+      {
+        files: ['test/fixtures/usage.js', 'test/fixtures/function.js'],
         output: 'test/fixtures/expect/multiple.md'
       },
       {

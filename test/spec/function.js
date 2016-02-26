@@ -4,10 +4,10 @@ var expect = require('chai').expect
 
 describe('mdapi:', function() {
 
-  it('should print with multiple input files', function(done) {
-    var output = 'target/multiple.md'
+  it('should print with @function', function(done) {
+    var output = 'target/function.md'
       , expected = '' + fs.readFileSync(
-          'test/fixtures/expect/multiple.md');
+          'test/fixtures/expect/function.md');
     function complete(err) {
       if(err) {
         return done(err); 
@@ -17,7 +17,7 @@ describe('mdapi:', function() {
       done(); 
     }
     parse(
-      ['test/fixtures/usage.js', 'test/fixtures/function.js'],
+      ['test/fixtures/function.js'],
       {stream: fs.createWriteStream(output)},
       complete);
   });
