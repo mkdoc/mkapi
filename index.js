@@ -76,7 +76,7 @@ function getScope(conf, state, opts) {
  *
  *  @private
  *  
- *  @function concat
+ *  @function each
  *
  *  @param {Array} files List of input files to load.
  *  @param {Function} it File iterator function.
@@ -134,9 +134,12 @@ function print(ast, opts, cb) {
     if(!hasModule) {
       hasModule = token.find(this.conf.MODULE);
     }
+
+    // gather usage blocks
     if(token.find(this.conf.USAGE)) {
       usage = usage.concat([token]);
     }
+
     return token;
   }
 
@@ -164,7 +167,7 @@ function print(ast, opts, cb) {
     var info = token.getDetail();
 
     // marked @private
-    if(exclude && !this.opts.includePrivate) {
+    if(exclude && (this.opts.includePrivate === false)) {
       return false; 
     }
 
