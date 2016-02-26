@@ -26,17 +26,17 @@ registry.constructor = null;
  *  @function getType
  *  @param token The current AST token.
  */
-function getType(token) {
-  var k, type;
-  // first come first served, do not mix type tags!
-  for(k in registry) {
-    type = token.find(k);
-    if(type) {
-      break;
-    } 
-  }
-  return type;
-}
+//function getType(token) {
+  //var k, type;
+  //// first come first served, do not mix type tags!
+  //for(k in registry) {
+    //type = token.find(k);
+    //if(type) {
+      //break;
+    //} 
+  //}
+  //return type;
+//}
 
 /**
  *  Gets the scope for render function calls.
@@ -70,6 +70,9 @@ function getScope(conf, state, opts) {
 
   // stream to write to
   scope.stream = stream;
+
+  // pass in the registry
+  scope.registry = registry;
 
   // alias the render map at the top-level
   var render = scope.render = conf.render;
@@ -149,7 +152,7 @@ function print(ast, opts, cb) {
   // pre-processing
   ast = ast.map(function(token) {
     // wrap tokens
-    token = new Comment(token);
+    token = new Comment(token, scope);
 
     if(!hasModule) {
       hasModule = token.find(scope.conf.MODULE);
@@ -170,17 +173,22 @@ function print(ast, opts, cb) {
   // walk the ast
   ast.forEach(function(token) {
     var exclude = token.find(scope.conf.PRIVATE);
-    var type = getType.call(scope, token);
+    //var type = getType.call(scope, token);
+    var info = token.getDetail();
 
     // marked @private
     if(exclude) {
       return false; 
     }
 
+    //console.dir(info)
+
+    //console.dir(token.getDetail());
+
     // render for the type tag
-    if(type) {
+    if(info && info.id && (typeof scope.render[info.id] === 'function')) {
       // TODO: make this async
-      scope.render[type.tag](type, token);
+      scope.render[info.id](info.type, token);
     }
   })
 
