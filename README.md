@@ -5,6 +5,7 @@ Table of Contents
   * [Install](#install)
   * [Usage](#usage)
   * [Tags](#tags)
+    * [Types](#types)
     * [Name](#name)
     * [Module](#module)
     * [Class](#class)
@@ -129,13 +130,24 @@ The following tags are supported:
 * `@since`: Since version.
 * `@see`: Creates a list of links, each value should be a URL if a description is given it becomes the name for the link.
 
+### Types
+
+The following symbol type identifiers are supported:
+
+* `module`: Symbol is a module.
+* `class`: Symbol is a class.
+* `constructor`: Symbol is a class constructor.
+* `member`: Symbol is a member of an object.
+* `function`: Symbol is a function.
+* `property`: Symbol is a property.
+
 ### Name
 
 ```javascript
 @name [{type}] <name>
 ```
 
-Sets the symbol name and optionally specifies the type of the symbol.
+Sets the symbol name and optionally specifies the type of the symbol (see [types](#types)).
 
 ```javascript
 /**
