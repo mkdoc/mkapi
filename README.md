@@ -364,7 +364,7 @@ Encapsulates operation on a comment AST token.
 getDetail([names])
 ```
 
-Get the details (name, type tag and id) for this comment.
+Get the details name, type tag and id for this comment.
 
 Returns an object with `name`, `type` and `id`.
 
