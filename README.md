@@ -130,7 +130,7 @@ Note that whilst declaring names explicitly (`@function` etc) is a little more m
 
 ### Module
 
-```
+```javascript
 @module <name>
 ```
 
@@ -146,7 +146,7 @@ Document a module.
 
 ### Class
 
-```
+```javascript
 @class <name>
 ```
 
@@ -162,7 +162,7 @@ Document a class.
 
 ### Constructor
 
-```
+```javascript
 @constructor <name>
 ```
 
