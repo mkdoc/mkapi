@@ -1,0 +1,5 @@
+/**
+ *  Module description.
+ *
+ *  @module ModuleName
+ */

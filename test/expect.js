@@ -5,6 +5,18 @@ var parse = require('../index')
   , expectations =       
     [
       {
+        files: ['test/fixtures/module.js'],
+        output: 'test/fixtures/expect/module.md'
+      },
+      {
+        files: ['test/fixtures/class.js'],
+        output: 'test/fixtures/expect/class.md'
+      },
+      {
+        files: ['test/fixtures/constructor.js'],
+        output: 'test/fixtures/expect/constructor.md'
+      },
+      {
         files: ['test/fixtures/usage.js'],
         output: 'test/fixtures/expect/usage-ast.json',
         opts: {

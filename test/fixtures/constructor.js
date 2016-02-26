@@ -1,0 +1,5 @@
+/**
+ *  Constructor description.
+ *
+ *  @constructor ConstructorName
+ */
