@@ -182,8 +182,10 @@ function print(ast, opts, cb) {
       return cb(err || null);
     }
 
+    //console.dir(token)
+
     var exclude = token.find(this.conf.PRIVATE);
-    var info = token.getDetail();
+    var info = token.getDetail(this.conf.custom);
 
     // marked @private
     if(exclude && (this.opts.includePrivate !== true)) {
@@ -375,6 +377,14 @@ function tag(name, opts) {
 function defaults(scope, conf, render) {
   var k;
 
+  // list of custom tag names
+  conf.custom = [];
+  for(k in tags) {
+    if(tags[k]) {
+      conf.custom.push(k);
+    }
+  }
+
   // register built-in tags if they are not already set
   conf.names.forEach(function(name) {
     if(!tags[name]) {
@@ -397,6 +407,7 @@ function defaults(scope, conf, render) {
       register(key, method);
     }
   }
+
   set(conf.MODULE, render._class);
   set(conf.CLASS, render._class);
   set(conf.CONSTRUCTOR, render._function);
