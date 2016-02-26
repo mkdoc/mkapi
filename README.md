@@ -101,13 +101,6 @@ mdapi [options] [files...]
 Report bugs to https://github.com/tmpfs/mdapi/issues
 ```
 
-For library usage pass files and options:
-
-```javascript
-var parse = require('mdapi');
-parse(['index.js'], {stream: process.stdout});
-```
-
 Print the documentation to stdout:
 
 ```
@@ -118,6 +111,13 @@ Need HTML or XML? No problem, install [commonmark](https://github.com/jgm/common
 
 ```
 mdapi index.js | commonmark
+```
+
+From code pass files and options:
+
+```javascript
+var parse = require('mdapi');
+parse(['index.js'], {stream: process.stdout});
 ```
 
 ## Tags
