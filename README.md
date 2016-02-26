@@ -57,6 +57,8 @@ Table of Contents
   * [Developer](#developer)
     * [Test](#test)
     * [Cover](#cover)
+    * [Expect](#expect)
+    * [Example](#example)
     * [Lint](#lint)
     * [Clean](#clean)
     * [Readme](#readme)
@@ -731,6 +733,22 @@ To generate code coverage run:
 
 ```
 npm run cover
+```
+
+### Expect
+
+Builds the test expectations, should be done when the format changes or the code is updated:
+
+```
+npm run expect
+```
+
+### Example
+
+Builds [EXAMPLE.md](https://github.com/tmpfs/mdapi/blob/master/EXAMPLE.md):
+
+```
+npm run example
 ```
 
 ### Lint

@@ -16,6 +16,22 @@ To generate code coverage run:
 npm run cover
 ```
 
+### Expect
+
+Builds the test expectations, should be done when the format changes or the code is updated:
+
+```
+npm run expect
+```
+
+### Example
+
+Builds [EXAMPLE.md](/EXAMPLE.md):
+
+```
+npm run example
+```
+
 ### Lint
 
 Run the source tree through [jshint][] and [jscs][]:
