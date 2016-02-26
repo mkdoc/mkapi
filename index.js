@@ -27,6 +27,7 @@ function getType(token) {
   var k, type;
   // first come first served, do not mix type tags!
   for(k in registry) {
+    k = k.replace(/^_/, '');
     type = this.tags.find(k, token);
     if(type) {
       break;
@@ -170,6 +171,10 @@ function print(ast, opts, cb) {
     var exclude = scope.tags.find(scope.conf.PRIVATE, token);
     var type = getType.call(scope, token);
 
+    //console.dir(token)
+
+    //console.dir(type);
+
     // marked @private
     if(exclude) {
       return false; 
@@ -178,7 +183,7 @@ function print(ast, opts, cb) {
     // render for the type tag
     if(type) {
       // TODO: make this async
-      scope.render[type.tag](type, token);
+      scope.render['_' + type.tag](type, token);
     }
   })
 
@@ -303,7 +308,14 @@ function parse(files, opts, cb) {
  *  @param {Function} renderer The render function.
  */
 function register(type, renderer) {
-  registry[type] = renderer;
+  // mutated getter
+  if(type && !renderer) {
+    return registry['_' + type];
+  }
+  if(typeof renderer === 'function') {
+    registry['_' + type] = renderer;
+  }
+  return registry;
 }
 
 /**
@@ -317,7 +329,7 @@ function register(type, renderer) {
 function defaults(conf, render) {
   // do not overwrite previously registered renders
   function set(key, method) {
-    if(!registry[key]) {
+    if(!register(key)) {
       register(key, method);
     }
   }
