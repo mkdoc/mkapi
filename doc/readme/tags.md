@@ -2,6 +2,7 @@
 
 The following tags are supported:
 
+* `@name`: Sets the symbol name and optionally the symbol type.
 * `@module`: Marks a module declaration, a module name should be given.
 * `@class`: Marks a class declaration, a class name should be given.
 * `@constructor`: Marks a class constructor function, a function name should be given.
@@ -23,7 +24,28 @@ The following tags are supported:
 * `@since`: Since version.
 * `@see`: Creates a list of links, each value should be a URL if a description is given it becomes the name for the link.
 
-Note that whilst declaring names explicitly (`@function` etc) is a little more maintenance it is deemed to be preferable to re-parsing the file to automatically extract function names.
+### Name
+
+```javascript
+@name [{type}] <name>
+```
+
+Sets the symbol name and optionally specifies the type of the symbol.
+
+#### Examples
+
+```javascript
+/**
+ *  @name {function} FunctionName
+ */
+```
+
+```javascript
+/**
+ *  @name FunctionName
+ *  @function
+ */
+```
 
 ### Module
 
@@ -32,6 +54,8 @@ Note that whilst declaring names explicitly (`@function` etc) is a little more m
 ```
 
 Document a module.
+
+#### Examples
 
 ```javascript
 /**
@@ -49,6 +73,8 @@ Document a module.
 
 Document a class.
 
+#### Examples
+
 ```javascript
 /**
  *  Class description.
@@ -65,6 +91,8 @@ Document a class.
 
 Document a constructor function.
 
+#### Examples
+
 ```javascript
 /**
  *  Constructor description.
@@ -80,6 +108,8 @@ Document a constructor function.
 ```
 
 Document inheritance hierarchy for a constructor function.
+
+#### Examples
 
 ```javascript
 /**
