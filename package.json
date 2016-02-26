@@ -67,6 +67,12 @@
         "type": "code"
       },
       {
+        "text": "For library usage pass files and options:",
+        "inc": "../usage.js",
+        "type": "code",
+        "language": "javascript"
+      },
+      {
         "inc": [
           "usage.md",
           "tags.md",
