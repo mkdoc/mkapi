@@ -1,0 +1,4 @@
+/**
+ *  @property prop
+ *  @static
+ */

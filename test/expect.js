@@ -17,6 +17,10 @@ var parse = require('../index')
         output: 'test/fixtures/expect/throws.md'
       },
       {
+        files: ['test/fixtures/static-property.js'],
+        output: 'test/fixtures/expect/static-property.md'
+      },
+      {
         files: ['test/fixtures/property.js'],
         output: 'test/fixtures/expect/property.md'
       },

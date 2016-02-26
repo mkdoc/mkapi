@@ -1,0 +1,6 @@
+# prop
+
+```javascript
+static prop
+```
+
