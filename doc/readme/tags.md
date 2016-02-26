@@ -6,7 +6,7 @@ The general syntax for tags is:
 @tag {type} name description
 ```
 
-Tags do not have specify any of the parameters, see [flags](#flags).
+Tags do not have to specify any of the parameters, see [flags](#flags).
 
 When a tag name is enclosed in `[]` it is deemed to be optional, for example:
 
