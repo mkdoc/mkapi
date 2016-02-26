@@ -1,6 +1,6 @@
-## ModuleName 
+## ModuleName
 
 Module description.
 
-### ClassName 
+### ClassName
 

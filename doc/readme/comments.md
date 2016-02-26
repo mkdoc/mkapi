@@ -13,3 +13,12 @@ Whilst many [tags](#tags) allow for a description parameter it is recommended th
  *  @module ModuleName
  */
 ```
+
+If you only have a short description use the `description` tag parameter:
+
+```javascript
+/**
+ *  @module ModuleName Short module description.
+ */
+```
+

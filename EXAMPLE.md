@@ -4,7 +4,7 @@ Table of Contents
 * [Markdown API Example](#markdown-api-example)
   * [Input](#input)
   * [Result](#result)
-    * [API Documents](#api-documents)
+    * [API](#api)
       * [Component](#component)
         * [Component < EventEmitter < Object](#component-eventemitter-object)
           * [Options](#options)
@@ -130,7 +130,7 @@ File from the [test fixture](https://github.com/tmpfs/mdapi/blob/master/test/spe
 
 Rendered output with `--level=2`:
 
-### API Documents
+### API
 
 * **author** `muji`
 * **version** `1.1.0`

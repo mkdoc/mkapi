@@ -1,4 +1,4 @@
-## ModuleName 
+## ModuleName
 
 * **author** `Author`
 * **version** `1.1.0`

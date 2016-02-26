@@ -138,6 +138,14 @@ Whilst many [tags](#tags) allow for a description parameter it is recommended th
  */
 ```
 
+If you only have a short description use the `description` tag parameter:
+
+```javascript
+/**
+ *  @module ModuleName Short module description.
+ */
+```
+
 ## Tags
 
 The general syntax for tags is:

@@ -1,4 +1,4 @@
-# ClassName 
+# ClassName
 
 Class description.
 
