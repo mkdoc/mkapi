@@ -17,6 +17,18 @@ var parse = require('../index')
         output: 'test/fixtures/expect/constructor.md'
       },
       {
+        files: ['test/fixtures/member-name.js'],
+        output: 'test/fixtures/expect/member-name.md'
+      },
+      {
+        files: ['test/fixtures/member-current-class.js'],
+        output: 'test/fixtures/expect/member-current-class.md'
+      },
+      {
+        files: ['test/fixtures/member-current-constructor.js'],
+        output: 'test/fixtures/expect/member-current-constructor.md'
+      },
+      {
         files: ['test/fixtures/meta.js'],
         output: 'test/fixtures/expect/meta.md'
       },
