@@ -3,7 +3,7 @@ var fs = require('fs')
   , comments = require('comment-parser')
   , merge = require('merge')
   , Writers = require('./lib/writers')
-  , Tag = require('./lib/tag')
+  , Comment = require('./lib/comment')
   , registry = {};
 
 /**
@@ -28,7 +28,7 @@ function getType(token) {
   // first come first served, do not mix type tags!
   for(k in registry) {
     k = k.replace(/^_/, '');
-    type = this.tags.find(k, token);
+    type = token.find(k);
     if(type) {
       break;
     } 
@@ -50,13 +50,6 @@ function getScope(conf, state, opts) {
   for(k in scope) {
     // must all be functions
     scope[k] = scope[k].bind(scope);
-  }
-
-  // expose tags on the primary scope for render functions
-  // and on the stream scope for writers
-  scope.tags = stream.tags = {};
-  for(k in Tag) {
-    scope.tags[k] = stream.tags[k] = Tag[k];
   }
 
   // bind format functions to scope
@@ -150,13 +143,17 @@ function print(ast, opts, cb) {
   }
 
   // pre-processing
-  ast.forEach(function(token) {
+  ast = ast.map(function(token) {
+    // wrap tokens
+    token = new Comment(token);
+
     if(!hasModule) {
-      hasModule = scope.tags.find(scope.conf.MODULE, token);
+      hasModule = token.find(scope.conf.MODULE);
     }
-    if(scope.tags.find(scope.conf.USAGE, token)) {
+    if(token.find(scope.conf.USAGE)) {
       usage = usage.concat([token]);
     }
+    return token;
   })
 
   if(!hasModule && usage.length) {
@@ -168,7 +165,7 @@ function print(ast, opts, cb) {
 
   // walk the ast
   ast.forEach(function(token) {
-    var exclude = scope.tags.find(scope.conf.PRIVATE, token);
+    var exclude = token.find(scope.conf.PRIVATE);
     var type = getType.call(scope, token);
 
     //console.dir(token)
