@@ -4,10 +4,29 @@ var fs = require('fs')
   , merge = require('merge')
   , Writers = require('./lib/writers')
   , Comment = require('./lib/comment')
-  , registry = {};
+  // renderer registry
+  , registry = {}
+  // tag definitions
+  , tags = {};
 
 // prevent conflict on constructor keyword
-registry.constructor = null;
+tags.constructor = registry.constructor = null;
+
+
+/**
+ *  Encapsulates a tag definition.
+ *
+ *  @constructor Tag
+ *
+ *  @property {String} name The tag name.
+ *  @property {Array} synonyms List of synonyms for this tag.
+ */
+function Tag(name, opts) {
+  for(var k in opts) {
+    this[k] = opts[k];
+  }
+  this.name = name;
+}
 
 /**
  *  var parse = require('mdapi');
@@ -59,7 +78,7 @@ function getScope(conf, state, opts) {
   scope.format = conf.format;
 
   // set up default renderers
-  defaults(conf, render);
+  defaults(scope, conf, render);
 
   // bind registered renderers
   for(k in registry) {
@@ -301,11 +320,18 @@ function parse(files, opts, cb) {
 /**
  *  Register a render function for a given type tag.
  *
+ *  Without the `renderer` option attempts to return a render function 
+ *  for the specified type.
+ *
  *  @function register
  *  @param {String} type The type name for the tag.
- *  @param {Function} renderer The render function.
+ *  @param {Function} [renderer] The render function.
+ *
+ *  @returns a renderer or the registry.
  */
 function register(type, renderer) {
+  assert(typeof type === 'string', 'expected type string to register renderer');
+
   // mutated getter
   if(type && !renderer) {
     return registry[type];
@@ -317,14 +343,54 @@ function register(type, renderer) {
 }
 
 /**
+ *  Adds a tag to the list of known tags.
+ *
+ *  Use this to create custom tags.
+ *
+ *  @function
+ *  @param {String} name The name of the tag, do not include `@`.
+ *  @param {Object} [opts] An object whose fields are merged with the tag 
+ *  definition.
+ *
+ *  @returns the tag definition.
+ */
+function tag(name, opts) {
+  assert(typeof name === 'string', 'expected name string to create tag');
+  tags[name] = new Tag(name, {synonyms: []});
+  for(var k in opts) {
+    tags[name][k] = opts[k];
+  }
+  return tags[name];
+}
+
+/**
  *  Register default renderer mappings.
  *
  *  @private
  *  @function defaults
+ *  @param {Function} scope The scope for function calls.
  *  @param {Object} conf The program configuration.
  *  @param {Object} render The map of render functions.
  */
-function defaults(conf, render) {
+function defaults(scope, conf, render) {
+  var k;
+
+  // register built-in tags if they are not already set
+  conf.names.forEach(function(name) {
+    if(!tags[name]) {
+      tag(name); 
+    } 
+  })
+
+  // register tag constants
+  for(k in tags) {
+    // string constants for names on `conf`
+    conf[k.toUpperCase()] = tags[k].name;
+  }
+
+  // tag definitions available via conf
+  conf.tags = tags;
+
   // do not overwrite previously registered renders
   function set(key, method) {
     if(!register(key)) {
@@ -341,5 +407,6 @@ function defaults(conf, render) {
 }
 
 parse.register = register;
+parse.tag = tag;
 
 module.exports = parse;
