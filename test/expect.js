@@ -112,6 +112,13 @@ var parse = require('../index')
       },
       {
         files: ['test/fixtures/usage.js'],
+        output: 'test/fixtures/expect/usage-heading.md',
+        opts: {
+          heading: 'API'
+        }
+      },
+      {
+        files: ['test/fixtures/usage.js'],
         output: 'test/fixtures/expect/usage-no-heading.md',
         opts: {
           heading: false
