@@ -182,8 +182,8 @@ function print(ast, opts, cb) {
     }
 
     //console.dir(info)
-
     //console.dir(token.getDetail());
+    //console.dir(info.id)
 
     // render for the type tag
     if(info && info.id && (typeof scope.render[info.id] === 'function')) {
