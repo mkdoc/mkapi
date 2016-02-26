@@ -22,6 +22,7 @@ Table of Contents
     * [register](#register)
     * [Tag](#tag)
     * [Comment](#comment)
+      * [describe](#describe)
       * [getDetail](#getdetail)
       * [getInfo](#getinfo)
       * [find](#find)
@@ -53,6 +54,7 @@ Table of Contents
       * [signature](#signature-1)
       * [parameters](#parameters)
       * [meta](#meta-1)
+      * [describe](#describe-1)
       * [see](#see)
   * [Developer](#developer)
     * [Test](#test)
@@ -119,7 +121,7 @@ The general syntax for tags is:
 @tag {type} name description
 ```
 
-Tags do not have specify any of the parameters, see [flags](#flags).
+Tags do not have to specify any of the parameters, see [flags](#flags).
 
 When a tag name is enclosed in `[]` it is deemed to be optional, for example:
 
@@ -362,6 +364,17 @@ Encapsulates a tag definition.
 ### Comment
 
 Encapsulates operation on a comment AST token.
+
+#### describe
+
+```javascript
+describe(type, concat)
+```
+
+Returns a description for a comment.
+
+* `type` Object The declaring type tag.
+* `concat` Boolean Whether to concatenate the name and description.
 
 #### getDetail
 
@@ -707,6 +720,17 @@ meta(token)
 Write meta data (author, version, since etc) and handle writing the
 deprecated notice.
 
+* `token` Object The current token.
+
+#### describe
+
+```javascript
+describe(type, token)
+```
+
+Print the description for a token.
+
+* `type` Object The declaring type tag.
 * `token` Object The current token.
 
 #### see
