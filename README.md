@@ -24,6 +24,7 @@ Table of Contents
     * [register](#register)
     * [defaults](#defaults)
     * [Comment](#comment)
+      * [getInfo](#getinfo)
       * [find](#find)
       * [collect](#collect)
     * [conf](#conf)
@@ -380,6 +381,19 @@ Register default renderer mappings.
 ### Comment
 
 Encapsulates operation on a comment AST token.
+
+#### getInfo
+
+```javascript
+getInfo(method)
+```
+
+Gets an info object containing generic tag lookups.
+
+If the `method` parameter is given the object is decorated with
+fields specific to the `function` type.
+
+* `method` Boolean Inject function specific information.
 
 #### find
 
