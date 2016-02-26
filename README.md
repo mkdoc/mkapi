@@ -17,12 +17,9 @@ Table of Contents
     * [Static](#static)
     * [Inheritance](#inheritance)
   * [API](#api)
-    * [each](#each)
-    * [print](#print)
     * [parse](#parse)
       * [Options](#options)
     * [register](#register)
-    * [defaults](#defaults)
     * [Comment](#comment)
       * [getInfo](#getinfo)
       * [find](#find)
@@ -47,7 +44,6 @@ Table of Contents
       * [_function](#_function)
       * [_property](#_property)
     * [writers](#writers)
-      * [Writer](#writer)
       * [heading](#heading-1)
       * [newline](#newline)
       * [fenced](#fenced-1)
@@ -306,30 +302,6 @@ var parse = require('mdapi');
 parse(['index.js'], {stream: process.stdout});
 ```
 
-### each
-
-```javascript
-each(files, it, cb)
-```
-
-Iterate input files in series asynchronously.
-
-* `files` Array List of input files to load.
-* `it` Function File iterator function.
-* `cb` Function Callback function.
-
-### print
-
-```javascript
-print(ast, opts, cb)
-```
-
-Print markdown from the parsed AST.
-
-* `ast` Object The parsed comments abstract syntax tree.
-* `opts` Object Parse options.
-* `cb` Function Callback function.
-
 ### parse
 
 ```javascript
@@ -366,17 +338,6 @@ Register a render function for a given type tag.
 
 * `type` String The type name for the tag.
 * `renderer` Function The render function.
-
-### defaults
-
-```javascript
-defaults(conf, render)
-```
-
-Register default renderer mappings.
-
-* `conf` Object The program configuration.
-* `render` Object The map of render functions.
 
 ### Comment
 
@@ -637,14 +598,6 @@ the stream appending newlines where necessary.
 Render functions can access these methods using `this`.
 
 These functions call the format functions using `this.format`.
-
-#### Writer
-
-```javascript
-new Writer()
-```
-
-Writer scope.
 
 #### heading
 

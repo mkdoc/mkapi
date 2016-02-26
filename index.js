@@ -167,8 +167,8 @@ function print(ast, opts, cb) {
     var info = token.getDetail();
 
     // marked @private
-    if(exclude && (this.opts.includePrivate === false)) {
-      return false; 
+    if(exclude && (this.opts.includePrivate !== true)) {
+      return run(); 
     }
 
     // render for the type tag
