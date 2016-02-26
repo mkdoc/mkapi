@@ -5,6 +5,9 @@ Table of Contents
   * [Install](#install)
   * [Usage](#usage)
   * [Tags](#tags)
+    * [Module](#module)
+    * [Class](#class)
+    * [Constructor](#constructor)
   * [Cues](#cues)
     * [Member](#member)
     * [Static](#static)
@@ -124,6 +127,55 @@ The following tags are supported:
 * `@see`: Creates a list of links, each value should be a URL if a description is given it becomes the name for the link.
 
 Note that whilst declaring names explicitly (`@function` etc) is a little more maintenance it is deemed to be preferable to re-parsing the file to automatically extract function names.
+
+### Module
+
+```
+@module <name>
+```
+
+Document a module.
+
+```javascript
+/**
+ *  Module description.
+ *
+ *  @module ModuleName
+ */
+```
+
+### Class
+
+```
+@class <name>
+```
+
+Document a class.
+
+```javascript
+/**
+ *  Class description.
+ *
+ *  @class ClassName
+ */
+```
+
+### Constructor
+
+```
+@constructor <name>
+```
+
+Document a constructor function.
+
+```javascript
+/**
+ *  Constructor description.
+ *
+ *  @constructor ConstructorName
+ *  @inherits Object
+ */
+```
 
 ## Cues
 
