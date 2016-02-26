@@ -32,8 +32,6 @@ The following tags are supported:
 
 Sets the symbol name and optionally specifies the type of the symbol.
 
-#### Examples
-
 ```javascript
 /**
  *  @name {function} FunctionName
@@ -55,8 +53,6 @@ Sets the symbol name and optionally specifies the type of the symbol.
 
 Document a module.
 
-#### Examples
-
 ```javascript
 /**
  *  Module description.
@@ -72,8 +68,6 @@ Document a module.
 ```
 
 Document a class.
-
-#### Examples
 
 ```javascript
 /**
@@ -91,8 +85,6 @@ Document a class.
 
 Document a constructor function.
 
-#### Examples
-
 ```javascript
 /**
  *  Constructor description.
@@ -108,8 +100,6 @@ Document a constructor function.
 ```
 
 Document inheritance hierarchy for a constructor function.
-
-#### Examples
 
 ```javascript
 /**

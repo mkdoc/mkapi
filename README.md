@@ -6,15 +6,10 @@ Table of Contents
   * [Usage](#usage)
   * [Tags](#tags)
     * [Name](#name)
-      * [Examples](#examples)
     * [Module](#module)
-      * [Examples](#examples-1)
     * [Class](#class)
-      * [Examples](#examples-2)
     * [Constructor](#constructor)
-      * [Examples](#examples-3)
     * [Inherits](#inherits)
-      * [Examples](#examples-4)
   * [Cues](#cues)
     * [Member](#member)
     * [Static](#static)
@@ -142,8 +137,6 @@ The following tags are supported:
 
 Sets the symbol name and optionally specifies the type of the symbol.
 
-#### Examples
-
 ```javascript
 /**
  *  @name {function} FunctionName
@@ -165,8 +158,6 @@ Sets the symbol name and optionally specifies the type of the symbol.
 
 Document a module.
 
-#### Examples
-
 ```javascript
 /**
  *  Module description.
@@ -182,8 +173,6 @@ Document a module.
 ```
 
 Document a class.
-
-#### Examples
 
 ```javascript
 /**
@@ -201,8 +190,6 @@ Document a class.
 
 Document a constructor function.
 
-#### Examples
-
 ```javascript
 /**
  *  Constructor description.
@@ -218,8 +205,6 @@ Document a constructor function.
 ```
 
 Document inheritance hierarchy for a constructor function.
-
-#### Examples
 
 ```javascript
 /**
