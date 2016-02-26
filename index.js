@@ -140,7 +140,7 @@ function print(ast, opts, cb) {
     return token;
   }
 
-  ast = ast.map(preprocess.bind(this));
+  this.ast = ast = ast.map(preprocess.bind(this));
 
   if(!hasModule && usage.length) {
     this.usage(usage, opts.lang);
@@ -154,13 +154,13 @@ function print(ast, opts, cb) {
   // walk the ast
   var run = (function(err) {
     var token = comments.shift();
-    // completed all tokens
+
+    // completed all tokens or render function errored
     if(!token || err) {
       return cb(err || null);
     }
 
     var exclude = token.find(this.conf.PRIVATE);
-    //var type = getType.call(scope, token);
     var info = token.getDetail();
 
     // marked @private
