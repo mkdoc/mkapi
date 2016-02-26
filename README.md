@@ -128,7 +128,7 @@ Comments are parsed from `/**...*/` at the moment, later the aim is to support o
 
 ## Description
 
-Whilst many [tags](#tags) allow for a description parameter it is recommended that the description starts the comment so that the description is more prominent.
+Whilst many [tags](#tags) allow for a description parameter it is recommended that the description starts the comment so that it is more prominent.
 
 ```javascript
 /**
@@ -539,7 +539,7 @@ Gets a list item for parameter listings.
 
 Returns formatted string.
 
-* `tag` tag The param tag.
+* `tag` Object The param tag.
 
 #### returns
 
@@ -551,7 +551,7 @@ Gets a returns statement.
 
 Returns formatted string.
 
-* `tag` tag The returns tag.
+* `tag` Object The returns tag.
 
 #### link
 
@@ -563,20 +563,20 @@ Gets a link from a tag.
 
 Returns formatted string.
 
-* `tag` tag The see tag.
+* `tag` Object The see tag.
 
 #### property
 
 ```javascript
-property(tag, value)
+property(tag, opts)
 ```
 
 Gets a property code string.
 
 Returns formatted string.
 
-* `tag` tag The declaring tag.
-* `value` tag A tag containing a value for the property.
+* `tag` String The declaring tag.
+* `opts` Object Format options describing the property.
 
 #### inherits
 
