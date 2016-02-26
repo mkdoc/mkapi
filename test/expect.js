@@ -29,6 +29,10 @@ var parse = require('../index')
         output: 'test/fixtures/expect/see.md'
       },
       {
+        files: ['test/fixtures/name.js'],
+        output: 'test/fixtures/expect/name.md'
+      },
+      {
         files: ['test/fixtures/returns.js'],
         output: 'test/fixtures/expect/returns.md'
       },
