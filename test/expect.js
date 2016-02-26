@@ -65,6 +65,10 @@ var parse = require('../index')
         output: 'test/fixtures/expect/deprecated.md'
       },
       {
+        files: ['test/fixtures/static-function.js'],
+        output: 'test/fixtures/expect/static-function.md'
+      },
+      {
         files: ['test/fixtures/see.js'],
         output: 'test/fixtures/expect/see.md'
       },

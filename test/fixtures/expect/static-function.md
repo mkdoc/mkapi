@@ -1,0 +1,6 @@
+# #Func
+
+```javascript
+static Func()
+```
+
