@@ -43,6 +43,12 @@ Type identifiers may be specified using `{id}` to the following tags:
 * `@static`: Set the name, type and mark as static.
 * `@constant`: Set the name, type and mark as a constant.
 
+For example to declare a `function` symbol with the name `noop`:
+
+```javascript
+@name {function} noop
+```
+
 ### Flags
 
 These tags should not be given and values:
