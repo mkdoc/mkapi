@@ -36,6 +36,7 @@ Table of Contents
       * [returns](#returns)
       * [link](#link)
       * [property](#property)
+      * [inherits](#inherits)
       * [method](#method)
       * [title](#title)
       * [format](#format)
@@ -527,16 +528,28 @@ Returns formatted string.
 * `tag` tag The declaring tag.
 * `value` tag A tag containing a value for the property.
 
+#### inherits
+
+```javascript
+inherits(tag, opts)
+```
+
+Gets the inheritance string for a class or constructor.
+
+* `tag` Object The declaring tag.
+* `opts` Object Format options describing the function.
+
 #### method
 
 ```javascript
-method(tag, opts)
+method(tag, opts[, title])
 ```
 
 Gets the heading title for a function.
 
 * `tag` Object The declaring tag.
 * `opts` Object Format options describing the function.
+* `title` String An existing title for the function.
 
 #### title
 

@@ -13,6 +13,14 @@ var parse = require('../index')
         output: 'test/fixtures/expect/class.md'
       },
       {
+        files: ['test/fixtures/class-inherits.js'],
+        output: 'test/fixtures/expect/class-inherits.md'
+      },
+      {
+        files: ['test/fixtures/constructor-inherits.js'],
+        output: 'test/fixtures/expect/constructor-inherits.md'
+      },
+      {
         files: ['test/fixtures/constructor.js'],
         output: 'test/fixtures/expect/constructor.md'
       },
