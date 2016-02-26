@@ -17,6 +17,7 @@ Table of Contents
     * [Static](#static)
     * [Inheritance](#inheritance)
   * [API](#api)
+    * [Tag](#tag)
     * [parse](#parse)
       * [Options](#options)
     * [register](#register)
@@ -302,6 +303,14 @@ var parse = require('mdapi');
 parse(['index.js'], {stream: process.stdout});
 ```
 
+### Tag
+
+```javascript
+new Tag()
+```
+
+Encapsulates a tag definition.
+
 ### parse
 
 ```javascript
@@ -331,10 +340,15 @@ The callback function is passed an error on failure: `function(err)`.
 ### register
 
 ```javascript
-register(type, renderer)
+register(type[, renderer])
 ```
 
 Register a render function for a given type tag.
+
+Without the `renderer` option attempts to return a render function
+for the specified type.
+
+Returns a renderer or the registry.
 
 * `type` String The type name for the tag.
 * `renderer` Function The render function.
