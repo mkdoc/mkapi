@@ -3,3 +3,7 @@
  *
  *  @module ModuleName
  */
+
+/**
+ *  @class ClassName
+ */

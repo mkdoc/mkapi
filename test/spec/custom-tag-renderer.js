@@ -19,7 +19,8 @@ describe('mdapi:', function() {
       cb(); 
     }
 
-    def = parse.tag(tag);
+    // pass mock options to trigger code path
+    def = parse.tag(tag, {synonyms: []});
     registry = parse.register(tag, renderer);
 
     expect(def).to.be.an('object');
