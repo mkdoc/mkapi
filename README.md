@@ -116,8 +116,10 @@ mdapi index.js | commonmark
 The general syntax for tags is:
 
 ```javascript
-@tag [{type}] [name] [description]
+@tag {type} name description
 ```
+
+Tags do not have specify any of the parameters, see [flags](#flags).
 
 When a tag name is enclosed in `[]` it is deemed to be optional, for example:
 
