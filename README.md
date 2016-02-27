@@ -31,11 +31,10 @@ Table of Contents
     * [tag](#tag)
     * [Tag](#tag)
     * [Comment](#comment)
-      * [describe](#describe)
-      * [getDetail](#getdetail)
-      * [getInfo](#getinfo)
-      * [find](#find)
-      * [collect](#collect)
+      * [.getDetail](#getdetail)
+      * [.getInfo](#getinfo)
+      * [.find](#find)
+      * [.collect](#collect)
     * [conf](#conf)
       * [names](#names)
       * [title](#title)
@@ -70,7 +69,7 @@ Table of Contents
       * [signature](#signature-1)
       * [parameters](#parameters)
       * [meta](#meta-1)
-      * [describe](#describe-1)
+      * [describe](#describe)
       * [see](#see)
   * [Developer](#developer)
     * [Test](#test)
@@ -474,21 +473,10 @@ Encapsulates operations on a comment AST token.
 This implementation uses a cache map to look up tags in the
 underlying list of tags.
 
-#### describe
+#### .getDetail
 
 ```javascript
-describe(type, concat)
-```
-
-Returns a description for a comment.
-
-* `type` Object The declaring type tag.
-* `concat` Boolean Whether to concatenate the name and description.
-
-#### getDetail
-
-```javascript
-getDetail([names])
+getDetail.prototype.getDetail([names])
 ```
 
 Get the details name, type tag and id for this comment.
@@ -497,10 +485,10 @@ Returns an object with `name`, `type` and `id`.
 
 * `names` Array List of custom tag names.
 
-#### getInfo
+#### .getInfo
 
 ```javascript
-getInfo(method)
+getInfo.prototype.getInfo(method)
 ```
 
 Gets an info object containing generic tag lookups.
@@ -510,22 +498,22 @@ fields specific to the `function` type.
 
 * `method` Boolean Inject function specific information.
 
-#### find
+#### .find
 
 ```javascript
-find(id)
+find.prototype.find(id)
 ```
 
 Finds the last tag in the tag list by tag id.
 
-Returns a tag or `null` if not found.
+Returns a tag or `undefined` if not found.
 
 * `id` String The tag identifier.
 
-#### collect
+#### .collect
 
 ```javascript
-collect(id)
+collect.prototype.collect(id)
 ```
 
 Collects all tags with the specified id.
