@@ -163,8 +163,8 @@ function print(ast, opts, cb) {
  *
  *  @usage 
  *
- *  var parse = require('mdapi');
- *  parse(['index.js'], {stream: process.stdout});
+ *  var parse = require('mdapi')
+ *    , parse(['index.js'], {stream: process.stdout});
  *
  *  @function parse
  *  @param {Array} files List of files to parse.
