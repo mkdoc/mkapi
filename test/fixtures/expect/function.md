@@ -1,7 +1,7 @@
 # method
 
 ```javascript
- method()
+method()
 ```
 
 

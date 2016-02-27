@@ -1,7 +1,7 @@
 # throwable
 
 ```javascript
- throwable()
+throwable()
 ```
 
 

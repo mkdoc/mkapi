@@ -1,7 +1,7 @@
 # optional
 
 ```javascript
- optional(files[, options], cb)
+optional(files[, options], cb)
 ```
 
 

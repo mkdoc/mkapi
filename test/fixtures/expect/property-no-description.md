@@ -1,7 +1,7 @@
 # hasNoDescription
 
 ```javascript
- hasNoDescription
+hasNoDescription
 ```
 
 

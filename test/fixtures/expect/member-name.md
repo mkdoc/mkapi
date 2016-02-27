@@ -1,7 +1,7 @@
 # .foo
 
 ```javascript
- Component.prototype.foo()
+Component.prototype.foo()
 ```
 
 Member function of Component.

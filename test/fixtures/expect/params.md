@@ -1,7 +1,7 @@
 # foobar
 
 ```javascript
- foobar(foo, bar)
+foobar(foo, bar)
 ```
 
 

@@ -1,7 +1,7 @@
 # description
 
 ```javascript
- description()
+description()
 ```
 
 Description of the function.

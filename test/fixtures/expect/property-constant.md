@@ -1,7 +1,7 @@
 # isReadOnlyConstant
 
 ```javascript
- const isReadOnlyConstant
+const isReadOnlyConstant
 ```
 
 

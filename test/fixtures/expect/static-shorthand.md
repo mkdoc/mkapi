@@ -1,7 +1,7 @@
 # #Func
 
 ```javascript
-static static Func()
+static Func()
 ```
 
 
