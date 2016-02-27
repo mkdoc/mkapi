@@ -13,13 +13,6 @@ var fs = require('fs')
 tags.constructor = registry.constructor = null;
 
 /**
- *  @usage
- *
- *  var parse = require('mdapi');
- *  parse(['index.js'], {stream: process.stdout});
- */
-
-/**
  *  Gets the scope for render function calls.
  *
  *  @private {function} getScope
@@ -194,6 +187,11 @@ function print(ast, opts, cb) {
  *  and transform the AST into commonmark compliant markdown.
  *
  *  The callback function is passed an error on failure: `function(err)`.
+ *
+ *  @usage 
+ *
+ *  var parse = require('mdapi');
+ *  parse(['index.js'], {stream: process.stdout});
  *
  *  @function parse
  *  @param {Array} files List of files to parse.

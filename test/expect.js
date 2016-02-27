@@ -177,17 +177,17 @@ var parse = require('../index')
         files: ['test/fixtures/description.js'],
         output: 'test/fixtures/expect/description.md'
       },
-      //{
-        //files: ['test/fixtures/usage.js'],
-        //output: 'test/fixtures/expect/usage.md'
-      //},
-      //{
-        //files: ['test/fixtures/usage.js'],
-        //output: 'test/fixtures/expect/usage-no-lang.md',
-        //opts: {
-          //lang: false
-        //}
-      //},
+      {
+        files: ['test/fixtures/usage.js'],
+        output: 'test/fixtures/expect/usage.md'
+      },
+      {
+        files: ['test/fixtures/usage.js'],
+        output: 'test/fixtures/expect/usage-no-lang.md',
+        opts: {
+          lang: false
+        }
+      },
       {
         files: ['test/fixtures/params.js'],
         output: 'test/fixtures/expect/params.md'
@@ -223,13 +223,6 @@ var parse = require('../index')
           heading: 'API'
         }
       }
-      //{
-        //files: ['test/fixtures/usage.js'],
-        //output: 'test/fixtures/expect/usage-no-heading.md',
-        //opts: {
-          //heading: false
-        //}
-      //}
     ];
 
 /**

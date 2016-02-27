@@ -1,5 +1,7 @@
 /**
- *  var foo = 'bar';
+ *  @module foo
  *
  *  @usage
+ *
+ *  var foo = 'bar';
  */
