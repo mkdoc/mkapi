@@ -17,6 +17,10 @@ var parse = require('../index')
         output: 'test/fixtures/expect/throws.md'
       },
       {
+        files: ['test/fixtures/no-description.js'],
+        output: 'test/fixtures/expect/no-description.md'
+      },
+      {
         files: ['test/fixtures/static-shorthand.js'],
         output: 'test/fixtures/expect/static-shorthand.md'
       },
