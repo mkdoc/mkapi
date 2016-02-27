@@ -36,9 +36,12 @@ Table of Contents
       * [find](#find)
       * [collect](#collect)
     * [conf](#conf)
+      * [names](#names)
       * [title](#title)
+      * [shorthand](#shorthand)
       * [format](#format)
       * [cues](#cues)
+      * [render](#render)
       * [LANG](#lang)
     * [format](#format-1)
       * [heading](#heading)
@@ -53,7 +56,7 @@ Table of Contents
       * [property](#property)
       * [inherits](#inherits)
       * [method](#method)
-    * [render](#render)
+    * [render](#render-1)
       * [_class](#_class)
       * [_function](#_function)
       * [_property](#_property)
@@ -515,6 +518,14 @@ configuration variables.
 Constants representing each of the recognised tags are exposed on this
 module, for example: `this.conf.MODULE` yields `module`.
 
+#### names
+
+```javascript
+names
+```
+
+List of default tag names.
+
 #### title
 
 ```javascript
@@ -522,6 +533,14 @@ title
 ```
 
 Variables for headings and notices, eg: `Deprecated`.
+
+#### shorthand
+
+```javascript
+shorthand
+```
+
+List of tag names that support the shorthand symbol type.
 
 #### format
 
@@ -538,6 +557,14 @@ cues
 ```
 
 Map of variables for visual cues.
+
+#### render
+
+```javascript
+render
+```
+
+Map of render functions.
 
 #### LANG
 
@@ -658,7 +685,7 @@ getAccess(opts)
 
 Gets the access modifier for a symbol.
 
-Returns the access string.
+Returns the access for the symbol.
 
 * `opts` Object Format options describing the symbol.
 
