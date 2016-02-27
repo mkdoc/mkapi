@@ -221,7 +221,7 @@ function parse(files, opts, cb) {
   opts.level = opts.level || 1;
 
   // language for fenced code blocks
-  opts.lang = opts.lang !== undefined ? opts.lang : config.LANG;
+  state.lang = opts.lang = opts.lang !== undefined ? opts.lang : config.LANG;
 
   // state of the depth level
   state.depth = opts.level;
