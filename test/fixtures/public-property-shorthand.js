@@ -1,0 +1,3 @@
+/**
+ *  @public {property} propName
+ */

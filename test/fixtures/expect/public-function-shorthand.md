@@ -1,0 +1,6 @@
+# getName
+
+```javascript
+public getName()
+```
+

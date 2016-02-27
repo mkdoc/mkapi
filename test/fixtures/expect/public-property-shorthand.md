@@ -1,0 +1,6 @@
+# propName
+
+```javascript
+public propName
+```
+
