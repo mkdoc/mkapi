@@ -229,7 +229,7 @@ The following type identifiers are supported and map to corresponding render fun
 Type identifiers may be specified to some tags using `{id}` using the syntax:
 
 ```javascript
-@name {function} <name> [description]
+@name {type} <name> [description]
 ```
 
 * `@name`: Set the name and type.
