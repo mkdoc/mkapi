@@ -327,7 +327,7 @@ function register(type, renderer) {
  *
  *  Use this to create custom tags.
  *
- *  @function
+ *  @function tag
  *  @param {String} name The name of the tag, do not include `@`.
  *  @param {Object} [opts] An object whose fields are merged with the tag 
  *  definition.
@@ -347,7 +347,6 @@ function tag(name, opts) {
  *  Encapsulates a tag definition.
  *
  *  @constructor Tag
- *
  *  @property {String} name The tag name.
  *  @property {Array} synonyms List of synonyms for this tag.
  */
@@ -361,8 +360,7 @@ function Tag(name, opts) {
 /**
  *  Register default renderer mappings.
  *
- *  @private
- *  @function defaults
+ *  @private {function} defaults
  *  @param {Function} scope The scope for function calls.
  *  @param {Object} conf The program configuration.
  *  @param {Object} render The map of render functions.
