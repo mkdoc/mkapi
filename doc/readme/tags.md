@@ -17,7 +17,7 @@ When a tag name is enclosed in `[]` it is deemed to be optional, for example:
 
 ### Meta Tags
 
-Meta tags are rendered as a list at the top of the block:
+Meta tags are rendered as a list at the top of the block below the symbol description:
 
 * `@author`: Author meta data.
 * `@version`: Version information.

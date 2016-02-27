@@ -97,6 +97,10 @@ var parse = require('../index')
         output: 'test/fixtures/expect/static-function.md'
       },
       {
+        files: ['test/fixtures/todo.js'],
+        output: 'test/fixtures/expect/todo.md'
+      },
+      {
         files: ['test/fixtures/see.js'],
         output: 'test/fixtures/expect/see.md'
       },
