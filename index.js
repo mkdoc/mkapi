@@ -111,33 +111,6 @@ function print(ast, opts, cb) {
     return stream.write(json, cb); 
   }
 
-  // pre-processing
-  //function preprocess(token) {
-    //// wrap tokens
-    //token = new Comment(token, this);
-
-    //if(!hasModule) {
-      //hasModule = token.find(this.conf.MODULE);
-    //}
-
-    // gather usage blocks
-    //if(token.find(this.conf.USAGE)) {
-      //usage = usage.concat([token]);
-    //}
-
-    //return token;
-  //}
-
-  //this.ast = ast = ast.map(preprocess.bind(this));
-
-  //if(!hasModule && usage.length) {
-    //this.usage(usage, opts.lang);
-  //}
-
-  // might need to render after a module declaration
-  //opts.usage = usage;
-
-  this.ast = ast;
   var comments = ast.slice();
 
   // walk the ast
