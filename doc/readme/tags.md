@@ -15,27 +15,6 @@ When a tag name is enclosed in `[]` it is deemed to be optional, for example:
  */
 ```
 
-The following tags are supported:
-
-* `@name`: Sets the symbol name and optionally the symbol type.
-* `@module`: Symbol is a module. 
-* `@class`: Symbol is a class. 
-* `@constructor`: Symbol is a constructor function.
-* `@inherits`: Indicates the super class hierarchy for `@constructor` or `@class`.
-* `@function`: Symbol is a function.
-* `@member`: Symbol is a member of an object.
-* `@static`: Symbol is static.
-* `@property`: Symbol is a property.
-* `@constant`: Constant symbol, implies `@readonly`.
-* `@default`: Default value for a property.
-* `@private`: Member is private, excluded from the output by default.
-* `@param`: Declares an argument for a function.
-* `@option`: Documents an option property.
-* `@usage`: Usage example(s) that appear below the first heading.
-* `@throws`: Function throws exception(s).
-* `@deprecated`: Flag symbol as deprecated.
-* `@see`: Creates a list of links, each value should be a URL if a description is given it becomes the name for the link.
-
 ### Meta Tags
 
 Meta tags are rendered as a list at the top of the block:
@@ -45,7 +24,31 @@ Meta tags are rendered as a list at the top of the block:
 * `@since`: Since version.
 * `@license`: License information.
 
+### Notice Tags
+
+Notice tags are rendered as blockquote elements at the top or below meta tags when present:
+
+* `@todo`: Note something yet to be done.
+* `@deprecated`: Flag symbol as deprecated.
+
+The following tags are supported:
+
+* `@name`: Sets the symbol name and optionally the symbol type.
+* `@param`: Declares an argument for a function.
+* `@option`: Documents an option property.
+* `@usage`: Usage example(s) that appear below the first heading.
+* `@throws`: Function throws exception(s).
+* `@see`: Creates a list of links, each value should be a URL if a description is given it becomes the name for the link.
+
 ### Type Tags
+
+A type tag maps to a render function, see the [render api docs](#render).
+
+* `@module`: Symbol is a module.
+* `@class`: Symbol is a class.
+* `@constructor`: Symbol is a constructor function.
+* `@function`: Symbol is a function.
+* `@property`: Symbol is a property.
 
 You can specify the type using the tag itself:
 
@@ -64,15 +67,33 @@ Or you can use [shorthand tags](#shorthand-tags):
  */
 ```
 
-A type tag maps to a render function, see the [render api docs](#render).
+### Modifier Tags
 
-The following type identifiers are supported and map to corresponding render functions:
+Modifier tags give information about a symbol:
 
-* `module`: Symbol is a module.
-* `class`: Symbol is a class.
-* `constructor`: Symbol is a class constructor.
-* `function`: Symbol is a function.
-* `property`: Symbol is a property.
+* `@inherits`: Indicates the super class hierarchy for `@constructor` or `@class`.
+* `@member`: Symbol is a member of an object.
+* `@static`: Symbol is static.
+* `@constant`: Constant symbol, implies `@readonly`.
+* `@private`: Member is private, excluded from the output by default.
+* `@protected`: Member is protected.
+* `@public`: Member is public.
+* `@abstract`: Member is abstract.
+* `@readonly`: Member is read-only.
+
+### Function Tags
+
+Tags specific to the `{function}` type:
+
+* `@param`: Declares an argument for a function.
+* `@option`: Documents an option property.
+* `@throws`: Function throws exception(s).
+
+### Property Tags
+
+Tags specific to the `{property}` type:
+
+* `@default`: Default value for a property.
 
 ### Shorthand Tags
 
