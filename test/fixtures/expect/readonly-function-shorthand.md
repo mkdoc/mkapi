@@ -1,0 +1,7 @@
+# getName
+
+```javascript
+readonly getName()
+```
+
+

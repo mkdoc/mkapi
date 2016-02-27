@@ -1,7 +1,7 @@
 # NewFunctionName
 
 ```javascript
-NewFunctionName()
+ NewFunctionName()
 ```
 
 

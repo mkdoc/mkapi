@@ -1,0 +1,7 @@
+# propName
+
+```javascript
+readonly propName
+```
+
+

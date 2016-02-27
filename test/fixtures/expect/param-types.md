@@ -1,7 +1,7 @@
 # foo
 
 ```javascript
-foo(foo)
+ foo(foo)
 ```
 
 

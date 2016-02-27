@@ -1,7 +1,7 @@
 # FunctionName
 
 ```javascript
-FunctionName()
+ FunctionName()
 ```
 
 Returns a string.

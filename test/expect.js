@@ -37,6 +37,14 @@ var parse = require('../index')
         output: 'test/fixtures/expect/public-function-shorthand.md'
       },
       {
+        files: ['test/fixtures/readonly-property-shorthand.js'],
+        output: 'test/fixtures/expect/readonly-property-shorthand.md'
+      },
+      {
+        files: ['test/fixtures/readonly-function-shorthand.js'],
+        output: 'test/fixtures/expect/readonly-function-shorthand.md'
+      },
+      {
         files: ['test/fixtures/static-property.js'],
         output: 'test/fixtures/expect/static-property.md'
       },

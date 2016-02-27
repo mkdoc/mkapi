@@ -1,7 +1,7 @@
 # hasDescription
 
 ```javascript
-hasDescription
+ hasDescription
 ```
 
 Expects a value.

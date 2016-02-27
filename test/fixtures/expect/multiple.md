@@ -5,7 +5,7 @@ var foo = 'bar';
 # method
 
 ```javascript
-method()
+ method()
 ```
 
 
