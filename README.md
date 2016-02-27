@@ -448,7 +448,10 @@ Encapsulates a tag definition.
 
 ### Comment
 
-Encapsulates operation on a comment AST token.
+Encapsulates operations on a comment AST token.
+
+This implementation uses a cache map to look up tags in the
+underlying list of tags.
 
 #### describe
 
