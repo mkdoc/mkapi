@@ -19,7 +19,7 @@ describe('mdapi:', function() {
 
     // write after end
     parse(
-      ['test/fixtures/usage.js'],
+      ['test/fixtures/property.js'],
       {stream: stream},
       complete);
   });

@@ -13,10 +13,10 @@ var fs = require('fs')
 tags.constructor = registry.constructor = null;
 
 /**
+ *  @usage
+ *
  *  var parse = require('mdapi');
  *  parse(['index.js'], {stream: process.stdout});
- *
- *  @usage
  */
 
 /**
@@ -108,8 +108,8 @@ function each(files, it, cb) {
 function print(ast, opts, cb) {
   var stream = this.stream
     , json
-    , usage = []
-    , hasModule = false
+    //, usage = []
+    //, hasModule = false
     , indent = typeof(opts.indent) === 'number' && !isNaN(opts.indent) 
         ? Math.abs(opts.indent) : 2;
 
@@ -119,41 +119,44 @@ function print(ast, opts, cb) {
   }
 
   // pre-processing
-  function preprocess(token) {
-    // wrap tokens
-    token = new Comment(token, this);
+  //function preprocess(token) {
+    //// wrap tokens
+    //token = new Comment(token, this);
 
-    if(!hasModule) {
-      hasModule = token.find(this.conf.MODULE);
-    }
+    //if(!hasModule) {
+      //hasModule = token.find(this.conf.MODULE);
+    //}
 
     // gather usage blocks
-    if(token.find(this.conf.USAGE)) {
-      usage = usage.concat([token]);
-    }
+    //if(token.find(this.conf.USAGE)) {
+      //usage = usage.concat([token]);
+    //}
 
-    return token;
-  }
+    //return token;
+  //}
 
-  this.ast = ast = ast.map(preprocess.bind(this));
+  //this.ast = ast = ast.map(preprocess.bind(this));
 
-  if(!hasModule && usage.length) {
-    this.usage(usage, opts.lang);
-  }
+  //if(!hasModule && usage.length) {
+    //this.usage(usage, opts.lang);
+  //}
 
   // might need to render after a module declaration
-  opts.usage = usage;
+  //opts.usage = usage;
 
+  this.ast = ast;
   var comments = ast.slice();
 
   // walk the ast
-  var run = (function(err) {
+  var run = (function walk(err) {
     var token = comments.shift();
 
     // completed all tokens or render function errored
     if(!token || err) {
       return cb(err || null);
     }
+
+    token = new Comment(token, this);
 
     var exclude = token.find(this.conf.PRIVATE);
     var info = token.getDetail(this.conf.custom);
@@ -164,12 +167,16 @@ function print(ast, opts, cb) {
     }
 
     // render for the type tag
-    if(info && info.id && (typeof this.render[info.id] === 'function')) {
+    if(info && info.id
+      && (typeof this.render[info.id] === 'function')) {
+
       // call render function async
       this.render[info.id](info.type, token, function(err) {
         run(err || null); 
       });
+
     }else{
+      // TODO: warn here?
       // continue processing
       run();
     }
@@ -199,8 +206,10 @@ function print(ast, opts, cb) {
  *  @option {String} heading Value for an initial heading.
  *  @option {String} lang Language for fenced code blocks, default is `javascript`.
  *
+ *  @event error when a processing error occurs.
  *  @event file when a file buffer is available.
  *  @event ast when the comment AST is available.
+ *  @event finish when all files have been parsed.
  *
  *  @returns an event notifier.
  */
@@ -212,7 +221,7 @@ function parse(files, opts, cb) {
     opts = null;
   }
 
-  assert(cb instanceof Function, 'callback function expected');
+  //assert(cb instanceof Function, 'callback function expected');
 
   // state for the entire execution
   var state = {}
@@ -251,14 +260,23 @@ function parse(files, opts, cb) {
     if(called) {
       return;
     }
-    cb(err || null); 
     called = true;
+    if(err) {
+      return scope.emit('error', err);
+    }
+    scope.emit('finish')
   }
 
   stream.once('error', done);
 
   // get scope after opts have been configured
   scope = getScope(config, state, opts);
+
+  if(typeof cb === 'function') {
+    scope
+      .once('error', cb)
+      .once('finish', cb);
+  }
 
   // initial heading
   if(opts.heading && typeof opts.heading === 'string') {

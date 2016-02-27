@@ -17,7 +17,7 @@ describe('mdapi:', function() {
       done(); 
     }
     parse(
-      ['test/fixtures/usage.js', 'test/fixtures/function.js'],
+      ['test/fixtures/property.js', 'test/fixtures/function.js'],
       {stream: fs.createWriteStream(output)},
       complete);
   });

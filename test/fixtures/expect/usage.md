@@ -1,4 +1,0 @@
-```javascript
-var foo = 'bar';
-```
-

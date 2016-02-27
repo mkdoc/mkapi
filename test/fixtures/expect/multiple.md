@@ -1,6 +1,10 @@
+# hasDescription
+
 ```javascript
-var foo = 'bar';
+hasDescription
 ```
+
+Expects a value.
 
 # method
 
