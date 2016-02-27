@@ -44,7 +44,7 @@ Table of Contents
       * [render](#render)
       * [include](#include)
       * [LANG](#lang)
-    * [format](#format-1)
+    * [formats](#formats)
       * [heading](#heading)
       * [meta](#meta)
       * [fenced](#fenced)
@@ -554,6 +554,8 @@ format
 
 Map of format functions.
 
+* [formats module](#formats).
+
 #### cues
 
 ```javascript
@@ -569,6 +571,8 @@ render
 ```
 
 Map of render functions.
+
+* [render module](#render).
 
 #### include
 
@@ -586,7 +590,7 @@ LANG = javascript;
 
 Default language for fenced code blocks.
 
-### format
+### formats
 
 Provides string format functions.
 
