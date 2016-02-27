@@ -6,4 +6,3 @@ FunctionName()
 
 Returns a string.
 
-

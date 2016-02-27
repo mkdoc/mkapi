@@ -4,4 +4,3 @@
 const isReadOnlyConstant
 ```
 
-

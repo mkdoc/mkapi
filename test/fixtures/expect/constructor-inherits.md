@@ -6,4 +6,3 @@ new Component()
 
 Component description.
 
-

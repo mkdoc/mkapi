@@ -8,4 +8,3 @@ var foo = 'bar';
 method()
 ```
 
-

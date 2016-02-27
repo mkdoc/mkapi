@@ -4,4 +4,3 @@
 public propName
 ```
 
-

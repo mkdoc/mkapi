@@ -6,4 +6,3 @@ new ConstructorName()
 
 Constructor description.
 
-

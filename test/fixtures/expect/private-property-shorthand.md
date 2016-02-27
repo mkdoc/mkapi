@@ -1,6 +1,6 @@
 # propName
 
 ```javascript
-readonly propName
+private propName
 ```
 

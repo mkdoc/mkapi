@@ -166,8 +166,6 @@ function print(ast, opts, cb) {
       return cb(err || null);
     }
 
-    //console.dir(token)
-
     var exclude = token.find(this.conf.PRIVATE);
     var info = token.getDetail(this.conf.custom);
 
@@ -239,7 +237,7 @@ function parse(files, opts, cb) {
 
   // merge user configuration with default config
   if(opts.conf) {
-    opts.conf = merge(true, config, opts.conf); 
+    config = merge(true, config, opts.conf); 
   }
 
   // stream to print to

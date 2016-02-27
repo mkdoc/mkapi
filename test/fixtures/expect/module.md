@@ -2,7 +2,5 @@
 
 Module description.
 
-
 ### ClassName
-
 

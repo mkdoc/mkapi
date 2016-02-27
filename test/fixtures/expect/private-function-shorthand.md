@@ -1,6 +1,6 @@
 # getName
 
 ```javascript
-readonly getName()
+private getName()
 ```
 

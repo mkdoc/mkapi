@@ -21,7 +21,7 @@ var parser = require('cli-argparse')
       }
     }
   , args = parser(null, hints)
-  , opts = {};
+  , opts = {conf: {include: {}}};
 
 function usage() {
   var indent = '  '
@@ -33,6 +33,8 @@ function usage() {
         'Language for fenced code blocks (default: javascript).',
       '-i, --indent=[NUM]': 'Number of spaces for JSON (default: 2).',
       '-a, --ast': 'Print AST as JSON.',
+      '--[no]-private': 'Enable or disable private symbols',
+      '--[no]-protected': 'Enable or disable protected symbols',
       '-h, --help': 'Display this help and exit.',
       '--version': 'Print the version and exit.'
     }
@@ -90,6 +92,14 @@ opts.lang = args.options.lang;
 
 if(args.options.title !== undefined) {
   opts.heading = args.options.title;
+}
+
+if(args.flags.private !== undefined) {
+  opts.conf.include.private = args.flags.private;
+}
+
+if(args.flags.protected !== undefined) {
+  opts.conf.include.protected = args.flags.protected;
 }
 
 parse(args.unparsed, opts, function(err) {

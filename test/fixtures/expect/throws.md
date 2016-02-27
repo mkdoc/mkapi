@@ -4,7 +4,6 @@
 throwable()
 ```
 
-
 ## Throws
 
 * `Error` When it wants.

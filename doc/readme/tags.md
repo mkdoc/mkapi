@@ -122,7 +122,7 @@ For example to declare a `function` symbol with the name `noop`:
 @name [{type}] <name>
 ```
 
-Sets the symbol name and optionally specifies the type of the symbol (see [types](#types)).
+Sets the symbol name and optionally specifies the type of the symbol (see [type tags](#type-tags)).
 
 ```javascript
 /**
