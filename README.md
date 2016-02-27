@@ -49,6 +49,7 @@ Table of Contents
       * [parameter](#parameter)
       * [returns](#returns)
       * [link](#link)
+      * [getAccess](#getaccess)
       * [property](#property)
       * [inherits](#inherits)
       * [method](#method)
@@ -648,6 +649,18 @@ Gets a link from a tag.
 Returns formatted string.
 
 * `tag` Object The see tag.
+
+#### getAccess
+
+```javascript
+getAccess(opts)
+```
+
+Gets the access modifier for a symbol.
+
+Returns the access string.
+
+* `opts` Object Format options describing the symbol.
 
 #### property
 
