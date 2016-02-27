@@ -133,6 +133,9 @@ Rendered output with `--level=2`:
 
 ### API
 
+A mock program module, using the @module tag sets the overall
+title at the initial level setting.
+
 * **author** `muji`
 * **version** `1.1.0`
 * **since** `1.0`
@@ -143,20 +146,17 @@ var create = require('component');
 var component = create();
 ```
 
-A mock program module, using the @module tag sets the overall
-title at the initial level setting.
-
 * [mdapi](https://github.com/tmpfs/mdapi)
 * [commonmark](https://github.com/jgm/commonmark.js)
 
 #### Component
 
+Mock class, you can add an extended description of the class behaviour here.
+
 ```javascript
 var create = require('component');
 var component = create();
 ```
-
-Mock class, you can add an extended description of the class behaviour here.
 
 ##### Component < EventEmitter < Object
 
@@ -164,12 +164,11 @@ Mock class, you can add an extended description of the class behaviour here.
 new Component(opts)
 ```
 
+An abstract component.
+
 * **author** `muji`
 * **version** `1.1.0`
 * **since** `1.0`
-
-An abstract component.
-
 * `opts` Component options.
 
 ###### Options
@@ -182,12 +181,11 @@ An abstract component.
 Component.prototype.foo([opts], cb)
 ```
 
+Do foo thing with bar.
+
 * **author** `muji`
 * **version** `1.1.0`
 * **since** `1.0`
-
-Do foo thing with bar.
-
 * `opts` Object An options arguments.
 * `cb` Function Callback function.
 
@@ -214,11 +212,11 @@ Create a new component.
 BAZ = baz;
 ```
 
+Sets the BAZ variable.
+
 * **author** `muji`
 * **version** `1.1.0`
 * **since** `1.0`
-
-Sets the BAZ variable.
 
 ##### QUX
 
