@@ -39,6 +39,7 @@ File from the [test fixture](https://github.com/tmpfs/mdapi/blob/master/test/spe
  *  @author muji
  *  @version 1.1.0
  *  @since 1.0
+ *  @license MIT
  *
  *  @see https://github.com/tmpfs/mdapi mdapi
  *  @see https://github.com/jgm/commonmark.js commonmark
@@ -135,6 +136,7 @@ Rendered output with `--level=2`:
 * **author** `muji`
 * **version** `1.1.0`
 * **since** `1.0`
+* **license** `MIT`
 
 ```javascript
 var create = require('component');
