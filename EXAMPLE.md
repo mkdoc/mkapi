@@ -169,7 +169,11 @@ An abstract component.
 * **author** `muji`
 * **version** `1.1.0`
 * **since** `1.0`
+
+
 * `opts` Component options.
+
+
 
 ###### Options
 
@@ -186,7 +190,11 @@ Do foo thing with bar.
 * **author** `muji`
 * **version** `1.1.0`
 * **since** `1.0`
+
+
 * `opts` Object An options arguments.
+
+
 * `cb` Function Callback function.
 
 ###### Options

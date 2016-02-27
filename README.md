@@ -109,6 +109,8 @@ mdapi [options] [files...]
   -L, --lang=[LANG]    Language for fenced code blocks (default: javascript).
   -i, --indent=[NUM]   Number of spaces for JSON (default: 2).
   -a, --ast            Print AST as JSON.
+  --[no]-private       Enable or disable private symbols
+  --[no]-protected     Enable or disable protected symbols
   -h, --help           Display this help and exit.
   --version            Print the version and exit.
 
@@ -282,7 +284,7 @@ For example to declare a `function` symbol with the name `noop`:
 @name [{type}] <name>
 ```
 
-Sets the symbol name and optionally specifies the type of the symbol (see [types](#types)).
+Sets the symbol name and optionally specifies the type of the symbol (see [type tags](#type-tags)).
 
 ```javascript
 /**
