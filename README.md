@@ -272,6 +272,7 @@ Type identifiers may be specified to some tags using a type `{id}`, the syntax i
 * `@public`: Set the name, type and mark as public.
 * `@private`: Set the name, type and mark as private.
 * `@protected`: Set the name, type and mark as protected.
+* `@member`: Declare as member, set the symbol type.
 
 For example to declare a `function` symbol with the name `noop`:
 
