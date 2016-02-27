@@ -100,7 +100,7 @@ Tags specific to the `{property}` type:
 Type identifiers may be specified to some tags using a type `{id}`, the syntax is:
 
 ```javascript
-@name {type} <name> [description]
+@tag {type} <name> [description]
 ```
 
 * `@name`: Set the name and type.

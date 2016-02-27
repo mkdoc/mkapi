@@ -2,7 +2,7 @@ var fs = require('fs')
   , assert = require('assert')
   , comments = require('comment-parser')
   , merge = require('merge')
-  , Writers = require('./lib/writers')
+  , Writer = require('./lib/writers')
   , Comment = require('./lib/comment')
   // renderer registry
   , registry = {}
@@ -28,15 +28,9 @@ tags.constructor = registry.constructor = null;
  *  @param {Object} opts the parse options.
  */
 function getScope(conf, state, opts) {
-  var scope = Writers()
+  var scope = new Writer()
     , stream = opts.stream
     , k;
-
-  // bind writers to the stream scope
-  for(k in scope) {
-    // must all be functions
-    scope[k] = scope[k].bind(scope);
-  }
 
   // bind format functions to scope
   for(k in conf.format) {
@@ -204,6 +198,8 @@ function print(ast, opts, cb) {
  *  @option {Number} level Initial level for the first heading, default is `1`.
  *  @option {String} heading Value for an initial heading.
  *  @option {String} lang Language for fenced code blocks, default is `javascript`.
+ *
+ *  @returns an event notifier.
  */
 function parse(files, opts, cb) {
   assert(Array.isArray(files), 'array of files expected');
@@ -272,7 +268,9 @@ function parse(files, opts, cb) {
   each(
     files.slice(),
     function onFile(file, result, next) {
+      scope.emit('file', file, result);
       var ast = comments(result.toString('utf8'), parser);
+      scope.emit('ast', ast);
       // update file state
       scope.file = {info: file, buffer: result};
       print.call(scope, ast, opts, next);
@@ -291,6 +289,8 @@ function parse(files, opts, cb) {
       }
     }
   );
+
+  return scope;
 }
 
 /**
