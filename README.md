@@ -433,8 +433,8 @@ Returns an event notifier.
 
 #### Events
 
-* `when` file a file buffer is available.
-* `when` ast the comment AST is available.
+* `file` when a file buffer is available.
+* `ast` when the comment AST is available.
 
 ### register
 

@@ -141,22 +141,15 @@ title at the initial level setting.
 * **since** `1.0`
 * **license** `MIT`
 
-```javascript
-var create = require('component');
-var component = create();
-```
 
 * [mdapi](https://github.com/tmpfs/mdapi)
+
+
 * [commonmark](https://github.com/jgm/commonmark.js)
 
 #### Component
 
 Mock class, you can add an extended description of the class behaviour here.
-
-```javascript
-var create = require('component');
-var component = create();
-```
 
 ##### Component < EventEmitter < Object
 
