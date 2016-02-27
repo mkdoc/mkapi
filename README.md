@@ -242,6 +242,7 @@ Tags specific to the `{function}` type:
 * `@param`: Declares an argument for a function.
 * `@option`: Documents an option property.
 * `@throws`: Function throws exception(s).
+* `@returns`: Document a return value.
 
 ### Property Tags
 
