@@ -21,6 +21,14 @@ var parse = require('../index')
         output: 'test/fixtures/expect/static-shorthand.md'
       },
       {
+        files: ['test/fixtures/protected-property-shorthand.js'],
+        output: 'test/fixtures/expect/protected-property-shorthand.md'
+      },
+      {
+        files: ['test/fixtures/protected-function-shorthand.js'],
+        output: 'test/fixtures/expect/protected-function-shorthand.md'
+      },
+      {
         files: ['test/fixtures/static-property.js'],
         output: 'test/fixtures/expect/static-property.md'
       },

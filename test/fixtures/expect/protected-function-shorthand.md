@@ -1,0 +1,6 @@
+# getName
+
+```javascript
+protected getName()
+```
+
