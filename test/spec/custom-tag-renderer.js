@@ -21,7 +21,15 @@ describe('mdapi:', function() {
 
     // pass mock options to trigger code path
     def = parse.tag(tag, {synonyms: []});
+
     registry = parse.register(tag, renderer);
+
+    // bad renderer, no mapping created
+    function fn() {
+      parse.register(tag, false);
+    }
+
+    expect(fn).throws(/expected renderer to be a function/i);
 
     expect(def).to.be.an('object');
     expect(def.name).to.eql(tag);

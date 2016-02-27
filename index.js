@@ -22,7 +22,10 @@ tags.constructor = registry.constructor = null;
 /**
  *  Gets the scope for render function calls.
  *
- *  @private
+ *  @private {function} getScope
+ *  @param {Object} the configuration.
+ *  @param {Object} the current execution state.
+ *  @param {Object} opts the parse options.
  */
 function getScope(conf, state, opts) {
   var scope = Writers()
@@ -75,13 +78,10 @@ function getScope(conf, state, opts) {
 /**
  *  Iterate input files in series asynchronously.
  *
- *  @private
- *  
- *  @function each
- *
- *  @param {Array} files List of input files to load.
- *  @param {Function} it File iterator function.
- *  @param {Function} cb Callback function.
+ *  @private {function} each
+ *  @param {Array} files list of input files to load.
+ *  @param {Function} it file iterator function.
+ *  @param {Function} cb callback function.
  */
 function each(files, it, cb) {
   var file = files.shift();
@@ -106,10 +106,7 @@ function each(files, it, cb) {
 /** 
  *  Print markdown from the parsed AST.
  *
- *  @private
- *
- *  @function print
- *
+ *  @private {function} print
  *  @param {Object} ast The parsed comments abstract syntax tree.
  *  @param {Object} opts Parse options.
  *  @param {Function} cb Callback function.
@@ -185,8 +182,6 @@ function print(ast, opts, cb) {
   }).bind(this);
 
   run();
-
-  //cb();
 }
 
 // jscs:disable maximumLineLength
@@ -200,7 +195,6 @@ function print(ast, opts, cb) {
  *  The callback function is passed an error on failure: `function(err)`.
  *
  *  @function parse
- *
  *  @param {Array} files List of files to parse.
  *  @param {Object} [opts] Parse options.
  *  @param {Function} cb Callback function.
@@ -314,13 +308,17 @@ function parse(files, opts, cb) {
 function register(type, renderer) {
   assert(typeof type === 'string', 'expected type string to register renderer');
 
+  if(renderer !== undefined) {
+    assert(renderer instanceof Function, 'expected renderer to be a function');
+  }
+
   // mutated getter
   if(type && !renderer) {
     return registry[type];
   }
-  if(typeof renderer === 'function') {
-    registry[type] = renderer;
-  }
+
+  registry[type] = renderer;
+
   return registry;
 }
 
