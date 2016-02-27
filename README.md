@@ -42,6 +42,7 @@ Table of Contents
       * [format](#format)
       * [cues](#cues)
       * [render](#render)
+      * [include](#include)
       * [LANG](#lang)
     * [format](#format-1)
       * [heading](#heading)
@@ -568,6 +569,14 @@ render
 ```
 
 Map of render functions.
+
+#### include
+
+```javascript
+include
+```
+
+Map of symbol types to include.
 
 #### LANG
 

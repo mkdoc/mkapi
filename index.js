@@ -172,7 +172,7 @@ function print(ast, opts, cb) {
     var info = token.getDetail(this.conf.custom);
 
     // marked @private
-    if(exclude && (this.opts.includePrivate !== true)) {
+    if(exclude && (this.conf.include[this.conf.PRIVATE] !== true)) {
       return run(); 
     }
 
