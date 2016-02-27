@@ -9,6 +9,7 @@ Table of Contents
   * [Tags](#tags)
     * [Meta Tags](#meta-tags)
     * [Notice Tags](#notice-tags)
+    * [General Tags](#general-tags)
     * [Type Tags](#type-tags)
     * [Modifier Tags](#modifier-tags)
     * [Function Tags](#function-tags)
@@ -182,16 +183,15 @@ Meta tags are rendered as a list at the top of the block:
 
 Notice tags are rendered as blockquote elements at the top or below meta tags when present:
 
-* `@todo`: Note something yet to be done.
 * `@deprecated`: Flag symbol as deprecated.
+* `@todo`: Note something yet to be done.
 
-The following tags are supported:
+### General Tags
+
+The following tags are ways to add information to the output.
 
 * `@name`: Sets the symbol name and optionally the symbol type.
-* `@param`: Declares an argument for a function.
-* `@option`: Documents an option property.
 * `@usage`: Usage example(s) that appear below the first heading.
-* `@throws`: Function throws exception(s).
 * `@see`: Creates a list of links, each value should be a URL if a description is given it becomes the name for the link.
 
 ### Type Tags
@@ -251,7 +251,7 @@ Tags specific to the `{property}` type:
 
 ### Shorthand Tags
 
-Type identifiers may be specified to some tags using `{id}` using the syntax:
+Type identifiers may be specified to some tags using a type `{id}`, the syntax is:
 
 ```javascript
 @name {type} <name> [description]
