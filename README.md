@@ -398,15 +398,15 @@ Indicates an inheritance hierarchy, borrowed from Ruby.
 
 ## API
 
-```javascript
-var parse = require('mdapi');
-parse(['index.js'], {stream: process.stdout});
-```
-
 ### parse
 
 ```javascript
 parse(files[, opts], cb)
+```
+
+```
+var parse = require('mdapi');
+parse(['index.js'], {stream: process.stdout});
 ```
 
 Accepts an array of files and iterates the file contents in series
@@ -433,8 +433,10 @@ Returns an event notifier.
 
 #### Events
 
+* `error` when a processing error occurs.
 * `file` when a file buffer is available.
 * `ast` when the comment AST is available.
+* `finish` when all files have been parsed.
 
 ### register
 
