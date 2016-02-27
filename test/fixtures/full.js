@@ -14,6 +14,7 @@
  *  @author muji
  *  @version 1.1.0
  *  @since 1.0
+ *  @license MIT
  *
  *  @see https://github.com/tmpfs/mdapi mdapi
  *  @see https://github.com/jgm/commonmark.js commonmark
