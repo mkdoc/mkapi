@@ -27,6 +27,7 @@ Table of Contents
   * [API](#api)
     * [parse](#parse)
       * [Options](#options)
+      * [Events](#events)
     * [register](#register)
     * [tag](#tag)
     * [Tag](#tag)
@@ -71,6 +72,7 @@ Table of Contents
       * [meta](#meta-1)
       * [describe](#describe)
       * [see](#see)
+      * [Writer < EventEmitter](#writer-eventemitter)
   * [Developer](#developer)
     * [Test](#test)
     * [Cover](#cover)
@@ -263,7 +265,7 @@ Tags specific to the `{property}` type:
 Type identifiers may be specified to some tags using a type `{id}`, the syntax is:
 
 ```javascript
-@name {type} <name> [description]
+@tag {type} <name> [description]
 ```
 
 * `@name`: Set the name and type.
@@ -415,6 +417,8 @@ and transform the AST into commonmark compliant markdown.
 
 The callback function is passed an error on failure: `function(err)`.
 
+Returns an event notifier.
+
 * `files` Array List of files to parse.
 * `opts` Object Parse options.
 * `cb` Function Callback function.
@@ -426,6 +430,11 @@ The callback function is passed an error on failure: `function(err)`.
 * `level` Number Initial level for the first heading, default is `1`.
 * `heading` String Value for an initial heading.
 * `lang` String Language for fenced code blocks, default is `javascript`.
+
+#### Events
+
+* `when` file a file buffer is available.
+* `when` ast the comment AST is available.
 
 ### register
 
@@ -907,6 +916,16 @@ see(token)
 Write the list of see also links.
 
 * `token` Object The current token.
+
+#### Writer < EventEmitter
+
+```javascript
+new Writer()
+```
+
+Writer helper functions, an instance of this class is
+the scope for program execution and is decorated with additional
+fields when parse is called.
 
 ## Developer
 

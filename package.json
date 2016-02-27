@@ -37,6 +37,7 @@
     "clean": "rm -rf coverage target",
     "readme": "mdp --force -v",
     "lint": "jshint . && jscs .",
+    "api": "./bin/mdapi index.js lib/*.js --level=2 --title=API",
     "docs": "npm run example && npm run readme",
     "example": "mdp --force -v -i doc/example.json -o EXAMPLE.md",
     "expect": "node test/expect.js",

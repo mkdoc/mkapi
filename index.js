@@ -199,6 +199,9 @@ function print(ast, opts, cb) {
  *  @option {String} heading Value for an initial heading.
  *  @option {String} lang Language for fenced code blocks, default is `javascript`.
  *
+ *  @event file when a file buffer is available.
+ *  @event ast when the comment AST is available.
+ *
  *  @returns an event notifier.
  */
 function parse(files, opts, cb) {
