@@ -28,6 +28,7 @@ Table of Contents
     * [parse](#parse)
       * [Options](#options)
     * [register](#register)
+    * [tag](#tag)
     * [Tag](#tag)
     * [Comment](#comment)
       * [describe](#describe)
@@ -57,6 +58,7 @@ Table of Contents
       * [property](#property)
       * [inherits](#inherits)
       * [method](#method)
+      * [getTodo](#gettodo)
     * [render](#render-1)
       * [_class](#_class)
       * [_function](#_function)
@@ -441,6 +443,22 @@ Returns a renderer or the registry.
 * `type` String The type name for the tag.
 * `renderer` Function The render function.
 
+### tag
+
+```javascript
+tag(name[, opts])
+```
+
+Adds a tag to the list of known tags.
+
+Use this to create custom tags.
+
+Returns the tag definition.
+
+* `name` String The name of the tag, do not include `@`.
+* `opts` Object An object whose fields are merged with the tag.
+definition.
+
 ### Tag
 
 ```javascript
@@ -604,7 +622,7 @@ heading(val, level)
 
 Gets a heading string.
 
-Returns formatted string.
+Returns the heading.
 
 * `val` String The value for the heading.
 * `level` Number The level for the heading.
@@ -617,7 +635,7 @@ meta(val, title)
 
 Gets a list item for the meta data.
 
-Returns formatted string.
+Returns a list item for the meta data.
 
 * `val` Object The value for the heading.
 * `title` String A prefix for the meta item.
@@ -630,7 +648,7 @@ fenced(code, info)
 
 Gets a fenced code block.
 
-Returns formatted string.
+Returns a fenced code block.
 
 * `code` String The content for the code block.
 * `info` String A language info string.
@@ -643,7 +661,7 @@ deprecated(tag)
 
 Gets a deprecated notice.
 
-Returns formatted string.
+Returns a deprecation notice.
 
 * `tag` Object The deprecated tag.
 
@@ -655,7 +673,7 @@ signature(params)
 
 Gets a function signature.
 
-Returns formatted string.
+Returns a function signature.
 
 * `params` Array Collection of param tags.
 
@@ -667,20 +685,21 @@ parameter(tag)
 
 Gets a list item for parameter listings.
 
-Returns formatted string.
+Returns a parameter list item.
 
 * `tag` Object The param tag.
 
 #### returns
 
 ```javascript
-returns(tag)
+returns(token, tag)
 ```
 
 Gets a returns statement.
 
-Returns formatted string.
+Returns the returns value.
 
+* `token` Object the current AST token.
 * `tag` Object The returns tag.
 
 #### link
@@ -739,9 +758,23 @@ method(tag, opts[, title])
 
 Gets the heading title for a function.
 
+* `TODO` remove magic strings.
 * `tag` Object The declaring tag.
 * `opts` Object Format options describing the function.
 * `title` String An existing title for the function.
+
+#### getTodo
+
+```javascript
+getTodo(tag)
+```
+
+Gets the todo list.
+
+Returns The list of todo items.
+
+* `TODO` remove magic strings.
+* `tag` Object The declaring tag.
 
 ### render
 
