@@ -66,9 +66,7 @@ function getScope(conf, state, opts) {
 
   // bind registered renderers
   for(k in registry) {
-    if(typeof registry[k] === 'function') {
-      render[k] = registry[k].bind(scope);
-    }
+    render[k] = registry[k].bind(scope);
   }
 
   return scope;
