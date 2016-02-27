@@ -404,7 +404,7 @@ Indicates an inheritance hierarchy, borrowed from Ruby.
 parse(files[, opts], cb)
 ```
 
-```
+```javascript
 var parse = require('mdapi');
 parse(['index.js'], {stream: process.stdout});
 ```
