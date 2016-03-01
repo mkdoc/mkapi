@@ -1,6 +1,6 @@
 # isReadOnlyConstant
 
 ```javascript
-const isReadOnlyConstant
+const String isReadOnlyConstant
 ```
 

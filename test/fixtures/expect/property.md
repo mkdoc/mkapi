@@ -1,7 +1,7 @@
 # hasDescription
 
 ```javascript
-hasDescription
+String hasDescription
 ```
 
 Expects a value.

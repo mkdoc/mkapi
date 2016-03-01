@@ -1,6 +1,6 @@
 # hasNoDescription
 
 ```javascript
-hasNoDescription
+String hasNoDescription
 ```
 

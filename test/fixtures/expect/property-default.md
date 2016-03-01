@@ -1,7 +1,7 @@
 # hasDefault
 
 ```javascript
-hasDefault = bar;
+String hasDefault = bar;
 ```
 
 Expects a value but has a default value.
