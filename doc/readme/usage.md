@@ -1,18 +1,18 @@
 Print the documentation to stdout:
 
 ```
-mdapi index.js
+mkapi index.js
 ```
 
 Need HTML or XML? No problem, install [commonmark][] and pipe the output:
 
 ```
-mdapi index.js | commonmark
+mkapi index.js | commonmark
 ```
 
 From code pass files and options:
 
 ```javascript
-var parse = require('mdapi');
+var parse = require('mkapi');
 parse(['index.js'], {stream: process.stdout});
 ```

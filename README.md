@@ -85,20 +85,20 @@ Table of Contents
 Markdown API
 ============
 
-[<img src="https://travis-ci.org/tmpfs/mdapi.svg?v=2" alt="Build Status">](https://travis-ci.org/tmpfs/mdapi)
-[<img src="http://img.shields.io/npm/v/mdapi.svg?v=2" alt="npm version">](https://npmjs.org/package/mdapi)
-[<img src="https://coveralls.io/repos/tmpfs/mdapi/badge.svg?branch=master&service=github&v=2" alt="Coverage Status">](https://coveralls.io/github/tmpfs/mdapi?branch=master).
+[<img src="https://travis-ci.org/tmpfs/mkapi.svg?v=2" alt="Build Status">](https://travis-ci.org/tmpfs/mkapi)
+[<img src="http://img.shields.io/npm/v/mkapi.svg?v=2" alt="npm version">](https://npmjs.org/package/mkapi)
+[<img src="https://coveralls.io/repos/tmpfs/mkapi/badge.svg?branch=master&service=github&v=2" alt="Coverage Status">](https://coveralls.io/github/tmpfs/mkapi?branch=master).
 
 Declarative, extensible, language neutral and fast API comments to commonmark compliant markdown.
 
 Designed for small to medium sized libraries, for large projects use one of the many other documentation tools. Uses `javascript` for fenced code blocks by default but you can [configure](#conf) this library for any language.
 
-See [EXAMPLE.md](https://github.com/tmpfs/mdapi/blob/master/EXAMPLE.md) or the [api](#api) for example output.
+See [EXAMPLE.md](https://github.com/tmpfs/mkapi/blob/master/EXAMPLE.md) or the [api](#api) for example output.
 
 ## Install
 
 ```
-npm i mdapi
+npm i mkapi
 ```
 
 ## Usage
@@ -117,25 +117,25 @@ mkapi [options] [files...]
   -h, --help           Display this help and exit.
   --version            Print the version and exit.
 
-Report bugs to https://github.com/tmpfs/mdapi/issues
+Report bugs to https://github.com/tmpfs/mkapi/issues
 ```
 
 Print the documentation to stdout:
 
 ```
-mdapi index.js
+mkapi index.js
 ```
 
 Need HTML or XML? No problem, install [commonmark](https://github.com/jgm/commonmark.js) and pipe the output:
 
 ```
-mdapi index.js | commonmark
+mkapi index.js | commonmark
 ```
 
 From code pass files and options:
 
 ```javascript
-var parse = require('mdapi');
+var parse = require('mkapi');
 parse(['index.js'], {stream: process.stdout});
 ```
 
@@ -405,7 +405,7 @@ parse(files[, opts], cb)
 ```
 
 ```javascript
-var parse = require('mdapi')
+var parse = require('mkapi')
 , parse(['index.js'], {stream: process.stdout});
 ```
 
@@ -957,7 +957,7 @@ npm run expect
 
 ### Example
 
-Builds [EXAMPLE.md](https://github.com/tmpfs/mdapi/blob/master/EXAMPLE.md):
+Builds [EXAMPLE.md](https://github.com/tmpfs/mkapi/blob/master/EXAMPLE.md):
 
 ```
 npm run example

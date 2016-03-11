@@ -1,5 +1,5 @@
 ## ModuleName
 
-* [mdapi](https://github.com/tmpfs/mdapi)
+* [mkapi](https://github.com/tmpfs/mkapi)
 * [https://github.com/jgm/commonmark.js](https://github.com/jgm/commonmark.js)
 

@@ -2,7 +2,7 @@ var expect = require('chai').expect
   , fs = require('fs')
   , parse = require('../../index');
 
-describe('mdapi:', function() {
+describe('mkapi:', function() {
 
   it('should print usage with custom heading', function(done) {
     var output = 'target/usage-heading.md'

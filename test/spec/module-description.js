@@ -2,7 +2,7 @@ var expect = require('chai').expect
   , fs = require('fs')
   , parse = require('../../index');
 
-describe('mdapi:', function() {
+describe('mkapi:', function() {
 
   it('should print @module with description parameter', function(done) {
     var output = 'target/module-description.md'

@@ -20,7 +20,7 @@ Markdown API Example
 
 ## Input
 
-File from the [test fixture](https://github.com/tmpfs/mdapi/blob/master/test/spec/full.js):
+File from the [test fixture](https://github.com/tmpfs/mkapi/blob/master/test/spec/full.js):
 
 ```javascript
 /**
@@ -41,7 +41,7 @@ File from the [test fixture](https://github.com/tmpfs/mdapi/blob/master/test/spe
  *  @since 1.0
  *  @license MIT
  *
- *  @see https://github.com/tmpfs/mdapi mdapi
+ *  @see https://github.com/tmpfs/mkapi mkapi
  *  @see https://github.com/jgm/commonmark.js commonmark
  */
 
@@ -142,7 +142,7 @@ title at the initial level setting.
 * **license** `MIT`
 
 
-* [mdapi](https://github.com/tmpfs/mdapi)
+* [mkapi](https://github.com/tmpfs/mkapi)
 
 
 * [commonmark](https://github.com/jgm/commonmark.js)

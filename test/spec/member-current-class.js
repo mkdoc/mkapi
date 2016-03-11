@@ -2,7 +2,7 @@ var expect = require('chai').expect
   , fs = require('fs')
   , parse = require('../../index');
 
-describe('mdapi:', function() {
+describe('mkapi:', function() {
 
   it('should print member of current class', function(done) {
     var output = 'target/member-current-class.md'

@@ -1,7 +1,7 @@
 var expect = require('chai').expect
   , parse = require('../../index');
 
-describe('mdapi:', function() {
+describe('mkapi:', function() {
 
   it('should callback with error on missing file', function(done) {
     function complete(err) {

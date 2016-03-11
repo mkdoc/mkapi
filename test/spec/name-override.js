@@ -2,7 +2,7 @@ var expect = require('chai').expect
   , fs = require('fs')
   , parse = require('../../index');
 
-describe('mdapi:', function() {
+describe('mkapi:', function() {
 
   it('should print last declared @name', function(done) {
     var output = 'target/name-override.md'

@@ -5,7 +5,7 @@
   "require": "lib",
   "toc": "Table of Contents",
   "pedantic": false,
-  "base": "https://github.com/tmpfs/mdapi",
+  "base": "https://github.com/tmpfs/mkapi",
   "partial": [
     {
       "title": "Input",
@@ -17,7 +17,7 @@
     {
       "title": "Result",
       "text": "Rendered output with `--level=2`:",
-      "bin": "./bin/mdapi test/fixtures/full.js --level=2"
+      "bin": "./bin/mkapi test/fixtures/full.js --level=2"
     }
   ]
 }

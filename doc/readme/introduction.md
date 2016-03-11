@@ -1,6 +1,6 @@
-[![Build Status](https://travis-ci.org/tmpfs/mdapi.svg?v=2)](https://travis-ci.org/tmpfs/mdapi)
-[![npm version](http://img.shields.io/npm/v/mdapi.svg?v=2)](https://npmjs.org/package/mdapi)
-[![Coverage Status](https://coveralls.io/repos/tmpfs/mdapi/badge.svg?branch=master&service=github&v=2)](https://coveralls.io/github/tmpfs/mdapi?branch=master)
+[![Build Status](https://travis-ci.org/tmpfs/mkapi.svg?v=2)](https://travis-ci.org/tmpfs/mkapi)
+[![npm version](http://img.shields.io/npm/v/mkapi.svg?v=2)](https://npmjs.org/package/mkapi)
+[![Coverage Status](https://coveralls.io/repos/tmpfs/mkapi/badge.svg?branch=master&service=github&v=2)](https://coveralls.io/github/tmpfs/mkapi?branch=master)
 
 Declarative, extensible, language neutral and fast API comments to commonmark compliant markdown.
 

@@ -3,7 +3,7 @@ var expect = require('chai').expect
   , fs = require('fs')
   , parse = require('../../index');
 
-describe('mdapi:', function() {
+describe('mkapi:', function() {
 
   it('should print @class with @inherits', function(done) {
     var output = 'target/class-inherits.md'

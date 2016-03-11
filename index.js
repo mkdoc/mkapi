@@ -163,7 +163,7 @@ function print(ast, opts, cb) {
  *
  *  @usage 
  *
- *  var parse = require('mdapi')
+ *  var parse = require('mkapi')
  *    , parse(['index.js'], {stream: process.stdout});
  *
  *  @function parse

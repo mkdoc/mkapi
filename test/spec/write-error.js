@@ -2,7 +2,7 @@ var expect = require('chai').expect
   , fs = require('fs')
   , parse = require('../../index');
 
-describe('mdapi:', function() {
+describe('mkapi:', function() {
 
   it('should callback with error on write stream error', function(done) {
     var stream = fs.createWriteStream('target/write-error.md');

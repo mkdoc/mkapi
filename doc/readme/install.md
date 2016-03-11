@@ -1,5 +1,5 @@
 ## Install
 
 ```
-npm i mdapi
+npm i mkapi
 ```
