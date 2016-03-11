@@ -1,5 +1,5 @@
 {
-  "name": "mdapi",
+  "name": "mkapi",
   "version": "1.0.3",
   "description": "Markdown api documentation generator",
   "main": "index.js",
