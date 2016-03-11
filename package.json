@@ -37,7 +37,7 @@
     "clean": "rm -rf coverage target",
     "readme": "mdp --force -v",
     "lint": "jshint . && jscs .",
-    "api": "./bin/mdapi index.js lib/*.js --level=2 --title=API",
+    "api": "./bin/mkapi index.js lib/*.js --level=2 --title=API",
     "docs": "npm run example && npm run readme",
     "example": "mdp --force -v -i doc/example.json -o EXAMPLE.md",
     "expect": "node test/expect.js",
@@ -64,7 +64,7 @@
       },
       {
         "title": "Usage",
-        "bin": "./bin/mdapi -h",
+        "bin": "./bin/mkapi -h",
         "type": "code"
       },
       {
@@ -76,7 +76,7 @@
         ]
       },
       {
-        "bin": "./bin/mdapi index.js lib/*.js --level=2 --title=API"
+        "bin": "./bin/mkapi index.js lib/*.js --level=2 --title=API"
       },
       {
         "inc": [

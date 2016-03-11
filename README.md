@@ -104,7 +104,7 @@ npm i mdapi
 ## Usage
 
 ```
-mdapi [options] [files...]
+mkapi [options] [files...]
 
   -o, --output=[FILE]  Write output to FILE (default: stdout).
   -t, --title=[VAL]    Title for initial heading.
@@ -405,8 +405,8 @@ parse(files[, opts], cb)
 ```
 
 ```javascript
-var parse = require('mdapi');
-parse(['index.js'], {stream: process.stdout});
+var parse = require('mdapi')
+, parse(['index.js'], {stream: process.stdout});
 ```
 
 Accepts an array of files and iterates the file contents in series
@@ -545,7 +545,7 @@ module, for example: `this.conf.MODULE` yields `module`.
 #### names
 
 ```javascript
-names
+Array<String> names
 ```
 
 List of default tag names.
@@ -553,7 +553,7 @@ List of default tag names.
 #### title
 
 ```javascript
-title
+Object title
 ```
 
 Variables for headings and notices, eg: `Deprecated`.
@@ -561,7 +561,7 @@ Variables for headings and notices, eg: `Deprecated`.
 #### shorthand
 
 ```javascript
-shorthand
+Array shorthand
 ```
 
 List of tag names that support the shorthand symbol type.
@@ -569,7 +569,7 @@ List of tag names that support the shorthand symbol type.
 #### format
 
 ```javascript
-format
+Object format
 ```
 
 Map of format functions.
@@ -579,7 +579,7 @@ Map of format functions.
 #### cues
 
 ```javascript
-cues
+Object cues
 ```
 
 Map of variables for visual cues.
@@ -587,7 +587,7 @@ Map of variables for visual cues.
 #### render
 
 ```javascript
-render
+Object render
 ```
 
 Map of render functions.
@@ -597,7 +597,7 @@ Map of render functions.
 #### include
 
 ```javascript
-include
+Object include
 ```
 
 Map of symbol types to include.
@@ -605,7 +605,7 @@ Map of symbol types to include.
 #### LANG
 
 ```javascript
-LANG = javascript;
+String LANG = javascript;
 ```
 
 Default language for fenced code blocks.
