@@ -16,7 +16,7 @@
  *  @since 1.0
  *  @license MIT
  *
- *  @see https://github.com/tmpfs/mkapi mkapi
+ *  @see https://github.com/mkdoc/mkapi mkapi
  *  @see https://github.com/jgm/commonmark.js commonmark
  */
 

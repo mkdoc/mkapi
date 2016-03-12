@@ -6,11 +6,11 @@
   "author": "muji",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/tmpfs/mkapi/issues"
+    "url": "https://github.com/mkdoc/mkapi/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tmpfs/mkapi.git"
+    "url": "git+https://github.com/mkdoc/mkapi.git"
   },
   "keywords": [
     "markdown",
@@ -54,7 +54,7 @@
     "require": "lib",
     "links": "links.md",
     "toc": "Table of Contents",
-    "base": "https://github.com/tmpfs/mkapi",
+    "base": "https://github.com/mkdoc/mkapi",
     "partial": [
       {
         "inc": [

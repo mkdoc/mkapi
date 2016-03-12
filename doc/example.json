@@ -5,7 +5,7 @@
   "require": "lib",
   "toc": "Table of Contents",
   "pedantic": false,
-  "base": "https://github.com/tmpfs/mkapi",
+  "base": "https://github.com/mkdoc/mkapi",
   "partial": [
     {
       "title": "Input",

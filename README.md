@@ -85,15 +85,15 @@ Table of Contents
 Markdown API
 ============
 
-[<img src="https://travis-ci.org/tmpfs/mkapi.svg?v=2" alt="Build Status">](https://travis-ci.org/tmpfs/mkapi)
+[<img src="https://travis-ci.org/mkdoc/mkapi.svg?v=2" alt="Build Status">](https://travis-ci.org/mkdoc/mkapi)
 [<img src="http://img.shields.io/npm/v/mkapi.svg?v=2" alt="npm version">](https://npmjs.org/package/mkapi)
-[<img src="https://coveralls.io/repos/tmpfs/mkapi/badge.svg?branch=master&service=github&v=2" alt="Coverage Status">](https://coveralls.io/github/tmpfs/mkapi?branch=master).
+[<img src="https://coveralls.io/repos/mkdoc/mkapi/badge.svg?branch=master&service=github&v=2" alt="Coverage Status">](https://coveralls.io/github/mkdoc/mkapi?branch=master).
 
 Declarative, extensible, language neutral and fast API comments to commonmark compliant markdown.
 
 Designed for small to medium sized libraries, for large projects use one of the many other documentation tools. Uses `javascript` for fenced code blocks by default but you can [configure](#conf) this library for any language.
 
-See [EXAMPLE.md](https://github.com/tmpfs/mkapi/blob/master/EXAMPLE.md) or the [api](#api) for example output.
+See [EXAMPLE.md](https://github.com/mkdoc/mkapi/blob/master/EXAMPLE.md) or the [api](#api) for example output.
 
 ## Install
 
@@ -117,7 +117,7 @@ mkapi [options] [files...]
   -h, --help           Display this help and exit.
   --version            Print the version and exit.
 
-Report bugs to https://github.com/tmpfs/mkapi/issues
+Report bugs to https://github.com/mkdoc/mkapi/issues
 ```
 
 Print the documentation to stdout:
@@ -957,7 +957,7 @@ npm run expect
 
 ### Example
 
-Builds [EXAMPLE.md](https://github.com/tmpfs/mkapi/blob/master/EXAMPLE.md):
+Builds [EXAMPLE.md](https://github.com/mkdoc/mkapi/blob/master/EXAMPLE.md):
 
 ```
 npm run example
