@@ -3,7 +3,6 @@ Table of Contents
 
 * [Markdown API](#markdown-api)
   * [Install](#install)
-  * [Usage](#usage)
   * [Comments](#comments)
   * [Description](#description)
   * [Tags](#tags)
@@ -99,25 +98,6 @@ See [EXAMPLE.md](https://github.com/mkdoc/mkapi/blob/master/EXAMPLE.md) or the [
 
 ```
 npm i mkapi
-```
-
-## Usage
-
-```
-mkapi [options] [files...]
-
-  -o, --output=[FILE]  Write output to FILE (default: stdout).
-  -t, --title=[VAL]    Title for initial heading.
-  -l, --level=[NUM]    Initial heading level (default: 1).
-  -L, --lang=[LANG]    Language for fenced code blocks (default: javascript).
-  -i, --indent=[NUM]   Number of spaces for JSON (default: 2).
-  -a, --ast            Print AST as JSON.
-  --[no]-private       Enable or disable private symbols
-  --[no]-protected     Enable or disable protected symbols
-  -h, --help           Display this help and exit.
-  --version            Print the version and exit.
-
-Report bugs to https://github.com/mkdoc/mkapi/issues
 ```
 
 Print the documentation to stdout:
