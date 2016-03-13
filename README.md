@@ -84,9 +84,9 @@ Table of Contents
 Markdown API
 ============
 
-[<img src="https://travis-ci.org/mkdoc/mkapi.svg?v=2" alt="Build Status">](https://travis-ci.org/mkdoc/mkapi)
-[<img src="http://img.shields.io/npm/v/mkapi.svg?v=2" alt="npm version">](https://npmjs.org/package/mkapi)
-[<img src="https://coveralls.io/repos/mkdoc/mkapi/badge.svg?branch=master&service=github&v=2" alt="Coverage Status">](https://coveralls.io/github/mkdoc/mkapi?branch=master).
+[<img src="https://travis-ci.org/mkdoc/mkapi.svg?v=3" alt="Build Status">](https://travis-ci.org/mkdoc/mkapi)
+[<img src="http://img.shields.io/npm/v/mkapi.svg?v=3" alt="npm version">](https://npmjs.org/package/mkapi)
+[<img src="https://coveralls.io/repos/mkdoc/mkapi/badge.svg?branch=master&service=github&v=3" alt="Coverage Status">](https://coveralls.io/github/mkdoc/mkapi?branch=master).
 
 Declarative, extensible, language neutral and fast API comments to commonmark compliant markdown.
 
