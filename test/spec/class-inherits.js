@@ -1,7 +1,7 @@
 
 var expect = require('chai').expect
   , fs = require('fs')
-  , parse = require('../../index');
+  , parse = require('../../index').parse;
 
 describe('mkapi:', function() {
 
