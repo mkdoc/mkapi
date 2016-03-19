@@ -403,4 +403,10 @@ function defaults(scope, conf, render) {
 parse.register = register;
 parse.tag = tag;
 
-module.exports = parse;
+function stream(files, opts, cb) {
+  return parse(files, opts, cb).stream;
+}
+
+stream.parse = parse;
+
+module.exports = stream;
