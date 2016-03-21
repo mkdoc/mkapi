@@ -1,4 +1,4 @@
-# Narkdown API
+# Markdown API
 
 [![Build Status](https://travis-ci.org/mkdoc/mkapi.svg?v=3)](https://travis-ci.org/mkdoc/mkapi)
 [![npm version](http://img.shields.io/npm/v/mkapi.svg?v=3)](https://npmjs.org/package/mkapi)

@@ -1,4 +1,4 @@
-# Narkdown API Example
+# Markdown API Example
 
 ## Input
 

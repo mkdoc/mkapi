@@ -1,4 +1,4 @@
-# Narkdown API
+# Markdown API
 
 <? @include readme/badges.md ?>
 
