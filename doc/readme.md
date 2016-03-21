@@ -10,7 +10,7 @@ Designed for small to medium sized libraries, for large projects use one of the 
 
 See [EXAMPLE.md](/EXAMPLE.md) or the [api](#api) for example output.
 
-<? @include {=readme} install.md usage.md comments.md tags.md cues.md ?>
+<? @include {=readme} install.md usage.md comments.md tags.md cues.md help.md ?>
 
 <? @exec mkapi index.js lib/*.js --title=API --level=2 ?>
 
