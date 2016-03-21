@@ -1,15 +1,28 @@
 var mk = require('mktask');
 
-// @task readme build the readme file.
-function readme(cb) {
-  mk.doc('doc/readme.md')         // read markdown source document
-    .pipe(mk.pi())                // parse processing instructions
-    .pipe(mk.ref())               // include link references
-    .pipe(mk.abs())               // make links absolute
-    .pipe(mk.msg())               // append generator message
-    .pipe(mk.out())               // convert abstract syntax tree to markdown
-    .pipe(mk.dest('README.md'))   // write the result to a file
-    .on('finish', cb);            // proceed to next task
+// @task example build the example file.
+function example(cb) {
+  mk.doc('doc/example.md')
+    .pipe(mk.pi())
+    .pipe(mk.ref())
+    .pipe(mk.abs())
+    .pipe(mk.msg())
+    .pipe(mk.out())
+    .pipe(mk.dest('EXAMPLE.md'))
+    .on('finish', cb);
 }
 
+// @task readme build the readme file.
+function readme(cb) {
+  mk.doc('doc/readme.md')
+    .pipe(mk.pi())
+    .pipe(mk.ref())
+    .pipe(mk.abs())
+    .pipe(mk.msg())
+    .pipe(mk.out())
+    .pipe(mk.dest('README.md'))
+    .on('finish', cb);
+}
+
+mk.task(example);
 mk.task(readme);
