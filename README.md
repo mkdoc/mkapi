@@ -1,92 +1,10 @@
-Table of Contents
-=================
+# Narkdown API
 
-* [Markdown API](#markdown-api)
-  * [Install](#install)
-  * [Comments](#comments)
-  * [Description](#description)
-  * [Tags](#tags)
-    * [Meta Tags](#meta-tags)
-    * [Notice Tags](#notice-tags)
-    * [General Tags](#general-tags)
-    * [Type Tags](#type-tags)
-    * [Modifier Tags](#modifier-tags)
-    * [Function Tags](#function-tags)
-    * [Property Tags](#property-tags)
-    * [Shorthand Tags](#shorthand-tags)
-    * [Name](#name)
-    * [Module](#module)
-    * [Class](#class)
-    * [Constructor](#constructor)
-    * [Inherits](#inherits)
-  * [Cues](#cues)
-    * [Member](#member)
-    * [Static](#static)
-    * [Inheritance](#inheritance)
-  * [API](#api)
-    * [parse](#parse)
-      * [Options](#options)
-      * [Events](#events)
-    * [register](#register)
-    * [tag](#tag)
-    * [Tag](#tag)
-    * [Comment](#comment)
-      * [.getDetail](#getdetail)
-      * [.getInfo](#getinfo)
-      * [.find](#find)
-      * [.collect](#collect)
-    * [conf](#conf)
-      * [names](#names)
-      * [title](#title)
-      * [shorthand](#shorthand)
-      * [format](#format)
-      * [cues](#cues)
-      * [render](#render)
-      * [include](#include)
-      * [LANG](#lang)
-    * [formats](#formats)
-      * [heading](#heading)
-      * [meta](#meta)
-      * [fenced](#fenced)
-      * [deprecated](#deprecated)
-      * [signature](#signature)
-      * [parameter](#parameter)
-      * [returns](#returns)
-      * [link](#link)
-      * [getAccess](#getaccess)
-      * [property](#property)
-      * [inherits](#inherits)
-      * [method](#method)
-      * [getTodo](#gettodo)
-    * [render](#render-1)
-      * [_class](#_class)
-      * [_function](#_function)
-      * [_property](#_property)
-    * [writers](#writers)
-      * [heading](#heading-1)
-      * [newline](#newline)
-      * [fenced](#fenced-1)
-      * [signature](#signature-1)
-      * [parameters](#parameters)
-      * [meta](#meta-1)
-      * [describe](#describe)
-      * [see](#see)
-      * [Writer < EventEmitter](#writer-eventemitter)
-  * [Developer](#developer)
-    * [Test](#test)
-    * [Cover](#cover)
-    * [Expect](#expect)
-    * [Example](#example)
-    * [Lint](#lint)
-    * [Clean](#clean)
-    * [Readme](#readme)
+[![Build Status](https://travis-ci.org/mkdoc/mkapi.svg?v=3)](https://travis-ci.org/mkdoc/mkapi)
+[![npm version](http://img.shields.io/npm/v/mkapi.svg?v=3)](https://npmjs.org/package/mkapi)
+[![Coverage Status](https://coveralls.io/repos/mkdoc/mkapi/badge.svg?branch=master&service=github&v=3)](https://coveralls.io/github/mkdoc/mkapi?branch=master)
 
-Markdown API
-============
-
-[<img src="https://travis-ci.org/mkdoc/mkapi.svg?v=3" alt="Build Status">](https://travis-ci.org/mkdoc/mkapi)
-[<img src="http://img.shields.io/npm/v/mkapi.svg?v=3" alt="npm version">](https://npmjs.org/package/mkapi)
-[<img src="https://coveralls.io/repos/mkdoc/mkapi/badge.svg?branch=master&service=github&v=3" alt="Coverage Status">](https://coveralls.io/github/mkdoc/mkapi?branch=master).
+> API documentation generator
 
 Declarative, extensible, language neutral and fast API comments to commonmark compliant markdown.
 
@@ -100,7 +18,7 @@ See [EXAMPLE.md](https://github.com/mkdoc/mkapi/blob/master/EXAMPLE.md) or the [
 npm i mkapi --save
 ```
 
-For the command line interface install [mkdoc](https://github.com/mkdoc/mkdoc) globally (`npm i -g mkdoc`).
+For the command line interface install [mkdoc][] globally (`npm i -g mkdoc`).
 
 Print the documentation to stdout:
 
@@ -108,7 +26,7 @@ Print the documentation to stdout:
 mkapi index.js
 ```
 
-Need HTML or XML? No problem, install [commonmark](https://github.com/jgm/commonmark.js) and pipe the output:
+Need HTML or XML? No problem, install [commonmark][] and pipe the output:
 
 ```
 mkapi index.js | commonmark
@@ -449,7 +367,7 @@ Use this to create custom tags.
 Returns the tag definition.
 
 * `name` String The name of the tag, do not include `@`.
-* `opts` Object An object whose fields are merged with the tag.
+* `opts` Object An object whose fields are merged with the tag
 definition.
 
 ### Tag
@@ -556,7 +474,7 @@ Object format
 
 Map of format functions.
 
-* [formats module](#formats).
+* [formats module](#formats)
 
 #### cues
 
@@ -574,7 +492,7 @@ Object render
 
 Map of render functions.
 
-* [render module](#render).
+* [render module](#render)
 
 #### include
 
@@ -911,68 +829,15 @@ Writer helper functions, an instance of this class is
 the scope for program execution and is decorated with additional
 fields when parse is called.
 
-## Developer
+## License
 
-### Test
+MIT
 
-To run the test suite:
-
-```
-npm test
-```
-
-### Cover
-
-To generate code coverage run:
-
-```
-npm run cover
-```
-
-### Expect
-
-Builds the test expectations, should be done when the format changes or the code is updated:
-
-```
-npm run expect
-```
-
-### Example
-
-Builds [EXAMPLE.md](https://github.com/mkdoc/mkapi/blob/master/EXAMPLE.md):
-
-```
-npm run example
-```
-
-### Lint
-
-Run the source tree through [jshint](http://jshint.com) and [jscs](http://jscs.info):
-
-```
-npm run lint
-```
-
-### Clean
-
-Remove generated files:
-
-```
-npm run clean
-```
-
-### Readme
-
-To build the readme file from the partial definitions (requires [mdp](https://github.com/tmpfs/mdp)):
-
-```
-npm run readme
-```
-
-Generated by [mdp(1)](https://github.com/tmpfs/mdp).
+Generated by [mkdoc](https://github.com/mkdoc/mkdoc).
 
 [mkdoc]: https://github.com/mkdoc/mkdoc
 [jshint]: http://jshint.com
 [jscs]: http://jscs.info
 [commonmark]: https://github.com/jgm/commonmark.js
 [mdp]: https://github.com/tmpfs/mdp
+

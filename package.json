@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mkdoc/mkapi.git"
+    "url": "https://github.com/mkdoc/mkapi.git"
   },
   "keywords": [
     "markdown",
@@ -33,10 +33,9 @@
   },
   "scripts": {
     "clean": "rm -rf coverage target",
-    "readme": "mdp --force -v",
     "lint": "jshint . && jscs .",
-    "api": "mkapi index.js lib/*.js --level=2 --title=API",
-    "docs": "npm run example && npm run readme",
+    "api": "mkapi index.js lib/*.js --level=2 --title=API > API.md",
+    "docs": "npm run example",
     "example": "mdp --force -v -i doc/example.json -o EXAMPLE.md",
     "expect": "node test/expect.js",
     "pretest": "rm -rf target && mkdir target",
@@ -44,38 +43,5 @@
     "precover": "npm run pretest",
     "cover": "NODE_ENV=test istanbul cover _mocha -- ${SPEC:-test/spec}",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
-  },
-  "mdp": {
-    "title": "Markdown API",
-    "pedantic": true,
-    "include": "doc/readme",
-    "require": "lib",
-    "links": "links.md",
-    "toc": "Table of Contents",
-    "base": "https://github.com/mkdoc/mkapi",
-    "partial": [
-      {
-        "inc": [
-          "introduction.md",
-          "install.md"
-        ]
-      },
-      {
-        "inc": [
-          "usage.md",
-          "comments.md",
-          "tags.md",
-          "cues.md"
-        ]
-      },
-      {
-        "bin": "mkapi index.js lib/*.js --level=2 --title=API"
-      },
-      {
-        "inc": [
-          "developer.md"
-        ]
-      }
-    ]
   }
 }
