@@ -4,7 +4,7 @@ var expect = require('chai').expect
 
 describe('mkapi:', function() {
 
-  it('should print usage with custom heading', function(done) {
+  it('should print usage with custom title', function(done) {
     var output = 'target/usage-heading.md'
       , expected = '' + fs.readFileSync(
           'test/fixtures/expect/usage-heading.md');
@@ -18,7 +18,7 @@ describe('mkapi:', function() {
     }
     parse(
       ['test/fixtures/usage.js'],
-      {output: fs.createWriteStream(output), heading: 'API'},
+      {output: fs.createWriteStream(output), title: 'API'},
       complete);
   });
 

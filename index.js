@@ -174,7 +174,7 @@ function print(ast, opts, cb) {
  *  @option {Writable} output The stream to write to, default is `stdout`.
  *  @option {Object} conf Configuration overrides.
  *  @option {Number} level Initial level for the first heading, default is `1`.
- *  @option {String} heading Value for an initial heading.
+ *  @option {String} title Value for an initial heading.
  *  @option {String} lang Language for fenced code blocks, default is `javascript`.
  *
  *  @event error when a processing error occurs.
@@ -250,8 +250,8 @@ function parse(files, opts, cb) {
   }
 
   // initial heading
-  if(opts.heading && typeof opts.heading === 'string') {
-    scope.heading(opts.heading, state.depth); 
+  if(opts.title && typeof opts.title === 'string') {
+    scope.heading(opts.title, state.depth); 
     state.depth++;
     // global header written
     state.header = true;
