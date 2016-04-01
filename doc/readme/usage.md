@@ -14,5 +14,5 @@ From code pass files and options:
 
 ```javascript
 var parse = require('mkapi');
-parse(['index.js'], {stream: process.stdout});
+parse(['index.js'], {output: process.stdout});
 ```

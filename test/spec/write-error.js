@@ -20,7 +20,7 @@ describe('mkapi:', function() {
     // write after end
     parse(
       ['test/fixtures/property.js'],
-      {stream: stream},
+      {output: stream},
       complete);
   });
 

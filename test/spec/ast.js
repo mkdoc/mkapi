@@ -19,7 +19,7 @@ describe('mkapi:', function() {
     }
     parse(
       ['test/fixtures/usage.js'],
-      {stream: fs.createWriteStream(output), ast: true},
+      {output: fs.createWriteStream(output), ast: true},
       complete);
   });
 
@@ -38,7 +38,7 @@ describe('mkapi:', function() {
     }
     parse(
       ['test/fixtures/usage.js'],
-      {stream: fs.createWriteStream(output), ast: true, indent: 0},
+      {output: fs.createWriteStream(output), ast: true, indent: 0},
       complete);
   });
 

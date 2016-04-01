@@ -22,7 +22,7 @@ tags.constructor = registry.constructor = null;
  */
 function getScope(conf, state, opts) {
   var scope = new Writer()
-    , stream = opts.stream
+    , output = opts.output
     , k;
 
   // bind format functions to scope
@@ -39,8 +39,8 @@ function getScope(conf, state, opts) {
   // parse options
   scope.opts = opts;
 
-  // stream to write to
-  scope.stream = stream;
+  // output to write to
+  scope.output = output;
 
   // pass in the registry
   scope.registry = registry;
@@ -99,7 +99,7 @@ function each(files, it, cb) {
  *  @param {Function} cb Callback function.
  */
 function print(ast, opts, cb) {
-  var stream = this.stream
+  var output = this.output
     , json
     //, usage = []
     //, hasModule = false
@@ -108,7 +108,7 @@ function print(ast, opts, cb) {
 
   if(opts.ast) {
     json = JSON.stringify(ast, undefined, indent);
-    return stream.write(json, cb); 
+    return output.write(json, cb); 
   }
 
   var comments = ast.slice();
@@ -164,14 +164,14 @@ function print(ast, opts, cb) {
  *  @usage 
  *
  *  var parse = require('mkapi')
- *    , parse(['index.js'], {stream: process.stdout});
+ *    , parse(['index.js'], {output: process.stdout});
  *
  *  @function parse
  *  @param {Array} files List of files to parse.
  *  @param {Object} [opts] Parse options.
  *  @param {Function} cb Callback function.
  *
- *  @option {Writable} stream The stream to write to, default is `stdout`.
+ *  @option {Writable} output The stream to write to, default is `stdout`.
  *  @option {Object} conf Configuration overrides.
  *  @option {Number} level Initial level for the first heading, default is `1`.
  *  @option {String} heading Value for an initial heading.
@@ -196,7 +196,7 @@ function parse(files, opts, cb) {
 
   // state for the entire execution
   var state = {}
-    , stream
+    , output
     , called = false
     , scope
     // default config
@@ -211,11 +211,11 @@ function parse(files, opts, cb) {
     config = merge(true, config, opts.conf); 
   }
 
-  // stream to print to
-  stream = opts.stream =
-    (opts.stream !== undefined) ? opts.stream : process.stdout;
+  // output to print to
+  output = opts.output =
+    (opts.output !== undefined) ? opts.output : process.stdout;
 
-  assert(stream.write instanceof Function, 'stream expected to have write()');
+  assert(output.write instanceof Function, 'output expected to have write()');
 
   // starting level for headings
   opts.level = opts.level || 1;
@@ -238,7 +238,7 @@ function parse(files, opts, cb) {
     scope.emit('finish')
   }
 
-  stream.once('error', done);
+  output.once('error', done);
 
   // get scope after opts have been configured
   scope = getScope(config, state, opts);
@@ -273,9 +273,9 @@ function parse(files, opts, cb) {
       }
 
       /* istanbul ignore else: never write to stdout in tests */
-      if(stream !== process.stdout) {
-        stream.once('finish', done);
-        stream.end(); 
+      if(output !== process.stdout) {
+        output.once('finish', done);
+        output.end(); 
       }else{
         done();
       }

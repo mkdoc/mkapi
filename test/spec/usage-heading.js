@@ -18,7 +18,7 @@ describe('mkapi:', function() {
     }
     parse(
       ['test/fixtures/usage.js'],
-      {stream: fs.createWriteStream(output), heading: 'API'},
+      {output: fs.createWriteStream(output), heading: 'API'},
       complete);
   });
 

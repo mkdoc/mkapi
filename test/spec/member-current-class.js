@@ -18,7 +18,7 @@ describe('mkapi:', function() {
     }
     parse(
       ['test/fixtures/member-current-class.js'],
-      {stream: fs.createWriteStream(output)},
+      {output: fs.createWriteStream(output)},
       complete);
   });
 

@@ -18,7 +18,7 @@ describe('mkapi:', function() {
     }
     parse(
       ['test/fixtures/static-shorthand.js'],
-      {stream: fs.createWriteStream(output)},
+      {output: fs.createWriteStream(output)},
       complete);
   });
 

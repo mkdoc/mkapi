@@ -18,7 +18,7 @@ describe('mkapi:', function() {
     }
     parse(
       ['test/fixtures/see.js'],
-      {stream: fs.createWriteStream(output)},
+      {output: fs.createWriteStream(output)},
       complete);
   });
 

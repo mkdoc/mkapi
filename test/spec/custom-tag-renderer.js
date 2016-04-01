@@ -46,7 +46,7 @@ describe('mkapi:', function() {
     }
     parse(
       ['test/fixtures/custom-tag-renderer.js'],
-      {stream: fs.createWriteStream(output)},
+      {output: fs.createWriteStream(output)},
       complete);
   });
 

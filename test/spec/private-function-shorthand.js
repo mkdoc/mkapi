@@ -19,7 +19,7 @@ describe('mkapi:', function() {
     parse(
       ['test/fixtures/private-function-shorthand.js'],
       {
-        stream: fs.createWriteStream(output),
+        output: fs.createWriteStream(output),
         conf: {
           include: {
             private: true

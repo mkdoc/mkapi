@@ -17,7 +17,7 @@ describe('mkapi:', function() {
 
     var notifier = parse(
       ['test/fixtures/event.js'],
-      {stream: fs.createWriteStream(output)});
+      {output: fs.createWriteStream(output)});
 
     notifier.on('file', file);
   });
@@ -34,7 +34,7 @@ describe('mkapi:', function() {
 
     var notifier = parse(
       ['test/fixtures/event.js'],
-      {stream: fs.createWriteStream(output)});
+      {output: fs.createWriteStream(output)});
 
     notifier.on('ast', ast);
   });
@@ -50,7 +50,7 @@ describe('mkapi:', function() {
 
     var notifier = parse(
       ['test/fixtures/event.js'],
-      {stream: fs.createWriteStream(output)});
+      {output: fs.createWriteStream(output)});
 
     notifier.on('finish', finish);
   });
