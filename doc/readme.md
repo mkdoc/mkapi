@@ -12,6 +12,10 @@ See [EXAMPLE.md](/EXAMPLE.md) or the [api](#api) for example output.
 
 <? @include {=readme} install.md ?>
 
+***
+<!-- @toc -->
+***
+
 <? @include {=readme} usage.md example.md comments.md tags.md cues.md help.md ?>
 
 <? @exec mkapi index.js lib/*.js --title=API --level=2 ?>
