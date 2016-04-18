@@ -1,16 +1,6 @@
-Print the documentation to stdout:
+## Usage
 
-```
-mkapi index.js
-```
-
-Need HTML or XML? No problem, install [commonmark][] and pipe the output:
-
-```
-mkapi index.js | commonmark
-```
-
-From code pass files and options:
+Pass files and options:
 
 ```javascript
 var parse = require('mkapi');

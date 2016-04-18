@@ -23,6 +23,7 @@ For the command line interface install [mkdoc][] globally (`npm i -g mkdoc`).
 ---
 
 - [Install](#install)
+- [Usage](#usage)
 - [Example](#example)
 - [Comments](#comments)
 - [Description](#description)
@@ -98,19 +99,9 @@ For the command line interface install [mkdoc][] globally (`npm i -g mkdoc`).
 
 ---
 
-Print the documentation to stdout:
+## Usage
 
-```
-mkapi index.js
-```
-
-Need HTML or XML? No problem, install [commonmark][] and pipe the output:
-
-```
-mkapi index.js | commonmark
-```
-
-From code pass files and options:
+Pass files and options:
 
 ```javascript
 var parse = require('mkapi');
@@ -119,22 +110,28 @@ parse(['index.js'], {output: process.stdout});
 
 ## Example
 
+Print the documentation to stdout:
+
+```
+mkapi index.js
+```
+
 Create a markdown document from the comments in a source file:
 
 ```shell
-mkapi index.js --title=API > API.md
+mkapi index.js --title=API -o API.md
 ```
 
 Set initial heading level:
 
 ```shell
-mkapi index.js --title=API --level=2 > API.md
+mkapi index.js --title=API --level=2 -o API.md
 ```
 
 Include private symbols in the output:
 
 ```shell
-mkapi index.js --private > API.md
+mkapi index.js --private -o API.md
 ```
 
 ## Comments
