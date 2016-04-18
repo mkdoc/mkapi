@@ -39,6 +39,26 @@ var parse = require('mkapi');
 parse(['index.js'], {output: process.stdout});
 ```
 
+## Example
+
+Create a markdown document from the comments in a source file:
+
+```shell
+mkapi index.js --title=API > API.md
+```
+
+Set initial heading level:
+
+```shell
+mkapi index.js --title=API --level=2 > API.md
+```
+
+Include private symbols in the output:
+
+```shell
+mkapi index.js --private > API.md
+```
+
 ## Comments
 
 Comments are parsed from `/**...*/` at the moment, later the aim is to support other styles of comment declarations.
@@ -113,6 +133,7 @@ A type tag maps to a render function, see the [render api docs](#render).
 * `@constructor`: Symbol is a constructor function.
 * `@function`: Symbol is a function.
 * `@property`: Symbol is a property.
+
 You can specify the type using the tag itself:
 
 ```javascript
@@ -174,6 +195,7 @@ Type identifiers may be specified to some tags using a type `{id}`, the syntax i
 * `@private`: Set the name, type and mark as private.
 * `@protected`: Set the name, type and mark as protected.
 * `@member`: Declare as member, set the symbol type.
+
 For example to declare a `function` symbol with the name `noop`:
 
 ```javascript
@@ -297,22 +319,23 @@ Indicates an inheritance hierarchy, borrowed from Ruby.
 ## Help
 
 ```
-mkapi [options] [files...]
+Usage: mkapi [options] <files...>
 
-Documentation generator.
+  Documentation generator.
 
-  -o, --output=[FILE]     Write output to FILE
+Options
+  -o, --output=[FILE]     Write output to FILE (default: stdout)
   -t, --title=[VAL]       Title for initial heading
-  -l, --level=[NUM]       Initial heading level
-  -L, --lang=[LANG]       Language for fenced code blocks
-  -i, --indent=[NUM]      Number of spaces for JSON
+  -l, --level=[NUM]       Initial heading level (default: 1)
+  -L, --lang=[LANG]       Language for fenced code blocks (default: javascript)
+  -i, --indent=[NUM]      Number of spaces for JSON (default: 2)
   -a, --ast               Print AST as JSON
   --[no]-private          Enable or disable private symbols
   --[no]-protected        Enable or disable protected symbols
   -h, --help              Display help and exit
   --version               Print the version and exit
 
-Report bugs to https://github.com/mkdoc/mkapi/issues
+mkapi@1.1.7
 ```
 
 ## API
@@ -854,7 +877,7 @@ MIT
 
 ---
 
-Created by [mkdoc](https://github.com/mkdoc/mkdoc) on April 1, 2016
+Created by [mkdoc](https://github.com/mkdoc/mkdoc) on April 18, 2016
 
 [mkdoc]: https://github.com/mkdoc/mkdoc
 [jshint]: http://jshint.com
