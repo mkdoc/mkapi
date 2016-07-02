@@ -10,7 +10,7 @@ describe('mkapi:', function() {
       , registry;
 
     function renderer(type, token, cb) {
-      expect(type.tag).to.eql(tag);
+      expect(type.id).to.eql(tag);
       delete registry[tag];
       cb(); 
     }

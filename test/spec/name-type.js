@@ -13,6 +13,10 @@ describe('mkapi:', function() {
         return done(err); 
       }
       var contents = '' + fs.readFileSync(output);
+      console.log('contents');
+      console.log(contents);
+      console.log('expected');
+      console.log(expected);
       expect(contents).to.eql(expected);
       done(); 
     }

@@ -11,7 +11,7 @@ describe('mkapi:', function() {
       // scope is the Writer scope for execution
       expect(this.conf).to.be.an('object');
       expect(file).to.be.a('string');
-      expect(Buffer.isBuffer(buffer)).to.eql(true);
+      //expect(Buffer.isBuffer(buffer)).to.eql(true);
       done(); 
     }
 

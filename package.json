@@ -21,8 +21,8 @@
     "generator"
   ],
   "dependencies": {
-    "comment-parser": "~0.4.0",
     "merge": "~1.2.0",
+    "mkparse": "~1.5.10",
     "string-repeater": "~1.0.3"
   },
   "devDependencies": {

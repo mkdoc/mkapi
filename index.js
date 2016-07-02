@@ -1,6 +1,5 @@
-var fs = require('fs')
-  , assert = require('assert')
-  , comments = require('comment-parser')
+var assert = require('assert')
+  , mkparse = require('mkparse')
   , merge = require('merge')
   , Writer = require('./lib/writers')
   , Comment = require('./lib/comment')
@@ -67,27 +66,45 @@ function getScope(conf, state, opts) {
  *
  *  @private {function} each
  *  @param {Array} files list of input files to load.
+ *  @parm {Array} comments list of parsed comments.
  *  @param {Function} it file iterator function.
  *  @param {Function} cb callback function.
  */
 function each(files, it, cb) {
   var file = files.shift();
+  var comments = [];
   if(!file) {
     return cb(null); 
   } 
-  function onRead(err, contents) {
+
+  var stream = mkparse.load(file);
+
+  function done(err) {
     if(err) {
       return cb(err); 
-    }
-    it(file, contents, function(err) {
+    } 
+    // move on to next file
+    each(files, it, cb); 
+  }
+
+  stream.on('comment', function onComment(comment) {
+    comments.push(comment);
+  })
+
+  stream.once('error', function onError(err) {
+    console.log('stream error');
+    done(err);
+  })
+
+  stream.once('finish', function onFinish() {
+    it(file, comments, function(err) {
       // callback reported an error
       if(err) {
         return cb(err); 
       }
-      each(files, it, cb);
+      done();
     });
-  }
-  fs.readFile(file, onRead);
+  })
 }
 
 /** 
@@ -202,7 +219,7 @@ function parse(files, opts, cb) {
     // default config
     , config = require('./lib/conf')
     // comment parser options
-    , parser = {trim: true};
+    //, parser = {trim: true};
 
   opts = opts || {};
 
@@ -259,12 +276,15 @@ function parse(files, opts, cb) {
 
   each(
     files.slice(),
-    function onFile(file, result, next) {
-      scope.emit('file', file, result);
-      var ast = comments(result.toString('utf8'), parser);
+    function onFile(file, ast, next) {
+      // NOTE: buffer result argument removed when migrating to 
+      // NOTE: mkparse from comment-parser
+      scope.emit('file', file);
+
       scope.emit('ast', ast);
+
       // update file state
-      scope.file = {info: file, buffer: result};
+      scope.file = {info: file};
       print.call(scope, ast, opts, next);
     },
     function onComplete(err) {
