@@ -66,7 +66,6 @@ function getScope(conf, state, opts) {
  *
  *  @private {function} each
  *  @param {Array} files list of input files to load.
- *  @parm {Array} comments list of parsed comments.
  *  @param {Function} it file iterator function.
  *  @param {Function} cb callback function.
  */
@@ -92,7 +91,6 @@ function each(files, it, cb) {
   })
 
   stream.once('error', function onError(err) {
-    console.log('stream error');
     done(err);
   })
 
