@@ -355,7 +355,9 @@ Indicates an inheritance hierarchy, borrowed from Ruby.
 ## Help
 
 ```
-Usage: mkapi [options] <files...>
+Usage: mkapi [-ah] [--ast] [--[no]-private] [--[no]-protected] [--help]
+             [--version] [--output=<file>] [--title=<val>] [--level=<num>]
+             [--lang=<lang>] [--indent=<num>] <files...>
 
   Documentation generator.
 
@@ -371,7 +373,7 @@ Options
   -h, --help              Display help and exit
   --version               Print the version and exit
 
-mkapi@1.1.7
+mkapi@1.1.9
 ```
 
 ## API
@@ -384,7 +386,7 @@ parse(files[, opts], cb)
 
 ```javascript
 var parse = require('mkapi')
-, parse(['index.js'], {output: process.stdout});
+   , parse(['index.js'], {output: process.stdout});
 ```
 
 Accepts an array of files and iterates the file contents in series
@@ -523,7 +525,7 @@ module, for example: `this.conf.MODULE` yields `module`.
 #### names
 
 ```javascript
-Array<String> names
+Array names
 ```
 
 List of default tag names.
@@ -913,7 +915,7 @@ MIT
 
 ---
 
-Created by [mkdoc](https://github.com/mkdoc/mkdoc) on April 18, 2016
+Created by [mkdoc](https://github.com/mkdoc/mkdoc) on July 2, 2016
 
 [mkdoc]: https://github.com/mkdoc/mkdoc
 [jshint]: http://jshint.com
