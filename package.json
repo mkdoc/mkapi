@@ -22,7 +22,7 @@
   ],
   "dependencies": {
     "merge": "~1.2.0",
-    "mkparse": "~1.5.11",
+    "mkparse": "~1.5.12",
     "string-repeater": "~1.0.3"
   },
   "devDependencies": {
