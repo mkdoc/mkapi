@@ -157,7 +157,8 @@ function print(ast, opts, cb) {
       });
 
     }else{
-      console.warn('failed to find renderer for tag');
+      // TODO: work out the best way to handle this
+      //console.warn('failed to find renderer for tag');
       // continue processing
       run();
     }
