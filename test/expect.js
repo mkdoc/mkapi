@@ -220,7 +220,7 @@ var parse = require('../index')
         files: ['test/fixtures/usage.js'],
         output: 'test/fixtures/expect/usage-heading.md',
         opts: {
-          heading: 'API'
+          title: 'API'
         }
       }
     ];
@@ -236,7 +236,8 @@ function expected() {
     return; 
   }
   info.opts = info.opts || {};
-  info.opts.stream = fs.createWriteStream(info.output);
+  info.opts.output = fs.createWriteStream(info.output);
+  //console.log(info.files)
   parse(info.files, info.opts, function(err) {
     if(err) {
       console.error(err.stack); 

@@ -1,27 +1,35 @@
 [
   {
+    "source": "/**\n *  @module foo\n *\n *  @usage\n *\n *  var foo = 'bar';\n */",
+    "description": "",
+    "line": 1,
+    "pos": {
+      "start": 1,
+      "end": 7
+    },
+    "newline": true,
     "tags": [
       {
-        "tag": "module",
-        "name": "foo",
+        "id": "module",
         "optional": false,
-        "type": "",
-        "description": "",
-        "line": 1,
-        "source": "@module foo"
+        "line": 2,
+        "source": " @module foo\n",
+        "name": "foo",
+        "value": "",
+        "body": "foo",
+        "description": ""
       },
       {
-        "tag": "usage",
-        "name": "\n",
+        "id": "usage",
         "optional": false,
-        "description": "var foo = 'bar';",
-        "type": "",
-        "line": 3,
-        "source": "@usage\n\nvar foo = 'bar';"
+        "line": 4,
+        "source": " @usage\n  var foo = 'bar';\n \n",
+        "name": "",
+        "value": "",
+        "body": "",
+        "description": "var foo = 'bar';"
       }
     ],
-    "line": 0,
-    "description": "",
-    "source": "@module foo\n\n@usage\n\nvar foo = 'bar';"
+    "file": "test/fixtures/usage.js"
   }
 ]
