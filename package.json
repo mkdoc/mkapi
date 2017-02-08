@@ -35,8 +35,6 @@
     "clean": "rm -rf coverage target",
     "lint": "jshint . && jscs .",
     "api": "mkapi index.js lib/*.js --level=2 --title=API > API.md",
-    "docs": "npm run example",
-    "example": "mdp --force -v -i doc/example.json -o EXAMPLE.md",
     "expect": "node test/expect.js",
     "pretest": "rm -rf target && mkdir target",
     "test": "NODE_env=test mocha ${SPEC:-test/spec}",
