@@ -51,7 +51,11 @@ For the command line interface install [mkdoc][] globally (`npm i -g mkdoc`).
   - [register](#register)
   - [tag](#tag)
   - [Tag](#tag-1)
-  - [Comment](#comment)
+- [Comment](#comment)
+  - [.getDetail](#getdetail)
+  - [.getInfo](#getinfo)
+  - [.find](#find)
+  - [.collect](#collect)
   - [conf](#conf)
   - [formats](#formats)
   - [render](#render)
@@ -373,7 +377,7 @@ Options
   -h, --help              Display help and exit
   --version               Print the version and exit
 
-mkapi@1.1.9
+mkapi@1.2.2
 ```
 
 ## API
@@ -386,7 +390,7 @@ parse(files[, opts], cb)
 
 ```javascript
 var parse = require('mkapi')
-   , parse(['index.js'], {output: process.stdout});
+  , parse(['index.js'], {output: process.stdout});
 ```
 
 Accepts an array of files and iterates the file contents in series
@@ -410,6 +414,7 @@ Returns an event notifier.
 * `level` Number Initial level for the first heading, default is `1`.
 * `title` String Value for an initial heading.
 * `lang` String Language for fenced code blocks, default is `javascript`.
+* `parser` Object Options to pass to the `mkparse` library.
 
 #### Events
 
@@ -458,14 +463,14 @@ new Tag()
 
 Encapsulates a tag definition.
 
-### Comment
+## Comment
 
 Encapsulates operations on a comment AST token.
 
 This implementation uses a cache map to look up tags in the
 underlying list of tags.
 
-#### .getDetail
+### .getDetail
 
 ```javascript
 getDetail.prototype.getDetail([names])
@@ -477,7 +482,7 @@ Returns an object with `name`, `type` and `id`.
 
 * `names` Array List of custom tag names.
 
-#### .getInfo
+### .getInfo
 
 ```javascript
 getInfo.prototype.getInfo(method)
@@ -490,7 +495,7 @@ fields specific to the `function` type.
 
 * `method` Boolean Inject function specific information.
 
-#### .find
+### .find
 
 ```javascript
 find.prototype.find(id)
@@ -502,7 +507,7 @@ Returns a tag or `undefined` if not found.
 
 * `id` String The tag identifier.
 
-#### .collect
+### .collect
 
 ```javascript
 collect.prototype.collect(id)
@@ -915,7 +920,7 @@ MIT
 
 ---
 
-Created by [mkdoc](https://github.com/mkdoc/mkdoc) on July 2, 2016
+Created by [mkdoc](https://github.com/mkdoc/mkdoc) on February 8, 2017
 
 [mkdoc]: https://github.com/mkdoc/mkdoc
 [jshint]: http://jshint.com
