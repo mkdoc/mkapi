@@ -66,24 +66,25 @@ function getScope(conf, state, opts) {
  *
  *  @private {function} each
  *  @param {Array} files list of input files to load.
+ *  @param {Object} opts map of processing options.
  *  @param {Function} it file iterator function.
  *  @param {Function} cb callback function.
  */
-function each(files, it, cb) {
+function each(files, opts, it, cb) {
   var file = files.shift();
   var comments = [];
   if(!file) {
-    return cb(null); 
-  } 
+    return cb(null);
+  }
 
-  var stream = mkparse.load(file);
+  var stream = mkparse.load(file, opts.parser);
 
   function done(err) {
     if(err) {
-      return cb(err); 
-    } 
+      return cb(err);
+    }
     // move on to next file
-    each(files, it, cb); 
+    each(files, opts, it, cb);
   }
 
   stream.on('comment', function onComment(comment) {
@@ -98,14 +99,14 @@ function each(files, it, cb) {
     it(file, comments, function(err) {
       // callback reported an error
       if(err) {
-        return cb(err); 
+        return cb(err);
       }
       done();
     });
   })
 }
 
-/** 
+/**
  *  Print markdown from the parsed AST.
  *
  *  @private {function} print
@@ -118,12 +119,12 @@ function print(ast, opts, cb) {
     , json
     //, usage = []
     //, hasModule = false
-    , indent = typeof(opts.indent) === 'number' && !isNaN(opts.indent) 
+    , indent = typeof(opts.indent) === 'number' && !isNaN(opts.indent)
         ? Math.abs(opts.indent) : 2;
 
   if(opts.ast) {
     json = JSON.stringify(ast, undefined, indent);
-    return output.write(json, cb); 
+    return output.write(json, cb);
   }
 
   var comments = ast.slice();
@@ -144,7 +145,7 @@ function print(ast, opts, cb) {
 
     // marked @private
     if(exclude && (this.conf.include[this.conf.PRIVATE] !== true)) {
-      return run(); 
+      return run();
     }
 
     // render for the type tag
@@ -153,7 +154,7 @@ function print(ast, opts, cb) {
 
       // call render function async
       this.render[info.id](info.type, token, function(err) {
-        run(err || null); 
+        run(err || null);
       });
 
     }else{
@@ -169,15 +170,15 @@ function print(ast, opts, cb) {
 
 // jscs:disable maximumLineLength
 /**
- *  Accepts an array of files and iterates the file contents in series 
+ *  Accepts an array of files and iterates the file contents in series
  *  asynchronously.
  *
- *  Parse the comments in each file into a comment AST 
+ *  Parse the comments in each file into a comment AST
  *  and transform the AST into commonmark compliant markdown.
  *
  *  The callback function is passed an error on failure: `function(err)`.
  *
- *  @usage 
+ *  @usage
  *
  *  var parse = require('mkapi')
  *    , parse(['index.js'], {output: process.stdout});
@@ -192,6 +193,7 @@ function print(ast, opts, cb) {
  *  @option {Number} level Initial level for the first heading, default is `1`.
  *  @option {String} title Value for an initial heading.
  *  @option {String} lang Language for fenced code blocks, default is `javascript`.
+ *  @option {Object} parser Options to pass to the `mkparse` library.
  *
  *  @event error when a processing error occurs.
  *  @event file when a file buffer is available.
@@ -204,7 +206,7 @@ function parse(files, opts, cb) {
   assert(Array.isArray(files), 'array of files expected');
 
   if(typeof opts === 'function') {
-    cb = opts; 
+    cb = opts;
     opts = null;
   }
 
@@ -224,7 +226,7 @@ function parse(files, opts, cb) {
 
   // merge user configuration with default config
   if(opts.conf) {
-    config = merge(true, config, opts.conf); 
+    config = merge(true, config, opts.conf);
   }
 
   // output to print to
@@ -267,7 +269,7 @@ function parse(files, opts, cb) {
 
   // initial heading
   if(opts.title && typeof opts.title === 'string') {
-    scope.heading(opts.title, state.depth); 
+    scope.heading(opts.title, state.depth);
     state.depth++;
     // global header written
     state.header = true;
@@ -275,8 +277,9 @@ function parse(files, opts, cb) {
 
   each(
     files.slice(),
+    opts,
     function onFile(file, ast, next) {
-      // NOTE: buffer result argument removed when migrating to 
+      // NOTE: buffer result argument removed when migrating to
       // NOTE: mkparse from comment-parser
       scope.emit('file', file);
 
@@ -294,7 +297,7 @@ function parse(files, opts, cb) {
       /* istanbul ignore else: never write to stdout in tests */
       if(output !== process.stdout) {
         output.once('finish', done);
-        output.end(); 
+        output.end();
       }else{
         done();
       }
@@ -307,7 +310,7 @@ function parse(files, opts, cb) {
 /**
  *  Register a render function for a given type tag.
  *
- *  Without the `renderer` option attempts to return a render function 
+ *  Without the `renderer` option attempts to return a render function
  *  for the specified type.
  *
  *  @function register
@@ -340,7 +343,7 @@ function register(type, renderer) {
  *
  *  @function tag
  *  @param {String} name The name of the tag, do not include `@`.
- *  @param {Object} [opts] An object whose fields are merged with the tag 
+ *  @param {Object} [opts] An object whose fields are merged with the tag
  *  definition.
  *
  *  @returns the tag definition.
@@ -390,8 +393,8 @@ function defaults(scope, conf, render) {
   // register built-in tags if they are not already set
   conf.names.forEach(function(name) {
     if(!tags[name]) {
-      tag(name); 
-    } 
+      tag(name);
+    }
   })
 
   // register tag constants
