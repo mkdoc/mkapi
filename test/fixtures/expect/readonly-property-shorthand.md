@@ -4,5 +4,3 @@
 readonly propName
 ```
 
-# See Also
-

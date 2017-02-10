@@ -12,5 +12,3 @@ optional(files[, opts], cb)
 
 * `foo` String A foo option.
 
-# See Also
-

@@ -4,5 +4,3 @@
 readonly getName()
 ```
 
-# See Also
-

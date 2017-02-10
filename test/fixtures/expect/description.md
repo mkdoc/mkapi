@@ -6,5 +6,3 @@ description()
 
 Description of the function.
 
-# See Also
-

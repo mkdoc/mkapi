@@ -2,5 +2,3 @@
 
 Short module description.
 
-### See Also
-

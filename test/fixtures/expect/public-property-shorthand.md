@@ -4,5 +4,3 @@
 public propName
 ```
 
-# See Also
-

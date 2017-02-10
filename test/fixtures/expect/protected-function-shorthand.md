@@ -4,5 +4,3 @@
 protected getName()
 ```
 
-# See Also
-

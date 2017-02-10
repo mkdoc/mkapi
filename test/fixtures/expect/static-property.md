@@ -4,5 +4,3 @@
 static prop
 ```
 
-# See Also
-

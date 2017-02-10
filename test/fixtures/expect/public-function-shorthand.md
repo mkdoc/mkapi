@@ -4,5 +4,3 @@
 public getName()
 ```
 
-# See Also
-

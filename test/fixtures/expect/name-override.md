@@ -4,5 +4,3 @@
 NewFunctionName()
 ```
 
-# See Also
-

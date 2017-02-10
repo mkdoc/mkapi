@@ -2,5 +2,3 @@
 
 Class description.
 
-## See Also
-

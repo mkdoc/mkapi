@@ -4,5 +4,3 @@
 private getName()
 ```
 
-# See Also
-

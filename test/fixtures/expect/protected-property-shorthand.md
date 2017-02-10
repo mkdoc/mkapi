@@ -4,5 +4,3 @@
 protected propName
 ```
 
-# See Also
-

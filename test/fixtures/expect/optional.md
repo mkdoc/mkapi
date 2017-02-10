@@ -8,5 +8,3 @@ optional(files[, options], cb)
 * `options` An options parameter.
 * `cb` A function parameter.
 
-# See Also
-

@@ -6,5 +6,3 @@ String hasDefault = bar;
 
 Expects a value but has a default value.
 
-# See Also
-

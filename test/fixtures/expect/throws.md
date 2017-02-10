@@ -8,5 +8,3 @@ throwable()
 
 * `Error` When it wants.
 
-# See Also
-
