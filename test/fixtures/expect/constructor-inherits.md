@@ -1,4 +1,4 @@
-# Component &lt; EventEmitter
+# Component : EventEmitter
 
 ```javascript
 new Component()

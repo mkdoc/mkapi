@@ -1,4 +1,4 @@
-# ClassName &lt; EventEmitter &lt; Object
+# ClassName : EventEmitter : Object
 
 Class description.
 
