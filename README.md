@@ -351,10 +351,10 @@ Indicates a static class member, borrowed from HTML identifiers.
 ### Inheritance
 
 ```
-SubClass < SuperClass
+SubClass : SuperClass
 ```
 
-Indicates an inheritance hierarchy, borrowed from Ruby.
+Indicates an inheritance hierarchy.
 
 ## Help
 
@@ -559,7 +559,9 @@ Object format
 
 Map of format functions.
 
-* [formats module](#formats)
+#### See Also
+
+* [formats module](#formats "formats module")
 
 #### cues
 
@@ -577,7 +579,9 @@ Object render
 
 Map of render functions.
 
-* [render module](#render)
+#### See Also
+
+* [render module](#render "render module")
 
 #### include
 
@@ -806,7 +810,7 @@ Render a property block.
 
 ### writers
 
-output writer helper functions.
+Output writer helper functions.
 
 Responsible for writing to the output output but should **not** perform
 any formatting of the output string, their role is to extract the
@@ -897,14 +901,15 @@ Print the description for a token.
 #### see
 
 ```javascript
-see(token)
+see(token, depth)
 ```
 
 Write the list of see also links.
 
 * `token` Object The current token.
+* `depth` Number The current heading depth.
 
-#### Writer < EventEmitter
+#### Writer : EventEmitter
 
 ```javascript
 new Writer()
@@ -920,7 +925,7 @@ MIT
 
 ---
 
-Created by [mkdoc](https://github.com/mkdoc/mkdoc) on February 8, 2017
+Created by [mkdoc](https://github.com/mkdoc/mkdoc) on February 10, 2017
 
 [mkdoc]: https://github.com/mkdoc/mkdoc
 [jshint]: http://jshint.com

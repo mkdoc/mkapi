@@ -24,4 +24,4 @@ Indicates a static class member, borrowed from HTML identifiers.
 SubClass : SuperClass
 ```
 
-Indicates an inheritance hierarchy, borrowed from Ruby.
+Indicates an inheritance hierarchy.
