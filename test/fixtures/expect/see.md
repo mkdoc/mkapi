@@ -2,6 +2,6 @@
 
 ### See Also
 
-* [mkapi](https://github.com/mkdoc/mkapi)
-* [https://github.com/jgm/commonmark.js](https://github.com/jgm/commonmark.js)
+* [mkapi](https://github.com/mkdoc/mkapi "mkapi")
+* [github.com/jgm/commonmark.js](https://github.com/jgm/commonmark.js)
 
